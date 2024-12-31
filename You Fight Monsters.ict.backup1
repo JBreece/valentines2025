@@ -1,0 +1,4084 @@
+ctjsVersion: 3.3.0
+language: coffeescript
+notes: /* empty */
+libs:
+  place:
+    gridX: 1024
+    gridY: 1024
+  fittoscreen:
+    mode: scaleFit
+  pointer: {}
+  keyboard.polyfill: {}
+  keyboard: {}
+  random: {}
+  vkeys: {}
+  touch:
+    mousetouch: true
+    preventdefault: false
+  sound.basic: {}
+textures:
+  - lastmod: 1707533007599
+    type: texture
+    name: Meteor_Grey_Big_01
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 50
+      - 42
+    marginx: 0
+    marginy: 0
+    imgWidth: 101
+    imgHeight: 84
+    width: 101
+    height: 84
+    offx: 0
+    offy: 0
+    origname: i7r3Qm7LpKThJhd.png
+    shape: strip
+    left: 50
+    right: 51
+    top: 42
+    bottom: 42
+    uid: 7r3Qm7LpKThJhd
+    padding: 1
+    isBlank: false
+    group: !<tag:yaml.org,2002:js/undefined> ''
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Kenney's Space
+      Shooter\Meteor_Grey_Big_01.png
+    stripPoints:
+      - x: -32.5
+        'y': -40.5
+      - x: 23.75
+        'y': -40
+      - x: 50.25
+        'y': -1.5
+      - x: 34
+        'y': 32.25
+      - x: 10.75
+        'y': 28.5
+      - x: -22
+        'y': 40.5
+      - x: -49
+        'y': 9.5
+    closedStrip: true
+  - lastmod: 1707533025570
+    type: texture
+    name: Meteor_Grey_Med_01
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 21
+      - 21
+    marginx: 0
+    marginy: 0
+    imgWidth: 43
+    imgHeight: 43
+    width: 43
+    height: 43
+    offx: 0
+    offy: 0
+    origname: iwCBTdmFbzf3Www.png
+    shape: strip
+    left: 21
+    right: 22
+    top: 21
+    bottom: 22
+    uid: wCBTdmFbzf3Www
+    padding: 1
+    isBlank: false
+    group: !<tag:yaml.org,2002:js/undefined> ''
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Kenney's Space
+      Shooter\Meteor_Grey_Med_01.png
+    stripPoints:
+      - x: -8
+        'y': -19.5
+      - x: 16.875
+        'y': -17.875
+      - x: 21
+        'y': 6.125
+      - x: 0.875
+        'y': 20.75
+      - x: -13
+        'y': 17
+      - x: -20.166666666666668
+        'y': -2.25
+    closedStrip: true
+  - lastmod: 1707532720216
+    type: texture
+    name: BG_Blue
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 256
+    imgHeight: 256
+    width: 256
+    height: 256
+    offx: 0
+    offy: 0
+    origname: iK2GK892tMKHnpz.png
+    shape: rect
+    left: 0
+    right: 256
+    top: 0
+    bottom: 256
+    uid: K2GK892tMKHnpz
+    padding: 1
+    isBlank: false
+    group: !<tag:yaml.org,2002:js/undefined> ''
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Kenney's Space
+      Shooter\BG_Blue.png
+    tiled: true
+  - lastmod: 1707533056271
+    type: texture
+    name: Enemy_Red_03
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 51
+      - 42
+    marginx: 0
+    marginy: 0
+    imgWidth: 103
+    imgHeight: 84
+    width: 103
+    height: 84
+    offx: 0
+    offy: 0
+    origname: i5mBPGGDm8g79Nk.png
+    shape: strip
+    left: 51
+    right: 52
+    top: 42
+    bottom: 42
+    uid: 5mBPGGDm8g79Nk
+    padding: 1
+    isBlank: false
+    group: !<tag:yaml.org,2002:js/undefined> ''
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Kenney's Space
+      Shooter\Enemy_Red_03.png
+    stripPoints:
+      - x: -24.833333333333332
+        'y': -34.166666666666664
+      - x: 1.1666666666666643
+        'y': -41.166666666666664
+      - x: 26.5
+        'y': -34.33333333333333
+      - x: 51.83333333333334
+        'y': -1.8333333333333333
+      - x: 37.333333333333336
+        'y': 40.333333333333336
+      - x: -37
+        'y': 40.666666666666664
+      - x: -50.333333333333336
+        'y': -2.166666666666666
+    closedStrip: true
+  - lastmod: 1707532976516
+    type: texture
+    name: Laser_Blue_07
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 4
+      - 18
+    marginx: 0
+    marginy: 0
+    imgWidth: 9
+    imgHeight: 37
+    width: 9
+    height: 37
+    offx: 0
+    offy: 0
+    origname: iMFqdfT1rnWT9gC.png
+    shape: rect
+    left: 4
+    right: 5
+    top: 18
+    bottom: 19
+    uid: MFqdfT1rnWT9gC
+    padding: 1
+    isBlank: false
+    group: !<tag:yaml.org,2002:js/undefined> ''
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Kenney's Space
+      Shooter\Laser_Blue_07.png
+  - lastmod: 1707532952436
+    type: texture
+    name: Laser_Red_09
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 24
+      - 23
+    marginx: 0
+    marginy: 0
+    imgWidth: 48
+    imgHeight: 46
+    width: 48
+    height: 46
+    offx: 0
+    offy: 0
+    origname: iPTCdRRkgW7cttf.png
+    shape: circle
+    left: 24
+    right: 24
+    top: 23
+    bottom: 23
+    uid: PTCdRRkgW7cttf
+    padding: 1
+    isBlank: false
+    group: !<tag:yaml.org,2002:js/undefined> ''
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Kenney's Space
+      Shooter\Laser_Red_09.png
+    r: 23
+  - lastmod: 1707532924238
+    type: texture
+    name: PlayerShip_02_Blue
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 56
+      - 37
+    marginx: 0
+    marginy: 0
+    imgWidth: 112
+    imgHeight: 75
+    width: 112
+    height: 75
+    offx: 0
+    offy: 0
+    origname: ih15jTBGD9cG68J.png
+    shape: strip
+    left: 56
+    right: 56
+    top: 37
+    bottom: 38
+    uid: h15jTBGD9cG68J
+    padding: 1
+    isBlank: false
+    group: !<tag:yaml.org,2002:js/undefined> ''
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Kenney's Space
+      Shooter\PlayerShip_02_Blue.png
+    stripPoints:
+      - x: 0
+        'y': -38
+      - x: 11.25
+        'y': -16.25
+      - x: 56
+        'y': 5.25
+      - x: 36.75
+        'y': 33.5
+      - x: -38.75
+        'y': 33.5
+      - x: -55.5
+        'y': 6.5
+      - x: -10.5
+        'y': -16.75
+    closedStrip: true
+  - lastmod: 1707800860559
+    type: texture
+    name: Bomb
+    untill: 0
+    grid:
+      - 10
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 160
+    imgHeight: 16
+    width: 16
+    height: 16
+    offx: 0
+    offy: 0
+    origname: iNc94twdKb41RJJ.png
+    shape: rect
+    left: 0
+    right: 16
+    top: 0
+    bottom: 16
+    uid: Nc94twdKb41RJJ
+    padding: 1
+    isBlank: false
+    group: false
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Dungeon Crawler
+      16x16\Bomb_10x1.png
+  - lastmod: 1707800860564
+    type: texture
+    name: Chest
+    untill: 0
+    grid:
+      - 8
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 128
+    imgHeight: 16
+    width: 16
+    height: 16
+    offx: 0
+    offy: 0
+    origname: iKQMWQ6nwnhDMNW.png
+    shape: rect
+    left: 0
+    right: 16
+    top: 0
+    bottom: 16
+    uid: KQMWQ6nwnhDMNW
+    padding: 1
+    isBlank: false
+    group: false
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Dungeon Crawler
+      16x16\Chest_8x1.png
+  - lastmod: 1707800860565
+    type: texture
+    name: Bookshelf
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 16
+    imgHeight: 16
+    width: 16
+    height: 16
+    offx: 0
+    offy: 0
+    origname: iLPtJKq2MqfcMrf.png
+    shape: rect
+    left: 0
+    right: 16
+    top: 0
+    bottom: 16
+    uid: LPtJKq2MqfcMrf
+    padding: 1
+    isBlank: false
+    group: false
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Dungeon Crawler
+      16x16\Bookshelf.png
+  - lastmod: 1707800860565
+    type: texture
+    name: Crosshair_03
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 16
+    imgHeight: 16
+    width: 16
+    height: 16
+    offx: 0
+    offy: 0
+    origname: iFDDTKknJPKc8Q6.png
+    shape: rect
+    left: 0
+    right: 16
+    top: 0
+    bottom: 16
+    uid: FDDTKknJPKc8Q6
+    padding: 1
+    isBlank: false
+    group: false
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Dungeon Crawler
+      16x16\Crosshair_03.png
+  - lastmod: 1707800860566
+    type: texture
+    name: Barrel
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 16
+    imgHeight: 16
+    width: 16
+    height: 16
+    offx: 0
+    offy: 0
+    origname: i8ghWTwGD5MBwkK.png
+    shape: rect
+    left: 0
+    right: 16
+    top: 0
+    bottom: 16
+    uid: 8ghWTwGD5MBwkK
+    padding: 1
+    isBlank: false
+    group: false
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Dungeon Crawler
+      16x16\Barrel.png
+  - lastmod: 1707800860570
+    type: texture
+    name: Door_Closed
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 32
+    imgHeight: 32
+    width: 32
+    height: 32
+    offx: 0
+    offy: 0
+    origname: inWKHgLqrGhhtWb.png
+    shape: rect
+    left: 0
+    right: 32
+    top: 0
+    bottom: 32
+    uid: nWKHgLqrGhhtWb
+    padding: 1
+    isBlank: false
+    group: false
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Dungeon Crawler
+      16x16\Door_Closed.png
+  - lastmod: 1707800860570
+    type: texture
+    name: Door
+    untill: 0
+    grid:
+      - 14
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 448
+    imgHeight: 32
+    width: 32
+    height: 32
+    offx: 0
+    offy: 0
+    origname: iTjnN4mkDW9jBj1.png
+    shape: rect
+    left: 0
+    right: 32
+    top: 0
+    bottom: 32
+    uid: TjnN4mkDW9jBj1
+    padding: 1
+    isBlank: false
+    group: false
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Dungeon Crawler
+      16x16\Door_14x1.png
+  - lastmod: 1707800860571
+    type: texture
+    name: CoinsBag
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 16
+    imgHeight: 16
+    width: 16
+    height: 16
+    offx: 0
+    offy: 0
+    origname: iK34DbzPdhmfMQW.png
+    shape: rect
+    left: 0
+    right: 16
+    top: 0
+    bottom: 16
+    uid: K34DbzPdhmfMQW
+    padding: 1
+    isBlank: false
+    group: false
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Dungeon Crawler
+      16x16\CoinsBag.png
+  - lastmod: 1707800860571
+    type: texture
+    name: Flag_Red
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 16
+    imgHeight: 16
+    width: 16
+    height: 16
+    offx: 0
+    offy: 0
+    origname: iT8MwL6LjdC6c17.png
+    shape: rect
+    left: 0
+    right: 16
+    top: 0
+    bottom: 16
+    uid: T8MwL6LjdC6c17
+    padding: 1
+    isBlank: false
+    group: false
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Dungeon Crawler
+      16x16\Flag_Red.png
+  - lastmod: 1707800860573
+    type: texture
+    name: Crosshair_01
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 16
+    imgHeight: 16
+    width: 16
+    height: 16
+    offx: 0
+    offy: 0
+    origname: imTDdDc6rj37tLQ.png
+    shape: rect
+    left: 0
+    right: 16
+    top: 0
+    bottom: 16
+    uid: mTDdDc6rj37tLQ
+    padding: 1
+    isBlank: false
+    group: false
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Dungeon Crawler
+      16x16\Crosshair_01.png
+  - lastmod: 1707800860574
+    type: texture
+    name: EnemyExplosion
+    untill: 0
+    grid:
+      - 4
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 64
+    imgHeight: 16
+    width: 16
+    height: 16
+    offx: 0
+    offy: 0
+    origname: i9Tb9p1Kbj2Dj21.png
+    shape: rect
+    left: 0
+    right: 16
+    top: 0
+    bottom: 16
+    uid: 9Tb9p1Kbj2Dj21
+    padding: 1
+    isBlank: false
+    group: false
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Dungeon Crawler
+      16x16\EnemyExplosion_4x1.png
+  - lastmod: 1707800860575
+    type: texture
+    name: Door_FullyOpen
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 32
+    imgHeight: 32
+    width: 32
+    height: 32
+    offx: 0
+    offy: 0
+    origname: iRLFB2dL2wRzNcH.png
+    shape: rect
+    left: 0
+    right: 32
+    top: 0
+    bottom: 32
+    uid: RLFB2dL2wRzNcH
+    padding: 1
+    isBlank: false
+    group: false
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Dungeon Crawler
+      16x16\Door_FullyOpen.png
+  - lastmod: 1707800860576
+    type: texture
+    name: Crosshair_02
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 16
+    imgHeight: 16
+    width: 16
+    height: 16
+    offx: 0
+    offy: 0
+    origname: i953wRQmKtJjkKw.png
+    shape: rect
+    left: 0
+    right: 16
+    top: 0
+    bottom: 16
+    uid: 953wRQmKtJjkKw
+    padding: 1
+    isBlank: false
+    group: false
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Dungeon Crawler
+      16x16\Crosshair_02.png
+  - lastmod: 1707800860577
+    type: texture
+    name: HitEffect
+    untill: 0
+    grid:
+      - 3
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 24
+    imgHeight: 8
+    width: 8
+    height: 8
+    offx: 0
+    offy: 0
+    origname: iTq38nw7Gkb35KK.png
+    shape: rect
+    left: 0
+    right: 8
+    top: 0
+    bottom: 8
+    uid: Tq38nw7Gkb35KK
+    padding: 1
+    isBlank: false
+    group: false
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Dungeon Crawler
+      16x16\HitEffect_3x1.png
+  - lastmod: 1707800860577
+    type: texture
+    name: Flag_Green
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 16
+    imgHeight: 16
+    width: 16
+    height: 16
+    offx: 0
+    offy: 0
+    origname: izHhhnb6Q7zMTnt.png
+    shape: rect
+    left: 0
+    right: 16
+    top: 0
+    bottom: 16
+    uid: zHhhnb6Q7zMTnt
+    padding: 1
+    isBlank: false
+    group: false
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Dungeon Crawler
+      16x16\Flag_Green.png
+  - lastmod: 1707800860578
+    type: texture
+    name: Explosion
+    untill: 0
+    grid:
+      - 7
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 224
+    imgHeight: 32
+    width: 32
+    height: 32
+    offx: 0
+    offy: 0
+    origname: i391LrLQQLFBL7C.png
+    shape: rect
+    left: 0
+    right: 32
+    top: 0
+    bottom: 32
+    uid: 391LrLQQLFBL7C
+    padding: 1
+    isBlank: false
+    group: false
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Dungeon Crawler
+      16x16\Explosion_7x1.png
+  - lastmod: 1707880237889
+    type: texture
+    name: Goblin_Run
+    untill: 0
+    grid:
+      - 6
+      - 1
+    axis:
+      - 8
+      - 8
+    marginx: 0
+    marginy: 0
+    imgWidth: 96
+    imgHeight: 16
+    width: 16
+    height: 16
+    offx: 0
+    offy: 0
+    origname: iMq7H4t26f1WL6f.png
+    shape: strip
+    left: 8
+    right: 8
+    top: 8
+    bottom: 8
+    uid: Mq7H4t26f1WL6f
+    padding: 1
+    isBlank: false
+    group: false
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Dungeon Crawler
+      16x16\Goblin_Run_6x1.png
+    stripPoints:
+      - x: -0.0625
+        'y': -6.5625
+      - x: 6.75
+        'y': -3.8125
+      - x: 4.1875
+        'y': 4.9375
+      - x: -3.625
+        'y': 4.8125
+      - x: -5
+        'y': -3.75
+    closedStrip: true
+  - lastmod: 1707800860580
+    type: texture
+    name: Fly
+    untill: 0
+    grid:
+      - 4
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 64
+    imgHeight: 16
+    width: 16
+    height: 16
+    offx: 0
+    offy: 0
+    origname: iwMg8NM5HgMbKT2.png
+    shape: rect
+    left: 0
+    right: 16
+    top: 0
+    bottom: 16
+    uid: wMg8NM5HgMbKT2
+    padding: 1
+    isBlank: false
+    group: false
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Dungeon Crawler
+      16x16\Fly_4x1.png
+  - lastmod: 1707800860580
+    type: texture
+    name: FullTilemap
+    untill: 0
+    grid:
+      - 9
+      - 8
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 144
+    imgHeight: 128
+    width: 16
+    height: 16
+    offx: 0
+    offy: 0
+    origname: iKL4wjkKFz4zCcj.png
+    shape: rect
+    left: 0
+    right: 16
+    top: 0
+    bottom: 16
+    uid: KL4wjkKFz4zCcj
+    padding: 1
+    isBlank: false
+    group: false
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Dungeon Crawler
+      16x16\FullTilemap_9x8.png
+  - lastmod: 1707800860581
+    type: texture
+    name: Key_Silver
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 16
+    imgHeight: 16
+    width: 16
+    height: 16
+    offx: 0
+    offy: 0
+    origname: iGHnBFC3zL8prdG.png
+    shape: rect
+    left: 0
+    right: 16
+    top: 0
+    bottom: 16
+    uid: GHnBFC3zL8prdG
+    padding: 1
+    isBlank: false
+    group: false
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Dungeon Crawler
+      16x16\Key_Silver.png
+  - lastmod: 1707874076382
+    type: texture
+    name: Knight_Idle
+    untill: 0
+    grid:
+      - 6
+      - 1
+    axis:
+      - 8
+      - 8
+    marginx: 0
+    marginy: 0
+    imgWidth: 96
+    imgHeight: 16
+    width: 16
+    height: 16
+    offx: 0
+    offy: 0
+    origname: iFMRqmBQrpR4d2P.png
+    shape: strip
+    left: 8
+    right: 8
+    top: 8
+    bottom: 8
+    uid: FMRqmBQrpR4d2P
+    padding: 1
+    isBlank: false
+    group: false
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Dungeon Crawler
+      16x16\Knight_Idle_6x1.png
+    stripPoints:
+      - x: -0.625
+        'y': -4.625
+      - x: 4.25
+        'y': -1.125
+      - x: 3.75
+        'y': 5.25
+      - x: -4.5
+        'y': 5.5
+      - x: -3.875
+        'y': -0.125
+    closedStrip: true
+  - lastmod: 1707800860583
+    type: texture
+    name: Goblin_Idle
+    untill: 0
+    grid:
+      - 6
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 96
+    imgHeight: 16
+    width: 16
+    height: 16
+    offx: 0
+    offy: 0
+    origname: iWm2k6536Q8FmFd.png
+    shape: rect
+    left: 0
+    right: 16
+    top: 0
+    bottom: 16
+    uid: Wm2k6536Q8FmFd
+    padding: 1
+    isBlank: false
+    group: false
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Dungeon Crawler
+      16x16\Goblin_Idle_6x1.png
+  - lastmod: 1707800860584
+    type: texture
+    name: Menu_Button_Press
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 96
+    imgHeight: 32
+    width: 96
+    height: 32
+    offx: 0
+    offy: 0
+    origname: iHKfMMwhmrDMfLN.png
+    shape: rect
+    left: 0
+    right: 96
+    top: 0
+    bottom: 32
+    uid: HKfMMwhmrDMfLN
+    padding: 1
+    isBlank: false
+    group: false
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Dungeon Crawler
+      16x16\Menu_Button_Press.png
+  - lastmod: 1707887030311
+    type: texture
+    name: Menu_Button
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 48
+      - 16
+    marginx: 0
+    marginy: 0
+    imgWidth: 96
+    imgHeight: 32
+    width: 96
+    height: 32
+    offx: 0
+    offy: 0
+    origname: iwKm7nMQghjPrnt.png
+    shape: rect
+    left: 48
+    right: 48
+    top: 16
+    bottom: 16
+    uid: wKm7nMQghjPrnt
+    padding: 1
+    isBlank: false
+    group: false
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Dungeon Crawler
+      16x16\Menu_Button.png
+  - lastmod: 1707864706167
+    type: texture
+    name: Knight_Run
+    untill: 0
+    grid:
+      - 6
+      - 1
+    axis:
+      - 8
+      - 8
+    marginx: 0
+    marginy: 0
+    imgWidth: 96
+    imgHeight: 16
+    width: 16
+    height: 16
+    offx: 0
+    offy: 0
+    origname: ibLRhjTfgHf5DCJ.png
+    shape: strip
+    left: 8
+    right: 8
+    top: 8
+    bottom: 8
+    uid: bLRhjTfgHf5DCJ
+    padding: 1
+    isBlank: false
+    group: false
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Dungeon Crawler
+      16x16\Knight_Run_6x1.png
+    stripPoints:
+      - x: 0.16666666666666666
+        'y': -5.416666666666666
+      - x: 4.500000000000001
+        'y': -1.5833333333333335
+      - x: 3.6666666666666665
+        'y': 5.416666666666667
+      - x: -4.416666666666666
+        'y': 5.25
+      - x: -5.083333333333334
+        'y': -0.41666666666666674
+    closedStrip: true
+  - lastmod: 1707800860585
+    type: texture
+    name: Pause_Button_Press
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 16
+    imgHeight: 16
+    width: 16
+    height: 16
+    offx: 0
+    offy: 0
+    origname: ibPDd5qwTMQkqwz.png
+    shape: rect
+    left: 0
+    right: 16
+    top: 0
+    bottom: 16
+    uid: bPDd5qwTMQkqwz
+    padding: 1
+    isBlank: false
+    group: false
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Dungeon Crawler
+      16x16\Pause_Button_Press.png
+  - lastmod: 1707800860586
+    type: texture
+    name: Potion_Yellow
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 16
+    imgHeight: 16
+    width: 16
+    height: 16
+    offx: 0
+    offy: 0
+    origname: iBP3f8JrDQmf9nj.png
+    shape: rect
+    left: 0
+    right: 16
+    top: 0
+    bottom: 16
+    uid: BP3f8JrDQmf9nj
+    padding: 1
+    isBlank: false
+    group: false
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Dungeon Crawler
+      16x16\Potion_Yellow.png
+  - lastmod: 1707874277753
+    type: texture
+    name: Slime_Idle
+    untill: 0
+    grid:
+      - 6
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 96
+    imgHeight: 16
+    width: 16
+    height: 16
+    offx: 0
+    offy: 0
+    origname: ik7MHF8kFG5TQN2.png
+    shape: rect
+    left: 0
+    right: 16
+    top: 0
+    bottom: 16
+    uid: k7MHF8kFG5TQN2
+    padding: 1
+    isBlank: false
+    group: false
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Dungeon Crawler
+      16x16\Slime_Idle_6x1.png
+  - lastmod: 1707800860588
+    type: texture
+    name: Pause_Button
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 16
+    imgHeight: 16
+    width: 16
+    height: 16
+    offx: 0
+    offy: 0
+    origname: igwH8FG5Bjw6KwR.png
+    shape: rect
+    left: 0
+    right: 16
+    top: 0
+    bottom: 16
+    uid: gwH8FG5Bjw6KwR
+    padding: 1
+    isBlank: false
+    group: false
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Dungeon Crawler
+      16x16\Pause_Button.png
+  - lastmod: 1707800860589
+    type: texture
+    name: Potion_Green
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 16
+    imgHeight: 16
+    width: 16
+    height: 16
+    offx: 0
+    offy: 0
+    origname: iT27J79jLzNNh2q.png
+    shape: rect
+    left: 0
+    right: 16
+    top: 0
+    bottom: 16
+    uid: T27J79jLzNNh2q
+    padding: 1
+    isBlank: false
+    group: false
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Dungeon Crawler
+      16x16\Potion_Green.png
+  - lastmod: 1707800860590
+    type: texture
+    name: Potion_Red
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 16
+    imgHeight: 16
+    width: 16
+    height: 16
+    offx: 0
+    offy: 0
+    origname: iFq5K64bLTgfdTq.png
+    shape: rect
+    left: 0
+    right: 16
+    top: 0
+    bottom: 16
+    uid: Fq5K64bLTgfdTq
+    padding: 1
+    isBlank: false
+    group: false
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Dungeon Crawler
+      16x16\Potion_Red.png
+  - lastmod: 1707880625457
+    type: texture
+    name: Prisoner
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 16
+    imgHeight: 16
+    width: 16
+    height: 16
+    offx: 0
+    offy: 0
+    origname: iF22w7Fjnk2ggzQ.png
+    shape: rect
+    left: 0
+    right: 16
+    top: 0
+    bottom: 16
+    uid: F22w7Fjnk2ggzQ
+    padding: 1
+    isBlank: false
+    group: false
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Dungeon Crawler
+      16x16\Prisoner.png
+  - lastmod: 1707878841257
+    type: texture
+    name: Slash_Effect_Anim_Spritesheet
+    untill: 0
+    grid:
+      - 3
+      - 1
+    axis:
+      - 8
+      - 8
+    marginx: 0
+    marginy: 0
+    imgWidth: 48
+    imgHeight: 16
+    width: 16
+    height: 16
+    offx: 0
+    offy: 0
+    origname: iHHkTmhc18zh7D8.png
+    shape: strip
+    left: 0
+    right: 48
+    top: 0
+    bottom: 16
+    uid: HHkTmhc18zh7D8
+    padding: 1
+    isBlank: false
+    group: false
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Dungeon Crawler
+      16x16\Slash_Effect_Anim_Spritesheet.png
+    stripPoints:
+      - x: -1.375
+        'y': -7.375
+      - x: 4.625
+        'y': -1.625
+      - x: 1.75
+        'y': 6
+      - x: -6.5
+        'y': 7
+      - x: -1.375
+        'y': -0.5
+      - x: -6.75
+        'y': -7.75
+    closedStrip: true
+  - lastmod: 1707800860619
+    type: texture
+    name: Spikes
+    untill: 0
+    grid:
+      - 10
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 160
+    imgHeight: 16
+    width: 16
+    height: 16
+    offx: 0
+    offy: 0
+    origname: iK1KFnbrL5jJFD2.png
+    shape: rect
+    left: 0
+    right: 16
+    top: 0
+    bottom: 16
+    uid: K1KFnbrL5jJFD2
+    padding: 1
+    isBlank: false
+    group: false
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Dungeon Crawler
+      16x16\Spikes_10x1.png
+  - lastmod: 1707881145102
+    type: texture
+    name: Slime_Run
+    untill: 0
+    grid:
+      - 6
+      - 1
+    axis:
+      - 8.041666666666666
+      - 8.375
+    marginx: 0
+    marginy: 0
+    imgWidth: 96
+    imgHeight: 16
+    width: 16
+    height: 16
+    offx: 0
+    offy: 0
+    origname: iKkJwNcFBFRwk2w.png
+    shape: strip
+    left: 8
+    right: 8
+    top: 8
+    bottom: 8
+    uid: KkJwNcFBFRwk2w
+    padding: 1
+    isBlank: false
+    group: false
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Dungeon Crawler
+      16x16\Slime_Run_6x1.png
+    stripPoints:
+      - x: -0.5
+        'y': -3.5833333333333335
+      - x: 5.374999999999999
+        'y': -2.125
+      - x: 5.833333333333333
+        'y': 3.3333333333333335
+      - x: 1.1666666666666656
+        'y': 5.458333333333333
+      - x: -5.041666666666667
+        'y': 5.458333333333333
+      - x: -7.75
+        'y': -0.16666666666666652
+    closedStrip: true
+  - lastmod: 1707800860621
+    type: texture
+    name: Table_01
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 16
+    imgHeight: 16
+    width: 16
+    height: 16
+    offx: 0
+    offy: 0
+    origname: iBHz8wPqn8bKNnF.png
+    shape: rect
+    left: 0
+    right: 16
+    top: 0
+    bottom: 16
+    uid: BHz8wPqn8bKNnF
+    padding: 1
+    isBlank: false
+    group: false
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Dungeon Crawler
+      16x16\Table_01.png
+  - lastmod: 1707800860621
+    type: texture
+    name: UI_Health
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 80
+    imgHeight: 16
+    width: 80
+    height: 16
+    offx: 0
+    offy: 0
+    origname: i47P4rQJmpF16wh.png
+    shape: rect
+    left: 0
+    right: 80
+    top: 0
+    bottom: 16
+    uid: 47P4rQJmpF16wh
+    padding: 1
+    isBlank: false
+    group: false
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Dungeon Crawler
+      16x16\UI_Health.png
+  - lastmod: 1707876872716
+    type: texture
+    name: Weapon_Sword
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 7.875
+      - 8.041666666666666
+    marginx: 0
+    marginy: 0
+    imgWidth: 16
+    imgHeight: 16
+    width: 16
+    height: 16
+    offx: 0
+    offy: 0
+    origname: imrG57CftGFkr5w.png
+    shape: strip
+    left: 8
+    right: 8
+    top: 8
+    bottom: 8
+    uid: mrG57CftGFkr5w
+    padding: 1
+    isBlank: false
+    group: false
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Dungeon Crawler
+      16x16\Weapon_Sword.png
+    stripPoints:
+      - x: 5.333333333333333
+        'y': -5.333333333333335
+      - x: 5.291666666666665
+        'y': -2.2083333333333335
+      - x: 0.708333333333333
+        'y': 3.0833333333333335
+      - x: -5
+        'y': 6
+      - x: -4.791666666666666
+        'y': 1.5
+      - x: 1.4083333333333332
+        'y': -4.499999999999999
+    closedStrip: true
+  - lastmod: 1707800860622
+    type: texture
+    name: Torch
+    untill: 0
+    grid:
+      - 6
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 96
+    imgHeight: 16
+    width: 16
+    height: 16
+    offx: 0
+    offy: 0
+    origname: iTMR7zzWjdncgb9.png
+    shape: rect
+    left: 0
+    right: 16
+    top: 0
+    bottom: 16
+    uid: TMR7zzWjdncgb9
+    padding: 1
+    isBlank: false
+    group: false
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Dungeon Crawler
+      16x16\Torch_6x1.png
+  - lastmod: 1707800860655
+    type: texture
+    name: Table_02
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 32
+    imgHeight: 16
+    width: 32
+    height: 16
+    offx: 0
+    offy: 0
+    origname: iFNMzfLPhzf3L2k.png
+    shape: rect
+    left: 0
+    right: 32
+    top: 0
+    bottom: 16
+    uid: FNMzfLPhzf3L2k
+    padding: 1
+    isBlank: false
+    group: false
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Dungeon Crawler
+      16x16\Table_02.png
+  - lastmod: 1707881946850
+    type: texture
+    name: OverworldTileset
+    untill: 0
+    grid:
+      - 12
+      - 21
+    axis:
+      - 69.25
+      - 138
+    marginx: 0
+    marginy: 0
+    imgWidth: 192
+    imgHeight: 336
+    width: 16
+    height: 16
+    offx: 0
+    offy: 0
+    origname: iBRjG23tGNn5BDH.png
+    shape: rect
+    left: 0
+    right: 16
+    top: 0
+    bottom: 16
+    uid: BRjG23tGNn5BDH
+    padding: 1
+    isBlank: false
+    group: !<tag:yaml.org,2002:js/undefined> ''
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Overworld ΓÇö
+      Grass Biome\OverworldTileset_12x21.png
+    tiled: true
+    r: 8
+    stripPoints:
+      - x: 0
+        'y': -8
+      - x: 8
+        'y': -2
+      - x: 5
+        'y': 6
+      - x: -5
+        'y': 6
+      - x: -8
+        'y': -2
+    closedStrip: true
+  - lastmod: 1707800942718
+    type: texture
+    name: Tileset_Autumn
+    untill: 0
+    grid:
+      - 15
+      - 9
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 480
+    imgHeight: 288
+    width: 32
+    height: 32
+    offx: 0
+    offy: 0
+    origname: i4hm6dm4GCqcz14.png
+    shape: rect
+    left: 0
+    right: 32
+    top: 0
+    bottom: 32
+    uid: 4hm6dm4GCqcz14
+    padding: 1
+    isBlank: false
+    group: false
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\RPG Nature
+      Tileset ΓÇö Seasons\Tileset_Autumn_15x9.png
+  - lastmod: 1707800942724
+    type: texture
+    name: Tileset_Ice
+    untill: 0
+    grid:
+      - 20
+      - 9
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 640
+    imgHeight: 288
+    width: 32
+    height: 32
+    offx: 0
+    offy: 0
+    origname: ipc8c8d9f1TpNkk.png
+    shape: rect
+    left: 0
+    right: 32
+    top: 0
+    bottom: 32
+    uid: pc8c8d9f1TpNkk
+    padding: 1
+    isBlank: false
+    group: false
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\RPG Nature
+      Tileset ΓÇö Seasons\Tileset_Ice_20x9.png
+  - lastmod: 1707800942725
+    type: texture
+    name: Tileset_Summer
+    untill: 0
+    grid:
+      - 20
+      - 9
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 640
+    imgHeight: 288
+    width: 32
+    height: 32
+    offx: 0
+    offy: 0
+    origname: ic9mjbbd57HD9tB.png
+    shape: rect
+    left: 0
+    right: 32
+    top: 0
+    bottom: 32
+    uid: c9mjbbd57HD9tB
+    padding: 1
+    isBlank: false
+    group: false
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\RPG Nature
+      Tileset ΓÇö Seasons\Tileset_Summer_20x9.png
+  - lastmod: 1707874329950
+    type: texture
+    name: Warrior_Red
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 1152
+    imgHeight: 1536
+    width: 1152
+    height: 1536
+    offx: 0
+    offy: 0
+    origname: iwQ5m8cQkjWFbzT.png
+    shape: rect
+    left: 0
+    right: 1152
+    top: 0
+    bottom: 1536
+    uid: wQ5m8cQkjWFbzT
+    padding: 1
+    isBlank: false
+    group: !<tag:yaml.org,2002:js/undefined> ''
+    source: >-
+      D:\ctjs assets\Tiny Swords\Tiny Swords (Update
+      010)\Factions\Knights\Troops\Warrior\Red\Warrior_Red.png
+  - lastmod: 1707801310861
+    type: texture
+    name: Warrior_Purple
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 1152
+    imgHeight: 1536
+    width: 1152
+    height: 1536
+    offx: 0
+    offy: 0
+    origname: irNpzdLtK5gchRQ.png
+    shape: rect
+    left: 0
+    right: 1152
+    top: 0
+    bottom: 1536
+    uid: rNpzdLtK5gchRQ
+    padding: 1
+    isBlank: false
+    group: !<tag:yaml.org,2002:js/undefined> ''
+    source: >-
+      D:\ctjs assets\Tiny Swords\Tiny Swords (Update
+      010)\Factions\Knights\Troops\Warrior\Purple\Warrior_Purple.png
+    stripPoints:
+      - x: 0
+        'y': -768
+      - x: 548
+        'y': -237
+      - x: 339
+        'y': 621
+      - x: -339
+        'y': 621
+      - x: -548
+        'y': -237
+    closedStrip: true
+    r: 576
+  - lastmod: 1707881914673
+    type: texture
+    name: Inca_Front
+    untill: 0
+    grid:
+      - 10
+      - 14
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 160
+    imgHeight: 224
+    width: 16
+    height: 16
+    offx: 0
+    offy: 0
+    origname: ijW3GFwQ9kRc4GT.png
+    shape: rect
+    left: 0
+    right: 16
+    top: 0
+    bottom: 16
+    uid: jW3GFwQ9kRc4GT
+    padding: 1
+    isBlank: false
+    group: !<tag:yaml.org,2002:js/undefined> ''
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Inca
+      tileset\Inca_Front_10x14.png
+    tiled: true
+  - lastmod: 1707881927800
+    type: texture
+    name: BG_Brown
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 64
+    imgHeight: 64
+    width: 64
+    height: 64
+    offx: 0
+    offy: 0
+    origname: iHrbt1zBrRQpwwz.png
+    shape: rect
+    left: 0
+    right: 64
+    top: 0
+    bottom: 64
+    uid: Hrbt1zBrRQpwwz
+    padding: 1
+    isBlank: false
+    group: !<tag:yaml.org,2002:js/undefined> ''
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Pixel
+      Adventure\BG_Brown.png
+    tiled: true
+  - lastmod: 1707881941113
+    type: texture
+    name: Tiles_Terrain
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 352
+    imgHeight: 176
+    width: 352
+    height: 176
+    offx: 0
+    offy: 0
+    origname: iRJ8JF16c69BP6D.png
+    shape: rect
+    left: 0
+    right: 352
+    top: 0
+    bottom: 176
+    uid: RJ8JF16c69BP6D
+    padding: 1
+    isBlank: false
+    group: !<tag:yaml.org,2002:js/undefined> ''
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Pixel
+      Adventure\Tiles_Terrain.png
+    tiled: true
+  - lastmod: 1707884954331
+    type: texture
+    name: Bg
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 256
+    imgHeight: 256
+    width: 256
+    height: 256
+    offx: 0
+    offy: 0
+    origname: iK9jgK67WWpJJ1k.png
+    shape: rect
+    left: 0
+    right: 256
+    top: 0
+    bottom: 256
+    uid: K9jgK67WWpJJ1k
+    padding: 1
+    isBlank: false
+    group: !<tag:yaml.org,2002:js/undefined> ''
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Comigo's
+      Animals, Farm, and Puzzle sprites\Bg.png
+    tiled: true
+  - lastmod: 1707886339420
+    type: texture
+    name: BG_Black
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 256
+    imgHeight: 256
+    width: 256
+    height: 256
+    offx: 0
+    offy: 0
+    origname: igqDFnMRntrkh2B.png
+    shape: rect
+    left: 0
+    right: 256
+    top: 0
+    bottom: 256
+    uid: gqDFnMRntrkh2B
+    padding: 1
+    isBlank: false
+    group: !<tag:yaml.org,2002:js/undefined> ''
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Kenney's Space
+      Shooter\BG_Black.png
+  - lastmod: 1707886342503
+    type: texture
+    name: BG_DarkPurple
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 256
+    imgHeight: 256
+    width: 256
+    height: 256
+    offx: 0
+    offy: 0
+    origname: i9kNTTh1FQ5tMGj.png
+    shape: rect
+    left: 0
+    right: 256
+    top: 0
+    bottom: 256
+    uid: 9kNTTh1FQ5tMGj
+    padding: 1
+    isBlank: false
+    group: !<tag:yaml.org,2002:js/undefined> ''
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Kenney's Space
+      Shooter\BG_DarkPurple.png
+    tiled: true
+  - lastmod: 1707887117732
+    type: texture
+    name: Button_03
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 427
+    imgHeight: 190
+    width: 427
+    height: 190
+    offx: 0
+    offy: 0
+    origname: ikPz4TCbgP2J43h.png
+    shape: rect
+    left: 0
+    right: 427
+    top: 0
+    bottom: 190
+    uid: kPz4TCbgP2J43h
+    padding: 1
+    isBlank: false
+    group: !<tag:yaml.org,2002:js/undefined> ''
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Game
+      UI\Button_03.png
+  - lastmod: 1707889913909
+    type: texture
+    name: Button_08
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 91
+      - 95
+    marginx: 0
+    marginy: 0
+    imgWidth: 182
+    imgHeight: 190
+    width: 182
+    height: 190
+    offx: 0
+    offy: 0
+    origname: i51nKNCfk6bNnp5.png
+    shape: rect
+    left: 91
+    right: 91
+    top: 95
+    bottom: 95
+    uid: 51nKNCfk6bNnp5
+    padding: 1
+    isBlank: false
+    group: !<tag:yaml.org,2002:js/undefined> ''
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Game
+      UI\Button_08.png
+  - lastmod: 1707889897996
+    type: texture
+    name: Button_161
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 91
+      - 95
+    marginx: 0
+    marginy: 0
+    imgWidth: 182
+    imgHeight: 190
+    width: 182
+    height: 190
+    offx: 0
+    offy: 0
+    origname: i7DGQN6bQLHtrtz.png
+    shape: rect
+    left: 91
+    right: 91
+    top: 95
+    bottom: 95
+    uid: 7DGQN6bQLHtrtz
+    padding: 1
+    isBlank: false
+    group: !<tag:yaml.org,2002:js/undefined> ''
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Game
+      UI\Button_161.png
+  - lastmod: 1707889890810
+    type: texture
+    name: Button_177
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 91
+      - 95
+    marginx: 0
+    marginy: 0
+    imgWidth: 182
+    imgHeight: 191
+    width: 182
+    height: 191
+    offx: 0
+    offy: 0
+    origname: iRTtW6WgdcMhmzG.png
+    shape: rect
+    left: 91
+    right: 91
+    top: 95
+    bottom: 96
+    uid: RTtW6WgdcMhmzG
+    padding: 1
+    isBlank: false
+    group: !<tag:yaml.org,2002:js/undefined> ''
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Game
+      UI\Button_177.png
+  - lastmod: 1707888742165
+    type: texture
+    name: Button_173
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 182
+    imgHeight: 190
+    width: 182
+    height: 190
+    offx: 0
+    offy: 0
+    origname: izHD8Djrz4KhGzd.png
+    shape: rect
+    left: 0
+    right: 182
+    top: 0
+    bottom: 190
+    uid: zHD8Djrz4KhGzd
+    padding: 1
+    isBlank: false
+    group: !<tag:yaml.org,2002:js/undefined> ''
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Game
+      UI\Button_173.png
+  - lastmod: 1707889888146
+    type: texture
+    name: Button_28
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 91
+      - 95
+    marginx: 0
+    marginy: 0
+    imgWidth: 182
+    imgHeight: 190
+    width: 182
+    height: 190
+    offx: 0
+    offy: 0
+    origname: i54m5jdW3PMMh3h.png
+    shape: rect
+    left: 91
+    right: 91
+    top: 95
+    bottom: 95
+    uid: 54m5jdW3PMMh3h
+    padding: 1
+    isBlank: false
+    group: !<tag:yaml.org,2002:js/undefined> ''
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Game
+      UI\Button_28.png
+  - lastmod: 1707889900556
+    type: texture
+    name: Button_35
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 91
+      - 95
+    marginx: 0
+    marginy: 0
+    imgWidth: 182
+    imgHeight: 190
+    width: 182
+    height: 190
+    offx: 0
+    offy: 0
+    origname: i9FL4tqJpPgJR1T.png
+    shape: rect
+    left: 91
+    right: 91
+    top: 95
+    bottom: 95
+    uid: 9FL4tqJpPgJR1T
+    padding: 1
+    isBlank: false
+    group: !<tag:yaml.org,2002:js/undefined> ''
+    source: >-
+      C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Game
+      UI\Button_35.png
+  - lastmod: 1707928292022
+    type: texture
+    name: Attack
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 86
+      - 86
+    marginx: 0
+    marginy: 0
+    imgWidth: 172
+    imgHeight: 172
+    width: 172
+    height: 172
+    offx: 0
+    offy: 0
+    origname: iD3mWdhkRzQ2cGK.png
+    shape: rect
+    left: 86
+    right: 86
+    top: 86
+    bottom: 86
+    uid: D3mWdhkRzQ2cGK
+    padding: 1
+    isBlank: false
+    group: !<tag:yaml.org,2002:js/undefined> ''
+    source: >-
+      D:\ctjs\app\data\ct.libs\vkeys\example\img\i6ac1c03e-839d-4007-84aa-22bece53f0fe.png
+  - lastmod: 1707925406517
+    type: texture
+    name: i85dd4cbb-1213-4656-8cfa-2ff088fb8d8f
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 121
+    imgHeight: 121
+    width: 121
+    height: 121
+    offx: 0
+    offy: 0
+    origname: iJd2FbT8R8T1dGn.png
+    shape: rect
+    left: 0
+    right: 121
+    top: 0
+    bottom: 121
+    uid: Jd2FbT8R8T1dGn
+    padding: 1
+    isBlank: false
+    group: !<tag:yaml.org,2002:js/undefined> ''
+    source: >-
+      D:\ctjs\app\data\ct.libs\vkeys\example\img\i85dd4cbb-1213-4656-8cfa-2ff088fb8d8f.png
+  - lastmod: 1707925406517
+    type: texture
+    name: i439a0e00-4c24-4172-a1f3-9f74c7cd7beb_prev
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 64
+    imgHeight: 64
+    width: 64
+    height: 64
+    offx: 0
+    offy: 0
+    origname: igwnKR3KhcLf5HP.png
+    shape: rect
+    left: 0
+    right: 64
+    top: 0
+    bottom: 64
+    uid: gwnKR3KhcLf5HP
+    padding: 1
+    isBlank: false
+    group: !<tag:yaml.org,2002:js/undefined> ''
+    source: >-
+      D:\ctjs\app\data\ct.libs\vkeys\example\img\i439a0e00-4c24-4172-a1f3-9f74c7cd7beb.png_prev.png
+  - lastmod: 1707928284634
+    type: texture
+    name: i6ac1c03e-839d-4007-84aa-22bece53f0fe_prev
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 64
+    imgHeight: 64
+    width: 64
+    height: 64
+    offx: 0
+    offy: 0
+    origname: izDK8f4K65Kp3r4.png
+    shape: rect
+    left: 0
+    right: 64
+    top: 0
+    bottom: 64
+    uid: zDK8f4K65Kp3r4
+    padding: 1
+    isBlank: false
+    group: !<tag:yaml.org,2002:js/undefined> ''
+    source: >-
+      D:\ctjs\app\data\ct.libs\vkeys\example\img\i6ac1c03e-839d-4007-84aa-22bece53f0fe.png_prev.png
+  - lastmod: 1707925406521
+    type: texture
+    name: i85dd4cbb-1213-4656-8cfa-2ff088fb8d8f_prev@2
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 128
+    imgHeight: 128
+    width: 128
+    height: 128
+    offx: 0
+    offy: 0
+    origname: itR469nJ8f1G3hn.png
+    shape: rect
+    left: 0
+    right: 128
+    top: 0
+    bottom: 128
+    uid: tR469nJ8f1G3hn
+    padding: 1
+    isBlank: false
+    group: !<tag:yaml.org,2002:js/undefined> ''
+    source: >-
+      D:\ctjs\app\data\ct.libs\vkeys\example\img\i85dd4cbb-1213-4656-8cfa-2ff088fb8d8f.png_prev@2.png
+  - lastmod: 1707928306893
+    type: texture
+    name: Attack_Pressed
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 64
+      - 64
+    marginx: 0
+    marginy: 0
+    imgWidth: 128
+    imgHeight: 128
+    width: 128
+    height: 128
+    offx: 0
+    offy: 0
+    origname: idC191Dm4TRd8jK.png
+    shape: rect
+    left: 64
+    right: 64
+    top: 64
+    bottom: 64
+    uid: dC191Dm4TRd8jK
+    padding: 1
+    isBlank: false
+    group: !<tag:yaml.org,2002:js/undefined> ''
+    source: >-
+      D:\ctjs\app\data\ct.libs\vkeys\example\img\i6ac1c03e-839d-4007-84aa-22bece53f0fe.png_prev@2.png
+  - lastmod: 1707925406523
+    type: texture
+    name: i439a0e00-4c24-4172-a1f3-9f74c7cd7beb_prev@2
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 128
+    imgHeight: 128
+    width: 128
+    height: 128
+    offx: 0
+    offy: 0
+    origname: iqPpG5hHLM6mL9g.png
+    shape: rect
+    left: 0
+    right: 128
+    top: 0
+    bottom: 128
+    uid: qPpG5hHLM6mL9g
+    padding: 1
+    isBlank: false
+    group: !<tag:yaml.org,2002:js/undefined> ''
+    source: >-
+      D:\ctjs\app\data\ct.libs\vkeys\example\img\i439a0e00-4c24-4172-a1f3-9f74c7cd7beb.png_prev@2.png
+  - lastmod: 1707925406523
+    type: texture
+    name: i85dd4cbb-1213-4656-8cfa-2ff088fb8d8f_prev
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 64
+    imgHeight: 64
+    width: 64
+    height: 64
+    offx: 0
+    offy: 0
+    origname: in73Wc8NRDk69fz.png
+    shape: rect
+    left: 0
+    right: 64
+    top: 0
+    bottom: 64
+    uid: n73Wc8NRDk69fz
+    padding: 1
+    isBlank: false
+    group: !<tag:yaml.org,2002:js/undefined> ''
+    source: >-
+      D:\ctjs\app\data\ct.libs\vkeys\example\img\i85dd4cbb-1213-4656-8cfa-2ff088fb8d8f.png_prev.png
+  - lastmod: 1707925406524
+    type: texture
+    name: i439a0e00-4c24-4172-a1f3-9f74c7cd7beb
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 274
+    imgHeight: 274
+    width: 274
+    height: 274
+    offx: 0
+    offy: 0
+    origname: iNtFmRP45tCdFL3.png
+    shape: rect
+    left: 0
+    right: 274
+    top: 0
+    bottom: 274
+    uid: NtFmRP45tCdFL3
+    padding: 1
+    isBlank: false
+    group: !<tag:yaml.org,2002:js/undefined> ''
+    source: >-
+      D:\ctjs\app\data\ct.libs\vkeys\example\img\i439a0e00-4c24-4172-a1f3-9f74c7cd7beb.png
+  - lastmod: 1707926936069
+    type: texture
+    name: TrackBall
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 64
+      - 64
+    marginx: 0
+    marginy: 0
+    imgWidth: 128
+    imgHeight: 128
+    width: 128
+    height: 128
+    offx: 0
+    offy: 0
+    origname: iKnzRfJg8tf8HTL.png
+    shape: rect
+    left: 64
+    right: 64
+    top: 64
+    bottom: 64
+    uid: KnzRfJg8tf8HTL
+    padding: 1
+    isBlank: false
+    group: !<tag:yaml.org,2002:js/undefined> ''
+    source: >-
+      D:\ctjs\app\data\ct.libs\vkeys\example\img\ibd0d117d-4b6f-400c-9af8-7767a427ed93.png_prev@2.png
+  - lastmod: 1707926914007
+    type: texture
+    name: ibd0d117d-4b6f-400c-9af8-7767a427ed93_prev
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 64
+    imgHeight: 64
+    width: 64
+    height: 64
+    offx: 0
+    offy: 0
+    origname: i4bcmCzFhHDJP1f.png
+    shape: rect
+    left: 0
+    right: 64
+    top: 0
+    bottom: 64
+    uid: 4bcmCzFhHDJP1f
+    padding: 1
+    isBlank: false
+    group: !<tag:yaml.org,2002:js/undefined> ''
+    source: >-
+      D:\ctjs\app\data\ct.libs\vkeys\example\img\ibd0d117d-4b6f-400c-9af8-7767a427ed93.png_prev.png
+  - lastmod: 1707927898945
+    type: texture
+    name: TrackPad
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 128
+      - 128
+    marginx: 0
+    marginy: 0
+    imgWidth: 256
+    imgHeight: 256
+    width: 256
+    height: 256
+    offx: 0
+    offy: 0
+    origname: iT4Cd7HRhg4HfD9.png
+    shape: rect
+    left: 128
+    right: 128
+    top: 128
+    bottom: 128
+    uid: T4Cd7HRhg4HfD9
+    padding: 1
+    isBlank: false
+    group: !<tag:yaml.org,2002:js/undefined> ''
+    source: >-
+      D:\ctjs\app\data\ct.libs\vkeys\example\img\ibd0d117d-4b6f-400c-9af8-7767a427ed93.png
+skeletons: []
+templates:
+  - type: template
+    name: PlayerShip
+    depth: 0
+    texture: h15jTBGD9cG68J
+    playAnimationOnStart: false
+    loopAnimation: true
+    animationFPS: 30
+    visible: true
+    events:
+      - eventKey: OnStep
+        lib: core
+        code: |
+          # Move the ship
+          # See Project > Actions and input methods panel
+          # and "Actions" in the docs.
+
+          @x += 8 * ct.delta * ct.actions.MoveX.value # Move by X axis
+
+          # Check whether the ship fell off the viewport
+          if @x < 0 # Have the ship crossed the left border?
+              @x = 0 # Go back to the left border
+
+          if @x > ct.camera.width # Have the ship crossed the right border?
+              @x = ct.camera.width # Go back to the right border
+
+          @move()
+
+
+          @y += 5.5 * ct.delta * ct.actions.MoveY.value # Move by Y axis
+
+          # Check whether the ship fell off the viewport
+          if @y < 0 # Have the ship crossed the left border?
+              @y = 0 # Go back to the left border
+
+          if @y > ct.camera.height # Have the ship crossed the right border?
+              @y = ct.camera.height # Go back to the right border
+
+          @move()
+        arguments: {}
+      - eventKey: OnActionPress
+        code: |
+          ct.templates.copy 'LaserBlue', @x, @y
+        arguments:
+          action: Shoot
+        lib: core
+      - eventKey: collisionCGroup
+        code: |
+          if ct.templates.isCopy(other)
+              other.kill = true
+
+          ct.room.lives--
+
+          if ct.room.lives <= 0
+              @kill = true
+              ct.u.wait 1000
+              .then =>
+                  ct.rooms.switch 'FirstRoom'
+        arguments:
+          group: Hostile
+        lib: place
+    extends: {}
+    lastmod: 1707877631046
+    uid: 1qpgQ4DJ3f8Jmt
+  - type: template
+    name: EnemyShip
+    depth: 0
+    texture: 5mBPGGDm8g79Nk
+    playAnimationOnStart: false
+    loopAnimation: true
+    animationFPS: 30
+    visible: true
+    events:
+      - eventKey: OnStep
+        lib: core
+        code: |-
+          this.move()
+
+          if @y > ct.camera.height + 80
+              @kill = yes
+        arguments: {}
+      - eventKey: OnCreate
+        code: |
+          @speed = 3
+          @direction = 90
+          @timer1 = 1
+        arguments: {}
+        lib: core
+      - eventKey: collisionTemplate
+        code: |-
+          other.kill = true
+          @kill = true
+          ct.room.score += 100
+        arguments:
+          template: RQcz1BgKQcQMgt
+        lib: place
+      - eventKey: Timer1
+        code: |
+          @timer1 = 3
+          ct.templates.copy 'LaserRed', @x, @y + 32
+        arguments:
+          name: Timer 1
+          isUi: false
+        lib: core
+    extends:
+      cgroup: Hostile
+    lastmod: 1707881522639
+    uid: 1tDHtH926fCrj9
+    group: Qp976PKNFcFJLC
+  - type: template
+    name: LaserBlue
+    depth: 0
+    texture: MFqdfT1rnWT9gC
+    playAnimationOnStart: false
+    loopAnimation: true
+    animationFPS: 30
+    visible: true
+    events:
+      - eventKey: OnStep
+        lib: core
+        code: |
+          if @y < -40
+            @kill = true
+
+          @move()
+        arguments: {}
+      - eventKey: OnCreate
+        code: |
+          @speed = 18
+          @direction = 270
+        arguments: {}
+        lib: core
+    extends: {}
+    lastmod: 1707878587307
+    uid: RQcz1BgKQcQMgt
+  - type: template
+    name: LaserRed
+    depth: 0
+    texture: PTCdRRkgW7cttf
+    playAnimationOnStart: false
+    loopAnimation: true
+    animationFPS: 30
+    visible: true
+    events:
+      - eventKey: OnStep
+        lib: core
+        code: |
+          if @y > ct.camera.height + 40
+            @kill = true
+
+          @move()
+
+          @angle -= 4 * ct.delta
+        arguments: {}
+      - eventKey: OnCreate
+        code: |
+          @speed = 8
+          @direction = 90
+          @angle = ct.random.deg()
+        arguments: {}
+        lib: core
+    extends: {}
+    lastmod: 1707887280585
+    uid: gf47CJPPzRw84K
+  - type: template
+    name: MeteorBig
+    depth: 0
+    texture: 7r3Qm7LpKThJhd
+    playAnimationOnStart: false
+    loopAnimation: true
+    animationFPS: 30
+    visible: true
+    events:
+      - eventKey: OnStep
+        lib: core
+        code: |-
+          @move()
+
+          if @y > ct.camera.height + 80
+            @kill = true
+        arguments: {}
+      - eventKey: OnCreate
+        code: |-
+          @speed = ct.random.range(1, 3)
+          @direction = ct.random.range(90 - 30, 90 + 30)
+        arguments: {}
+        lib: core
+      - eventKey: collisionTemplate
+        code: |-
+          other.kill = true
+          @kill = true
+          ct.templates.copy 'MeteorMedium', @x, @y
+          ct.templates.copy 'MeteorMedium', @x, @y
+          ct.room.score += 15
+        arguments:
+          template: RQcz1BgKQcQMgt
+        lib: place
+    extends:
+      cgroup: Hostile
+    lastmod: 1707881505256
+    uid: P8HM2N14GwtCGm
+    group: Qp976PKNFcFJLC
+  - type: template
+    name: MeteorMedium
+    depth: 0
+    texture: wCBTdmFbzf3Www
+    playAnimationOnStart: false
+    loopAnimation: true
+    animationFPS: 30
+    visible: true
+    events:
+      - eventKey: OnStep
+        lib: core
+        code: |
+          @move()
+
+          if @y > ct.camera.height + 80
+            @kill = true
+        arguments: {}
+      - eventKey: OnCreate
+        code: |
+          @speed = ct.random.range(2, 4)
+          @direction = ct.random.range(90 - 30, 90 + 30)
+        arguments: {}
+        lib: core
+      - eventKey: collisionTemplate
+        code: |-
+          other.kill = true
+          @kill = true
+          ct.room.score += 10
+        arguments:
+          template: RQcz1BgKQcQMgt
+        lib: place
+    extends:
+      cgroup: Hostile
+    lastmod: 1707880180421
+    uid: dChwNQL67KP4bF
+    group: Qp976PKNFcFJLC
+  - type: template
+    name: Knight_Idle
+    depth: 0
+    texture: FMRqmBQrpR4d2P
+    playAnimationOnStart: false
+    loopAnimation: true
+    animationFPS: 30
+    visible: true
+    events:
+      - eventKey: OnStep
+        lib: core
+        code: |
+          # Move the ship
+          # See Project > Actions and input methods panel
+          # and "Actions" in the docs.
+
+          @x += 8 * ct.delta * ct.actions.MoveX.value # Move by X axis
+
+          # Check whether the ship fell off the viewport
+          if @x < 0 # Have the ship crossed the left border?
+              @x = 0 # Go back to the left border
+
+          if @x > ct.camera.width # Have the ship crossed the right border?
+              @x = ct.camera.width # Go back to the right border
+
+          @move()
+
+
+          @y += 5.5 * ct.delta * ct.actions.MoveY.value # Move by Y axis
+
+          # Check whether the ship fell off the viewport
+          if @y < 0 # Have the ship crossed the left border?
+              @y = 0 # Go back to the left border
+
+          if @y > ct.camera.height # Have the ship crossed the right border?
+              @y = ct.camera.height # Go back to the right border
+
+          @move()
+
+
+          if ct.actions.MoveX.value < 0 and @tex isnt 'Knight_Run'
+              @tex = 'Knight_Run'
+              @scale.x = -4
+              @play()
+          else if ct.actions.MoveX.value > 0 and @tex isnt 'Knight_Run'
+              @tex = 'Knight_Run'
+              @scale.x = 4
+              @play()
+          else if ct.actions.MoveY.value isnt 0 and @tex isnt 'Knight_Run'
+              @tex = 'Knight_Run'
+              @play()
+          else if ct.actions.MoveX.value is 0 and ct.actions.MoveY.value is 0
+              @tex = 'Knight_Idle'
+              @play()
+
+          ct.rooms.playerX = @x
+          ct.rooms.playerY = @y
+        arguments: {}
+      - eventKey: OnCreate
+        code: |-
+          this.animationSpeed = 0.2;
+          this.scale.x = 4;
+          this.scale.y = 4;
+        arguments: {}
+        lib: core
+      - eventKey: collisionCGroup
+        code: |
+          if ct.templates.isCopy(other)
+              other.kill = true
+
+          ct.room.lives--
+
+          if ct.room.lives <= 0
+              @kill = true
+              ct.u.wait 1000
+              .then =>
+                  ct.rooms.switch 'GameOver'
+        arguments:
+          group: Hostile
+        lib: place
+      - eventKey: OnActionPress
+        code: |-
+          if ct.rooms.playerFacing is 'left'
+              ct.templates.copy 'Weapon_Sword', @x - 30, @y
+          else
+              ct.templates.copy 'Weapon_Sword', @x + 30, @y
+
+          ct.rooms.playerX = @x
+          ct.rooms.playerY = @y
+
+          ct.sound.spawn 'DrawKnife_02'
+        arguments:
+          action: Shoot
+        lib: core
+      - eventKey: OnDraw
+        code: |-
+          if @scale.x is -4
+              ct.rooms.playerFacing = 'left'
+          else if @scale.x is 4
+              ct.rooms.playerFacing = 'right'
+        arguments: {}
+        lib: core
+    extends: {}
+    lastmod: 1707942124263
+    uid: TPpGgD432gcqQp
+  - type: template
+    name: Slime
+    depth: 0
+    texture: KkJwNcFBFRwk2w
+    playAnimationOnStart: false
+    loopAnimation: true
+    animationFPS: 30
+    visible: true
+    events:
+      - eventKey: OnStep
+        lib: core
+        code: >-
+          this.direction = ct.u.pointDirection(this.x, this.y, ct.rooms.playerX,
+          ct.rooms.playerY);
+
+
+          this.move()
+
+
+          if @direction > 90 and @direction < 270
+              @tex = 'Slime_Run'
+              @scale.x = -4
+              @play()
+          else if @direction < 90 or @direction > 270
+              @tex = 'Slime_Run'
+              @scale.x = 4
+              @play()
+        arguments: {}
+      - eventKey: OnCreate
+        code: |
+          this.animationSpeed = 0.2;
+          this.scale.x = 4;
+          this.scale.y = 4;
+
+          @speed = 3
+          @direction = 90
+          @timer1 = 1
+        arguments: {}
+        lib: core
+      - eventKey: collisionTemplate
+        code: |-
+          @kill = true
+
+          ct.sound.spawn 'Impact_01'
+        arguments:
+          template: TPpGgD432gcqQp
+        lib: place
+      - eventKey: collisionTemplate
+        code: |-
+          @kill = true
+          ct.room.score += 10
+
+          ct.sound.spawn 'Press_01'
+        arguments:
+          template: NLBH447HwkR92N
+        lib: place
+    extends:
+      cgroup: Hostile
+    lastmod: 1707942526473
+    uid: rMr86fJbFDGKK3
+    group: Qp976PKNFcFJLC
+  - type: template
+    name: Weapon_Sword
+    depth: 0
+    texture: mrG57CftGFkr5w
+    playAnimationOnStart: false
+    loopAnimation: true
+    animationFPS: 30
+    visible: true
+    events:
+      - eventKey: OnStep
+        lib: core
+        code: |-
+          this.move()
+
+          if ct.rooms.playerFacing is 'left'
+              @scale.x = -4
+              @x = ct.rooms.playerX - 40
+              @y = ct.rooms.playerY
+          else if ct.rooms.playerFacing is 'right'
+              @scale.x = 4
+              @x = ct.rooms.playerX + 40
+              @y = ct.rooms.playerY
+        arguments: {}
+      - eventKey: OnCreate
+        code: |-
+          @speed = 2
+          @direction = 90
+          @timer1 = 0.1
+          @timer2 = 0.2
+
+          if ct.rooms.playerFacing is 'left'
+              @scale.x = -4
+          else if ct.rooms.playerFacing is 'right'
+              @scale.x = 4
+        arguments: {}
+        lib: core
+      - eventKey: Timer1
+        code: |-
+          @tex = 'Slash_Effect_Anim_Spritesheet'
+          @play()
+        arguments:
+          name: SlashEffect
+          isUi: false
+        lib: core
+      - eventKey: Timer2
+        code: '@kill = true'
+        arguments:
+          name: EndSlash
+          isUi: false
+        lib: core
+    extends: {}
+    lastmod: 1707879693215
+    uid: NLBH447HwkR92N
+  - type: template
+    name: Goblin
+    depth: 0
+    texture: Mq7H4t26f1WL6f
+    playAnimationOnStart: false
+    loopAnimation: true
+    animationFPS: 30
+    visible: true
+    events:
+      - eventKey: OnStep
+        lib: core
+        code: >-
+          this.direction = ct.u.pointDirection(this.x, this.y, ct.rooms.playerX,
+          ct.rooms.playerY);
+
+
+          this.move()
+
+
+          if @direction > 90 and @direction < 270
+              @tex = 'Goblin_Run'
+              @scale.x = -4
+              @play()
+          else if @direction < 90 or @direction > 270
+              @tex = 'Goblin_Run'
+              @scale.x = 4
+              @play()
+        arguments: {}
+      - eventKey: OnCreate
+        code: |
+          this.animationSpeed = 0.2;
+          this.scale.x = 4;
+          this.scale.y = 4;
+
+          @speed = 4
+          @direction = 90
+          @timer1 = 1
+        arguments: {}
+        lib: core
+      - eventKey: collisionTemplate
+        code: |-
+          @kill = true
+
+          ct.sound.spawn 'Impact_01'
+        arguments:
+          template: TPpGgD432gcqQp
+        lib: place
+      - eventKey: collisionTemplate
+        code: |-
+          @kill = true
+          ct.room.score += 15
+
+          ct.sound.spawn 'Press_01'
+        arguments:
+          template: NLBH447HwkR92N
+        lib: place
+    extends:
+      cgroup: Hostile
+    lastmod: 1707942531546
+    uid: kjpH1C4Mq7hbzw
+    group: Qp976PKNFcFJLC
+  - type: template
+    name: Menu_Button
+    depth: 0
+    texture: kPz4TCbgP2J43h
+    playAnimationOnStart: false
+    loopAnimation: true
+    animationFPS: 30
+    visible: true
+    events:
+      - eventKey: OnStep
+        lib: core
+        code: this.move()
+        arguments: {}
+      - eventKey: OnPointerClick
+        code: |
+          ct.rooms.switch 'Level1'
+        arguments: {}
+        lib: core
+    extends: {}
+    lastmod: 1707887132155
+    uid: kcFf2prcFFNrLj
+  - type: template
+    name: Up
+    depth: 0
+    texture: 51nKNCfk6bNnp5
+    playAnimationOnStart: false
+    loopAnimation: true
+    animationFPS: 30
+    visible: true
+    events:
+      - eventKey: OnStep
+        lib: core
+        code: this.move()
+        arguments: {}
+    extends: {}
+    lastmod: 1707888867694
+    uid: L9PHNzBd8r1Pnk
+  - type: template
+    name: Right
+    depth: 0
+    texture: 7DGQN6bQLHtrtz
+    playAnimationOnStart: false
+    loopAnimation: true
+    animationFPS: 30
+    visible: true
+    events:
+      - eventKey: OnStep
+        lib: core
+        code: this.move()
+        arguments: {}
+      - eventKey: OnPointerClick
+        code: ct.rooms.playerX = @x
+        arguments: {}
+        lib: core
+    extends: {}
+    lastmod: 1707889994331
+    uid: nMwnLbMTH7kmdP
+  - type: template
+    name: Left
+    depth: 0
+    texture: RTtW6WgdcMhmzG
+    playAnimationOnStart: false
+    loopAnimation: true
+    animationFPS: 30
+    visible: true
+    events:
+      - eventKey: OnStep
+        lib: core
+        code: this.move()
+        arguments: {}
+      - eventKey: OnPointerDown
+        code: >-
+          ct.rooms.current.template.objects[0].x =
+          ct.rooms.current.template.objects[0].x + Number(500)
+        arguments: {}
+        lib: core
+    extends: {}
+    lastmod: 1707892085252
+    uid: Lk2FCDNp75Rm8n
+  - type: template
+    name: Down
+    depth: 0
+    texture: 54m5jdW3PMMh3h
+    playAnimationOnStart: false
+    loopAnimation: true
+    animationFPS: 30
+    visible: true
+    events:
+      - eventKey: OnStep
+        lib: core
+        code: this.move()
+        arguments: {}
+    extends: {}
+    lastmod: 1707888897211
+    uid: R1JnTGMWQcR3rh
+  - type: template
+    name: Attack
+    depth: 0
+    texture: 9FL4tqJpPgJR1T
+    playAnimationOnStart: false
+    loopAnimation: true
+    animationFPS: 30
+    visible: true
+    events:
+      - eventKey: OnStep
+        lib: core
+        code: this.move()
+        arguments: {}
+    extends: {}
+    lastmod: 1707927967342
+    uid: rfwgmnG4H4Lpc5
+  - type: template
+    name: TrackPad
+    depth: 0
+    texture: T4Cd7HRhg4HfD9
+    playAnimationOnStart: false
+    loopAnimation: true
+    animationFPS: 30
+    visible: true
+    events:
+      - eventKey: OnStep
+        lib: core
+        code: this.move()
+        arguments: {}
+    extends: {}
+    lastmod: 1707927858753
+    uid: QKJz8N9w457JKm
+  - type: template
+    name: TrackBall
+    depth: 0
+    texture: KnzRfJg8tf8HTL
+    playAnimationOnStart: false
+    loopAnimation: true
+    animationFPS: 30
+    visible: true
+    events:
+      - eventKey: OnStep
+        lib: core
+        code: this.move()
+        arguments: {}
+    extends: {}
+    lastmod: 1707927276631
+    uid: 3MKprJCRn5zbD2
+sounds:
+  - name: Music_80sMotivationalPopRock
+    uid: tpf2FQRCFNRr6B
+    isMusic: true
+    type: sound
+    lastmod: 1707929355132
+    poolSize: 5
+    origname: stpf2FQRCFNRr6B.mp3
+  - name: Voice_recording
+    uid: RDJkW8fFM7FGQW
+    isMusic: false
+    type: sound
+    lastmod: 1707929407209
+    poolSize: 5
+    group: !<tag:yaml.org,2002:js/undefined> ''
+    origname: sRDJkW8fFM7FGQW.mp3
+  - name: DrawKnife_02
+    uid: tM2jG5pcBtW7tj
+    isMusic: false
+    type: sound
+    lastmod: 1707929469471
+    poolSize: 5
+    origname: stM2jG5pcBtW7tj.mp3
+  - name: Impact_01
+    uid: 39tqwzNmQ3T12t
+    isMusic: false
+    type: sound
+    lastmod: 1707929548296
+    poolSize: 5
+    origname: s39tqwzNmQ3T12t.wav
+  - name: Break_01
+    uid: fPTbn59tb4kRgh
+    isMusic: false
+    type: sound
+    lastmod: 1707929599119
+    poolSize: 5
+    origname: sfPTbn59tb4kRgh.wav
+  - name: HandleSmallLeather_02
+    uid: H6MRwr4hTH66RK
+    isMusic: false
+    type: sound
+    lastmod: 1707942347408
+    poolSize: 5
+    origname: sH6MRwr4hTH66RK.mp3
+  - name: Press_01
+    uid: cmr1FrPbq69q9r
+    isMusic: false
+    type: sound
+    lastmod: 1707942498810
+    poolSize: 5
+    origname: scmr1FrPbq69q9r.wav
+styles:
+  - name: ScoreText
+    uid: rBgdCGcktDNqF5
+    origname: stDNqF5
+    font:
+      family: sans-serif
+      size: 32
+      weight: '800'
+      italic: true
+      halign: left
+    fill:
+      type: '0'
+      color: '#78B2FF'
+    shadow:
+      color: '#616161'
+      x: 0
+      'y': 0
+      blur: 0
+    lastmod: 1707886507735
+  - name: LivesText
+    uid: DwdJtRHwWJMnq8
+    origname: sWJMnq8
+    font:
+      family: sans-serif
+      size: 48
+      weight: '900'
+      italic: true
+      halign: right
+    lastmod: 1707885502334
+    shadow:
+      color: '#8A8A8A'
+      x: 0
+      'y': 0
+      blur: 0
+    fill:
+      type: '0'
+      color: '#349127'
+  - name: GameOverText
+    uid: W77gWwJPCFwm4w
+    origname: sCFwm4w
+    font:
+      family: sans-serif
+      size: 40
+      weight: '800'
+      italic: false
+    fill:
+      type: '0'
+      color: '#FFEA80'
+    stroke:
+      color: '#000000'
+      weight: 1
+    shadow:
+      color: '#000000'
+      x: 0
+      'y': 0
+      blur: 0
+    lastmod: 1707886645095
+fonts: []
+rooms:
+  - type: room
+    oncreate: ''
+    onstep: ''
+    ondraw: ''
+    onleave: ''
+    gridX: 64
+    gridY: 64
+    diagonalGrid: false
+    simulate: true
+    width: 1280
+    height: 720
+    restrictCamera: false
+    restrictMaxX: 1280
+    restrictMinX: 1280
+    restrictMaxY: 720
+    restrictMinY: 720
+    isUi: false
+    name: Space_Level
+    backgroundColor: '#000000'
+    follow: -1
+    backgrounds:
+      - depth: -5
+        texture: K2GK892tMKHnpz
+        shiftX: 0
+        shiftY: 0
+        parallaxX: 1
+        parallaxY: 1
+        movementX: 0
+        movementY: 0
+        scaleX: 1
+        scaleY: 1
+        repeat: repeat
+    copies:
+      - x: 448
+        'y': 128
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 1tDHtH926fCrj9
+        exts: {}
+        customProperties: {}
+      - x: 576
+        'y': 512
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 1qpgQ4DJ3f8Jmt
+        exts: {}
+        customProperties: {}
+      - x: 704
+        'y': 64
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: P8HM2N14GwtCGm
+        exts: {}
+        customProperties: {}
+      - x: 896
+        'y': 192
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: P8HM2N14GwtCGm
+        exts: {}
+        customProperties: {}
+    tiles: []
+    extends: {}
+    lastmod: 1707928394988
+    events:
+      - eventKey: OnRoomStart
+        code: |
+          # asteroid timer
+          @timer1 = 0.3
+          # enemy timer
+          @timer2 = 3
+
+          @score = 0
+          style = ct.styles.get 'ScoreText'
+          @scoreLabel = new PIXI.Text 'Score: ' + @score, style
+          @addChild @scoreLabel
+          @scoreLabel.x = 30
+          @scoreLabel.y = 30
+          @scoreLabel.depth = 1000
+
+
+          @lives = 3
+
+          style = ct.styles.get 'LivesText'
+          @livesLabel = new PIXI.Text 'Lives: ' + @lives, style
+
+          @addChild @livesLabel
+          @livesLabel.x = ct.camera.width - 200
+          @livesLabel.y = 30
+          @livesLabel.depth = 1000
+        arguments: {}
+        lib: core
+      - eventKey: Timer1
+        code: |
+          # asteroid timer
+          @timer1 = ct.random.range 0.3, 3
+
+          randomAsteroid = ct.random.dice 'MeteorBig', 'MeteorMedium'
+          randomX = ct.random ct.camera.width
+          ct.templates.copy randomAsteroid, randomX, -100
+        arguments:
+          name: Timer 1
+          isUi: false
+        lib: core
+      - eventKey: Timer2
+        code: |
+          # enemy timer
+          @timer2 = ct.random.range 3, 6
+
+          randomX =  ct.random ct.camera.width
+          ct.templates.copy 'EnemyShip', randomX, -100
+        arguments:
+          name: Timer 2
+          isUi: false
+        lib: core
+      - eventKey: OnDraw
+        code: |-
+          @scoreLabel.text = 'Score: ' + @score
+          @livesLabel.text = 'Lives: ' + @lives
+        arguments: {}
+        lib: core
+    uid: 5RMfBzk5T5njrk
+  - type: room
+    oncreate: ''
+    onstep: ''
+    ondraw: ''
+    onleave: ''
+    gridX: 64
+    gridY: 64
+    diagonalGrid: false
+    simulate: true
+    width: 1280
+    height: 720
+    restrictCamera: false
+    restrictMaxX: 1280
+    restrictMinX: 1280
+    restrictMaxY: 720
+    restrictMinY: 720
+    isUi: false
+    name: Level1
+    backgroundColor: '#000000'
+    follow: -1
+    backgrounds:
+      - depth: 0
+        texture: BRjG23tGNn5BDH
+        shiftX: 0
+        shiftY: 0
+        parallaxX: 1
+        parallaxY: 1
+        movementX: 0
+        movementY: 0
+        scaleX: 1
+        scaleY: 1
+        repeat: repeat
+    copies:
+      - x: 576
+        'y': 384
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: TPpGgD432gcqQp
+        exts: {}
+        customProperties: {}
+    tiles: []
+    extends: {}
+    lastmod: 1707943889797
+    events:
+      - eventKey: OnRoomStart
+        code: |-
+          # asteroid timer
+          @timer1 = 0.3
+          # enemy timer
+          @timer2 = 3
+
+          @score = 0
+          style = ct.styles.get 'ScoreText'
+          @scoreLabel = new PIXI.Text 'Score: ' + @score, style
+          @addChild @scoreLabel
+          @scoreLabel.x = 30
+          @scoreLabel.y = 30
+          @scoreLabel.depth = 1000
+
+
+          @lives = 3
+
+          style = ct.styles.get 'LivesText'
+          @livesLabel = new PIXI.Text 'Lives: ' + @lives, style
+
+          @addChild @livesLabel
+          @livesLabel.x = ct.camera.width - 200
+          @livesLabel.y = 30
+          @livesLabel.depth = 1000
+
+          localStorage.roomsCleared++
+
+          @mainUi = ct.rooms.append 'UI_InGame'
+
+          soundSettings = 
+              volume: 0.15
+              loop: true
+
+          if(not ct.sound.detect('Music_80sMotivationalPopRock'))
+              ct.sound.spawn 'Music_80sMotivationalPopRock', soundSettings
+        arguments: {}
+        lib: core
+      - eventKey: Timer1
+        code: |
+          # asteroid timer
+          @timer1 = (ct.random.range 2, 4) / localStorage.roomsCleared
+
+          randomEnemy = ct.random.dice 'Slime', 'Goblin'
+          randomY = ct.random ct.camera.height
+          randomX = ct.random.dice ct.camera.left, ct.camera.right
+          ct.templates.copy randomEnemy, randomX, randomY, -100
+        arguments:
+          name: Timer1
+          isUi: false
+        lib: core
+      - eventKey: OnDraw
+        code: |-
+          @scoreLabel.text = 'Score: ' + @score
+          @livesLabel.text = 'Lives: ' + @lives
+
+          if @score > (localStorage.roomsCleared * 100.0)
+              if(ct.rooms.current.name is 'Level1')
+                  ct.rooms.switch 'Level2'
+              else if(ct.rooms.current.name is 'Level2')
+                  ct.rooms.switch 'Level3'
+              else if(ct.rooms.current.name is 'Level3')
+                  ct.rooms.switch 'Level1'
+        arguments: {}
+        lib: core
+    uid: FGhG1GdHrF5bqR
+  - type: room
+    oncreate: ''
+    onstep: ''
+    ondraw: ''
+    onleave: ''
+    gridX: 64
+    gridY: 64
+    diagonalGrid: false
+    simulate: true
+    width: 1280
+    height: 720
+    restrictCamera: false
+    restrictMaxX: 1280
+    restrictMinX: 1280
+    restrictMaxY: 720
+    restrictMinY: 720
+    isUi: false
+    name: Level2
+    backgroundColor: '#000000'
+    follow: -1
+    backgrounds:
+      - depth: 0
+        texture: Hrbt1zBrRQpwwz
+        shiftX: 0
+        shiftY: 0
+        parallaxX: 1
+        parallaxY: 1
+        movementX: 0
+        movementY: 0
+        scaleX: 1
+        scaleY: 1
+        repeat: repeat
+    copies:
+      - x: 576
+        'y': 384
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: TPpGgD432gcqQp
+        exts: {}
+        customProperties: {}
+    tiles: []
+    extends: {}
+    lastmod: 1707942563546
+    events:
+      - eventKey: OnRoomStart
+        code: |-
+          # asteroid timer
+          @timer1 = 0.3
+          # enemy timer
+          @timer2 = 3
+
+          @score = 0
+          style = ct.styles.get 'ScoreText'
+          @scoreLabel = new PIXI.Text 'Score: ' + @score, style
+          @addChild @scoreLabel
+          @scoreLabel.x = 30
+          @scoreLabel.y = 30
+          @scoreLabel.depth = 1000
+
+
+          @lives = 3
+
+          style = ct.styles.get 'LivesText'
+          @livesLabel = new PIXI.Text 'Lives: ' + @lives, style
+
+          @addChild @livesLabel
+          @livesLabel.x = ct.camera.width - 200
+          @livesLabel.y = 30
+          @livesLabel.depth = 1000
+
+          localStorage.roomsCleared++
+
+          @mainUi = ct.rooms.append 'UI_InGame'
+        arguments: {}
+        lib: core
+      - eventKey: Timer1
+        code: |
+          # asteroid timer
+          @timer1 = (ct.random.range 2, 4) / localStorage.roomsCleared
+
+          randomEnemy = ct.random.dice 'Slime', 'Goblin'
+          randomY = ct.random ct.camera.height
+          randomX = ct.random.dice ct.camera.left, ct.camera.right
+          ct.templates.copy randomEnemy, randomX, randomY, -100
+        arguments:
+          name: Timer1
+          isUi: false
+        lib: core
+      - eventKey: OnDraw
+        code: |-
+          @scoreLabel.text = 'Score: ' + @score
+          @livesLabel.text = 'Lives: ' + @lives
+
+          if @score > (localStorage.roomsCleared * 100.0)
+              if(ct.rooms.current.name is 'Level1')
+                  ct.rooms.switch 'Level2'
+              else if(ct.rooms.current.name is 'Level2')
+                  ct.rooms.switch 'Level3'
+              else if(ct.rooms.current.name is 'Level3')
+                  ct.rooms.switch 'Level1'
+        arguments: {}
+        lib: core
+    uid: 3jJMjc3R3K13h4
+  - type: room
+    oncreate: ''
+    onstep: ''
+    ondraw: ''
+    onleave: ''
+    gridX: 64
+    gridY: 64
+    diagonalGrid: false
+    simulate: true
+    width: 1280
+    height: 720
+    restrictCamera: false
+    restrictMaxX: 1280
+    restrictMinX: 1280
+    restrictMaxY: 720
+    restrictMinY: 720
+    isUi: false
+    name: Level3
+    backgroundColor: '#000000'
+    follow: -1
+    backgrounds:
+      - depth: 0
+        texture: K2GK892tMKHnpz
+        shiftX: 0
+        shiftY: 0
+        parallaxX: 1
+        parallaxY: 1
+        movementX: 0
+        movementY: 0
+        scaleX: 1
+        scaleY: 1
+        repeat: repeat
+    copies:
+      - x: 576
+        'y': 384
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: TPpGgD432gcqQp
+        exts: {}
+        customProperties: {}
+    tiles: []
+    extends: {}
+    lastmod: 1707928639709
+    events:
+      - eventKey: OnRoomStart
+        code: |-
+          # asteroid timer
+          @timer1 = 0.3
+          # enemy timer
+          @timer2 = 3
+
+          @score = 0
+          style = ct.styles.get 'ScoreText'
+          @scoreLabel = new PIXI.Text 'Score: ' + @score, style
+          @addChild @scoreLabel
+          @scoreLabel.x = 30
+          @scoreLabel.y = 30
+          @scoreLabel.depth = 1000
+
+
+          @lives = 3
+
+          style = ct.styles.get 'LivesText'
+          @livesLabel = new PIXI.Text 'Lives: ' + @lives, style
+
+          @addChild @livesLabel
+          @livesLabel.x = ct.camera.width - 200
+          @livesLabel.y = 30
+          @livesLabel.depth = 1000
+
+          localStorage.roomsCleared++
+
+          @mainUi = ct.rooms.append 'UI_InGame'
+        arguments: {}
+        lib: core
+      - eventKey: Timer1
+        code: |
+          # asteroid timer
+          @timer1 = (ct.random.range 2, 4) / localStorage.roomsCleared
+
+          randomEnemy = ct.random.dice 'Slime', 'Goblin'
+          randomY = ct.random ct.camera.height
+          randomX = ct.random.dice ct.camera.left, ct.camera.right
+          ct.templates.copy randomEnemy, randomX, randomY, -100
+        arguments:
+          name: Timer1
+          isUi: false
+        lib: core
+      - eventKey: OnDraw
+        code: |-
+          @scoreLabel.text = 'Score: ' + @score
+          @livesLabel.text = 'Lives: ' + @lives
+
+          if @score > (localStorage.roomsCleared * 100.0)
+              if(ct.rooms.current.name is 'Level1')
+                  ct.rooms.switch 'Level2'
+              else if(ct.rooms.current.name is 'Level2')
+                  ct.rooms.switch 'Level3'
+              else if(ct.rooms.current.name is 'Level3')
+                  ct.rooms.switch 'Level1'
+        arguments: {}
+        lib: core
+    uid: KnTKRH2brkK4cF
+  - type: room
+    oncreate: ''
+    onstep: ''
+    ondraw: ''
+    onleave: ''
+    gridX: 64
+    gridY: 64
+    diagonalGrid: false
+    simulate: true
+    width: 1280
+    height: 720
+    restrictCamera: false
+    restrictMaxX: 1280
+    restrictMinX: 1280
+    restrictMaxY: 720
+    restrictMinY: 720
+    isUi: false
+    name: MainMenu
+    backgroundColor: '#000000'
+    follow: -1
+    backgrounds:
+      - depth: 0
+        texture: K9jgK67WWpJJ1k
+        shiftX: 0
+        shiftY: 0
+        parallaxX: 1
+        parallaxY: 1
+        movementX: 0
+        movementY: 0
+        scaleX: 1
+        scaleY: 1
+        repeat: repeat
+    copies:
+      - x: 448
+        'y': 256
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: kcFf2prcFFNrLj
+        exts: {}
+        customProperties: {}
+    tiles: []
+    extends: {}
+    lastmod: 1707941509183
+    events:
+      - eventKey: OnRoomStart
+        code: localStorage.roomsCleared = 0.0
+        arguments: {}
+        lib: core
+    uid: fbqm39dBmNcgcC
+  - type: room
+    oncreate: ''
+    onstep: ''
+    ondraw: ''
+    onleave: ''
+    gridX: 64
+    gridY: 64
+    diagonalGrid: false
+    simulate: true
+    width: 1280
+    height: 720
+    restrictCamera: false
+    restrictMaxX: 1280
+    restrictMinX: 1280
+    restrictMaxY: 720
+    restrictMinY: 720
+    isUi: false
+    name: GameOver
+    backgroundColor: '#000000'
+    follow: -1
+    backgrounds:
+      - depth: -4
+        texture: 9kNTTh1FQ5tMGj
+        shiftX: 0
+        shiftY: 0
+        parallaxX: 1
+        parallaxY: 1
+        movementX: 0
+        movementY: 0
+        scaleX: 1
+        scaleY: 1
+        repeat: repeat
+    copies: []
+    tiles: []
+    extends: {}
+    lastmod: 1707942233964
+    events:
+      - eventKey: OnRoomStart
+        code: >-
+          style = ct.styles.get 'GameOverText'
+
+          @gameOverLabel = new PIXI.Text 'YOU CLEARED ' +
+          (localStorage.roomsCleared - 1.0) + " ROOMS! GREAT JOB! \n Thank you
+          for playing :)", style
+
+          @addChild @gameOverLabel
+
+          @gameOverLabel.x = ct.camera.x - 400
+
+          @gameOverLabel.y = ct.camera.y - 100
+
+          @gameOverLabel.depth = 1000
+
+
+          ct.sound.spawn 'Voice_recording'
+        arguments: {}
+        lib: core
+    uid: jLL2WDCT5WMrPW
+  - type: room
+    oncreate: ''
+    onstep: ''
+    ondraw: ''
+    onleave: ''
+    gridX: 64
+    gridY: 64
+    diagonalGrid: false
+    simulate: true
+    width: 1280
+    height: 720
+    restrictCamera: false
+    restrictMaxX: 1280
+    restrictMinX: 1280
+    restrictMaxY: 720
+    restrictMinY: 720
+    isUi: true
+    name: UI_InGame
+    backgroundColor: '#000000'
+    follow: -1
+    backgrounds: []
+    copies: []
+    tiles: []
+    extends: {}
+    lastmod: 1707943840998
+    events:
+      - eventKey: OnStep
+        code: |+
+          ct.vkeys.joystick({
+              key: 'Vjoy1',
+              tex: 'TrackPad',
+              trackballTex: 'TrackBall',
+              depth: 100,
+              alpha: 0.7,
+              x: () => ct.camera.left + 170,
+              y: () => ct.camera.bottom - 170,
+              container: ct.rooms.templates.UI_InGame
+          });
+
+          keyAttack = ct.vkeys.button({
+              key: 'Vk1',
+              texNormal: 'Attack',
+              texActive: 'Attack_Pressed',
+              x: () => ct.camera.right - 130,
+              y: () => ct.camera.bottom - 130,
+              alpha: 0.7,
+              depth: 100
+          });
+
+        arguments: {}
+        lib: core
+      - eventKey: OnRoomStart
+        code: ''
+        arguments: {}
+        lib: core
+      - eventKey: OnRoomEnd
+        code: ct.sound.stop()
+        arguments: {}
+        lib: core
+    uid: 9fg2w7TD2dCrbk
+actions:
+  - name: Shoot
+    methods:
+      - code: keyboard.Space
+      - code: pointer.Primary
+      - code: vkeys.Vk1
+  - name: MoveY
+    methods:
+      - code: keyboard.ArrowUp
+        multiplier: -1
+      - code: keyboard.ArrowDown
+      - code: keyboard.KeyW
+        multiplier: -1
+      - code: keyboard.KeyS
+      - code: vkeys.Vjoy1Y
+  - name: MoveX
+    methods:
+      - code: keyboard.KeyA
+        multiplier: -1
+      - code: keyboard.KeyD
+      - code: keyboard.ArrowLeft
+        multiplier: -1
+      - code: keyboard.ArrowRight
+      - code: vkeys.Vjoy1X
+emitterTandems: []
+scripts: []
+startroom: fbqm39dBmNcgcC
+contentTypes: []
+groups:
+  fonts: []
+  textures: []
+  styles: []
+  rooms: []
+  templates:
+    - name: Hostile
+      icon: folder
+      colorClass: error
+      uid: Qp976PKNFcFJLC
+  sounds: []
+  emitterTandems: []
+settings:
+  authoring:
+    author: ''
+    site: ''
+    title: ''
+    version:
+      - 0
+      - 0
+      - 0
+    versionPostfix: ''
+    appId: ''
+  rendering:
+    usePixiLegacy: true
+    transparent: false
+    maxFPS: 60
+    pixelatedrender: false
+    highDensity: true
+    desktopMode: maximized
+    hideCursor: false
+    mobileScreenOrientation: unspecified
+  export:
+    windows: true
+    linux: true
+    mac: true
+    functionWrap: false
+    codeModifier: none
+  branding:
+    accent: '#446adb'
+    invertPreloaderScheme: true
+    icon: -1
+    splashScreen: -1
+    forceSmoothIcons: false
+    forceSmoothSplashScreen: false
+    hideLoadingLogo: false
+  fps: 30
+palette: []
