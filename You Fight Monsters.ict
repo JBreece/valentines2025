@@ -476,7 +476,7 @@ assets:
           rooms.playerX = @x
           rooms.playerY = @y
 
-          sounds.spawn 'DrawKnife_02'
+          sounds.play 'DrawKnife_02'
         arguments:
           action: Shoot
         lib: core
@@ -488,8 +488,9 @@ assets:
               rooms.playerFacing = 'right'
         arguments: {}
         lib: core
-    extends: {}
-    lastmod: 1707942124263
+    extends:
+      cgroup: ''
+    lastmod: 1735665887235
     uid: TPpGgD432gcqQp
     behaviors: []
     baseClass: AnimatedSprite
@@ -534,7 +535,7 @@ assets:
           this.scale.x = 4;
           this.scale.y = 4;
 
-          @speed = 3
+          @speed = 150
           @direction = 90
           @timer1 = 1
         arguments: {}
@@ -543,7 +544,7 @@ assets:
         code: |-
           @kill = true
 
-          sounds.spawn 'Impact_01'
+          sounds.play 'Impact_01'
         arguments:
           template: TPpGgD432gcqQp
         lib: place
@@ -552,13 +553,13 @@ assets:
           @kill = true
           rooms.current.score += 10
 
-          sounds.spawn 'Press_01'
+          sounds.play 'Press_01'
         arguments:
           template: NLBH447HwkR92N
         lib: place
     extends:
       cgroup: Hostile
-    lastmod: 1707942526473
+    lastmod: 1735666158063
     uid: rMr86fJbFDGKK3
     group: Qp976PKNFcFJLC
     behaviors: []
@@ -620,8 +621,9 @@ assets:
           name: EndSlash
           isUi: false
         lib: core
-    extends: {}
-    lastmod: 1707879693215
+    extends:
+      cgroup: ''
+    lastmod: 1735665726093
     uid: NLBH447HwkR92N
     behaviors: []
     baseClass: AnimatedSprite
@@ -666,7 +668,7 @@ assets:
           this.scale.x = 4;
           this.scale.y = 4;
 
-          @speed = 4
+          @speed = 200
           @direction = 90
           @timer1 = 1
         arguments: {}
@@ -675,7 +677,7 @@ assets:
         code: |-
           @kill = true
 
-          sounds.spawn 'Impact_01'
+          sounds.play 'Impact_01'
         arguments:
           template: TPpGgD432gcqQp
         lib: place
@@ -684,13 +686,13 @@ assets:
           @kill = true
           rooms.current.score += 15
 
-          sounds.spawn 'Press_01'
+          sounds.play 'Press_01'
         arguments:
           template: NLBH447HwkR92N
         lib: place
     extends:
       cgroup: Hostile
-    lastmod: 1707942531546
+    lastmod: 1735666151103
     uid: kjpH1C4Mq7hbzw
     group: Qp976PKNFcFJLC
     behaviors: []
@@ -856,8 +858,9 @@ assets:
         lib: core
         code: this.move()
         arguments: {}
-    extends: {}
-    lastmod: 1707927967342
+    extends:
+      cgroup: ''
+    lastmod: 1735665651905
     uid: rfwgmnG4H4Lpc5
     behaviors: []
     baseClass: AnimatedSprite
@@ -881,8 +884,9 @@ assets:
         lib: core
         code: this.move()
         arguments: {}
-    extends: {}
-    lastmod: 1707927858753
+    extends:
+      cgroup: ''
+    lastmod: 1735665716715
     uid: QKJz8N9w457JKm
     behaviors: []
     baseClass: AnimatedSprite
@@ -906,8 +910,9 @@ assets:
         lib: core
         code: this.move()
         arguments: {}
-    extends: {}
-    lastmod: 1707927276631
+    extends:
+      cgroup: ''
+    lastmod: 1735665708627
     uid: 3MKprJCRn5zbD2
     behaviors: []
     baseClass: AnimatedSprite
@@ -1105,7 +1110,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1735665132207
+    lastmod: 1735666091309
     events:
       - eventKey: OnRoomStart
         code: |-
@@ -1440,7 +1445,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1735665132146
+    lastmod: 1735665749951
     events:
       - eventKey: OnRoomStart
         code: localStorage.roomsCleared = 0.0

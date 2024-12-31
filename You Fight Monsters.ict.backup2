@@ -476,7 +476,7 @@ assets:
           rooms.playerX = @x
           rooms.playerY = @y
 
-          sounds.spawn 'DrawKnife_02'
+          sounds.play 'DrawKnife_02'
         arguments:
           action: Shoot
         lib: core
@@ -488,8 +488,9 @@ assets:
               rooms.playerFacing = 'right'
         arguments: {}
         lib: core
-    extends: {}
-    lastmod: 1707942124263
+    extends:
+      cgroup: ''
+    lastmod: 1735665887235
     uid: TPpGgD432gcqQp
     behaviors: []
     baseClass: AnimatedSprite
@@ -543,7 +544,7 @@ assets:
         code: |-
           @kill = true
 
-          sounds.spawn 'Impact_01'
+          sounds.play 'Impact_01'
         arguments:
           template: TPpGgD432gcqQp
         lib: place
@@ -552,13 +553,13 @@ assets:
           @kill = true
           rooms.current.score += 10
 
-          sounds.spawn 'Press_01'
+          sounds.play 'Press_01'
         arguments:
           template: NLBH447HwkR92N
         lib: place
     extends:
       cgroup: Hostile
-    lastmod: 1707942526473
+    lastmod: 1735665937695
     uid: rMr86fJbFDGKK3
     group: Qp976PKNFcFJLC
     behaviors: []
@@ -620,8 +621,9 @@ assets:
           name: EndSlash
           isUi: false
         lib: core
-    extends: {}
-    lastmod: 1707879693215
+    extends:
+      cgroup: ''
+    lastmod: 1735665726093
     uid: NLBH447HwkR92N
     behaviors: []
     baseClass: AnimatedSprite
@@ -675,7 +677,7 @@ assets:
         code: |-
           @kill = true
 
-          sounds.spawn 'Impact_01'
+          sounds.play 'Impact_01'
         arguments:
           template: TPpGgD432gcqQp
         lib: place
@@ -690,7 +692,7 @@ assets:
         lib: place
     extends:
       cgroup: Hostile
-    lastmod: 1707942531546
+    lastmod: 1735665571968
     uid: kjpH1C4Mq7hbzw
     group: Qp976PKNFcFJLC
     behaviors: []
@@ -856,8 +858,9 @@ assets:
         lib: core
         code: this.move()
         arguments: {}
-    extends: {}
-    lastmod: 1707927967342
+    extends:
+      cgroup: ''
+    lastmod: 1735665651905
     uid: rfwgmnG4H4Lpc5
     behaviors: []
     baseClass: AnimatedSprite
@@ -881,8 +884,9 @@ assets:
         lib: core
         code: this.move()
         arguments: {}
-    extends: {}
-    lastmod: 1707927858753
+    extends:
+      cgroup: ''
+    lastmod: 1735665716715
     uid: QKJz8N9w457JKm
     behaviors: []
     baseClass: AnimatedSprite
@@ -906,8 +910,9 @@ assets:
         lib: core
         code: this.move()
         arguments: {}
-    extends: {}
-    lastmod: 1707927276631
+    extends:
+      cgroup: ''
+    lastmod: 1735665708627
     uid: 3MKprJCRn5zbD2
     behaviors: []
     baseClass: AnimatedSprite
@@ -1105,7 +1110,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1735664842737
+    lastmod: 1735665737866
     events:
       - eventKey: OnRoomStart
         code: |-
@@ -1440,7 +1445,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1735664854525
+    lastmod: 1735665749951
     events:
       - eventKey: OnRoomStart
         code: localStorage.roomsCleared = 0.0
