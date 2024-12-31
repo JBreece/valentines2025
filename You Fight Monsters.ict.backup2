@@ -535,7 +535,7 @@ assets:
           this.scale.x = 4;
           this.scale.y = 4;
 
-          @speed = 3
+          @speed = 150
           @direction = 90
           @timer1 = 1
         arguments: {}
@@ -559,7 +559,7 @@ assets:
         lib: place
     extends:
       cgroup: Hostile
-    lastmod: 1735665937695
+    lastmod: 1735666158063
     uid: rMr86fJbFDGKK3
     group: Qp976PKNFcFJLC
     behaviors: []
@@ -668,7 +668,7 @@ assets:
           this.scale.x = 4;
           this.scale.y = 4;
 
-          @speed = 4
+          @speed = 200
           @direction = 90
           @timer1 = 1
         arguments: {}
@@ -686,13 +686,13 @@ assets:
           @kill = true
           rooms.current.score += 15
 
-          sounds.spawn 'Press_01'
+          sounds.play 'Press_01'
         arguments:
           template: NLBH447HwkR92N
         lib: place
     extends:
       cgroup: Hostile
-    lastmod: 1735665571968
+    lastmod: 1735666151103
     uid: kjpH1C4Mq7hbzw
     group: Qp976PKNFcFJLC
     behaviors: []
@@ -1110,7 +1110,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1735665737866
+    lastmod: 1735667297389
     events:
       - eventKey: OnRoomStart
         code: |-
@@ -1146,8 +1146,8 @@ assets:
               volume: 0.15
               loop: true
 
-          if(not sounds.playing('Music_80sMotivationalPopRock'))
-              sounds.play 'Music_80sMotivationalPopRock', soundSettings
+          if(not sounds.playing('long_chat'))
+              sounds.play 'long_chat', soundSettings
         arguments: {}
         lib: core
       - eventKey: Timer1
@@ -1445,10 +1445,25 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1735665749951
+    lastmod: 1735678587255
     events:
       - eventKey: OnRoomStart
-        code: localStorage.roomsCleared = 0.0
+        code: >-
+          localStorage.roomsCleared = 0.0
+
+          style = styles.get 'GameIntroText'
+
+          @gameIntroLabel = new PIXI.Text "NINGNING IS IN TROUBLE! \n \n \n \n
+          \n \n \n Ningning has been captured by a bunch of ugly gremlins and
+          ghouls from HYBE. \n Please save her from the BTS Army!", style
+
+          @addChild @gameIntroLabel
+
+          @gameIntroLabel.x = camera.x - 450
+
+          @gameIntroLabel.y = camera.y - 225
+
+          @gameIntroLabel.depth = 1000
         arguments: {}
         lib: core
     uid: fbqm39dBmNcgcC
@@ -1486,29 +1501,71 @@ assets:
         scaleX: 1
         scaleY: 1
         repeat: repeat
-    copies: []
+    copies:
+      - x: 576
+        'y': 64
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: tN7KTjQhz9CNGg
+        exts: {}
+        customProperties: {}
+        bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1707942233964
+    lastmod: 1735682011190
     events:
       - eventKey: OnRoomStart
         code: >-
           style = styles.get 'GameOverText'
 
-          @gameOverLabel = new PIXI.Text 'YOU CLEARED ' +
+          ningning = templates.list['ningning_status'][0]
+
+          if templates.valid ningning
+              if ((localStorage.roomsCleared - 1.0) < 3)
+                  ningning.tex = "ningning_lose"
+                  @EndGameText = new PIXI.Text 'Uh oh! Ningning is still captive! \n You need to defeat more of the BTS army to save her! \n Try again!', style
+              else
+                  ningning.tex = "ningning_win"
+                  @EndGameText = new PIXI.Text 'YOU SAVED NINGNING!! \n Great job!', style
+
+          @addChild @EndGameText
+
+          @EndGameText.x = camera.x - 550
+
+          @EndGameText.y = camera.y - 300
+
+          @EndGameText.depth = 1000
+
+
+          #@gameOverLabel = new PIXI.Text 'YOU CLEARED ' +
           (localStorage.roomsCleared - 1.0) + " ROOMS! GREAT JOB! \n Thank you
           for playing :)", style
 
+          @gameOverLabel = new PIXI.Text 'Ningning loves you this much:', style
+
           @addChild @gameOverLabel
 
-          @gameOverLabel.x = camera.x - 400
+          @gameOverLabel.x = camera.x - 550
 
-          @gameOverLabel.y = camera.y - 100
+          @gameOverLabel.y = camera.y + 100
 
           @gameOverLabel.depth = 1000
 
 
-          sounds.spawn 'Voice_recording'
+          i = 0
+
+          while i < (localStorage.roomsCleared - 1.0)
+              templates.copy 'heart_template', ((camera.x - 550) + (i*50)), (camera.y + 200)
+              i++
+
+          for heart in templates.list['heart_template']
+              @scale.x = @scale.y = 0.1
+
+          sounds.play 'Voice_recording'
         arguments: {}
         lib: core
     uid: jLL2WDCT5WMrPW
@@ -1538,7 +1595,7 @@ assets:
     copies: []
     tiles: []
     extends: {}
-    lastmod: 1707943840998
+    lastmod: 1735678956902
     events:
       - eventKey: OnStep
         code: |+
@@ -2007,9 +2064,12 @@ assets:
     origname: sCFwm4w
     font:
       family: sans-serif
-      size: 40
+      size: 32
       weight: '800'
       italic: false
+      wrap: true
+      wrapPosition: 420
+      lineHeight: .nan
     fill:
       type: '0'
       color: '#FFEA80'
@@ -2021,7 +2081,7 @@ assets:
       x: 0
       'y': 0
       blur: 0
-    lastmod: 1707886645095
+    lastmod: 1735680351580
     type: style
     typeface: -1
   - lastmod: 1707533007599
@@ -4604,4 +4664,211 @@ assets:
     group: !<tag:yaml.org,2002:js/undefined> ''
     source: >-
       D:\ctjs\app\data\ct.libs\vkeys\example\img\ibd0d117d-4b6f-400c-9af8-7767a427ed93.png
+  - name: long_chat
+    uid: gDRWFjt19kD47H
+    type: sound
+    lastmod: 1735667281832
+    preload: true
+    variants:
+      - uid: 7btWkDd5JG675G
+        source: >-
+          D:\Valentines2025\valentines2025\You Fight Monsters\snd\aespa - Long
+          Chat (#♥).mp3
+    distortion:
+      enabled: false
+      min: 0
+      max: 1
+    pitch:
+      enabled: false
+      min: 0
+      max: 1
+    reverb:
+      enabled: false
+      decayMin: 2
+      decayMax: 2
+      secondsMin: 2
+      secondsMax: 3
+      reverse: false
+    volume:
+      enabled: false
+      min: 0
+      max: 1
+    eq:
+      enabled: false
+      bands:
+        - min: -1
+          max: 1
+        - min: -1
+          max: 1
+        - min: -1
+          max: 1
+        - min: -1
+          max: 1
+        - min: -1
+          max: 1
+        - min: -1
+          max: 1
+        - min: -1
+          max: 1
+        - min: -1
+          max: 1
+        - min: -1
+          max: 1
+        - min: -1
+          max: 1
+    panning:
+      refDistance: 0.5
+      rolloffFactor: 1
+  - type: style
+    name: GameIntroText
+    uid: CTnFgg73JffKG5
+    typeface: -1
+    font:
+      family: sans-serif
+      halign: center
+      italic: false
+      size: 40
+      weight: '800'
+      wrap: true
+      wrapPosition: 1000
+      lineHeight: 0
+    fill:
+      type: '0'
+      color: '#FFEA80'
+      color1: '#cccccc'
+      color2: '#ffffff'
+      gradtype: 1
+    lastmod: 1735676803229
+    stroke:
+      color: '#000000'
+      weight: 1
+    shadow:
+      color: '#000000'
+      x: 0
+      'y': 0
+      blur: 0
+  - lastmod: 1735677939571
+    type: texture
+    name: ningning_win
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 429
+    imgHeight: 589
+    width: 429
+    height: 589
+    offx: 0
+    offy: 0
+    origname: iqC3PM9jwpnkP4D.png
+    shape: rect
+    left: 0
+    right: 429
+    top: 0
+    bottom: 589
+    uid: qC3PM9jwpnkP4D
+    padding: 1
+    isBlank: false
+    source: 'D:\Valentines2025\valentines2025\You Fight Monsters\img\ningning_win.png'
+  - lastmod: 1735677957847
+    type: texture
+    name: ningning_lose
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 427
+    imgHeight: 587
+    width: 427
+    height: 587
+    offx: 0
+    offy: 0
+    origname: iH77wBhR2Pg3992.png
+    shape: rect
+    left: 0
+    right: 427
+    top: 0
+    bottom: 587
+    uid: H77wBhR2Pg3992
+    padding: 1
+    isBlank: false
+    source: 'D:\Valentines2025\valentines2025\You Fight Monsters\img\ningning_lose.png'
+  - type: template
+    baseClass: AnimatedSprite
+    name: ningning_status
+    depth: 0
+    texture: qC3PM9jwpnkP4D
+    playAnimationOnStart: false
+    loopAnimation: true
+    animationFPS: 30
+    visible: true
+    events:
+      - eventKey: OnStep
+        lib: core
+        code: '@move()'
+        arguments: {}
+    extends:
+      cgroup: ''
+    lastmod: 1735678103296
+    uid: tN7KTjQhz9CNGg
+    behaviors: []
+    extendTypes: ''
+  - lastmod: 1735681316137
+    type: texture
+    name: heart
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 2500
+      - 2500
+    marginx: 0
+    marginy: 0
+    imgWidth: 5000
+    imgHeight: 5000
+    width: 5000
+    height: 5000
+    offx: 0
+    offy: 0
+    origname: ikR14Ldgh7n1W2m.png
+    shape: rect
+    left: 2500
+    right: 2500
+    top: 2500
+    bottom: 2500
+    uid: kR14Ldgh7n1W2m
+    padding: 1
+    isBlank: false
+    source: 'D:\Valentines2025\valentines2025\You Fight Monsters\img\heart.png'
+  - type: template
+    baseClass: AnimatedSprite
+    name: heart_template
+    depth: 0
+    texture: kR14Ldgh7n1W2m
+    playAnimationOnStart: false
+    loopAnimation: true
+    animationFPS: 30
+    visible: true
+    events:
+      - eventKey: OnStep
+        lib: core
+        code: '@move()'
+        arguments: {}
+    extends:
+      cgroup: ''
+    lastmod: 1735681353244
+    uid: 7fTQrKBLBNj276
+    behaviors: []
+    extendTypes: ''
 globalVars: []
