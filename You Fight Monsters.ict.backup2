@@ -10,6 +10,8 @@ libs:
   keyboard: {}
   random: {}
   vkeys: {}
+  tween: {}
+  transition: {}
 actions:
   - name: Shoot
     methods:
@@ -553,13 +555,28 @@ assets:
           @kill = true
           rooms.current.score += 10
 
+          localStorage.xp++
+          for xp_fill in templates.list['xp_fill']
+              if(parseInt(localStorage.xp) < 10)
+                  tween.value(
+                      {
+                          from: (0.1 * (localStorage.xp - 1.0)),
+                          to: (0.1 * localStorage.xp),
+                          duration: 250
+                      }, (newValue) ->
+                          xp_fill.scale.x = newValue
+                  );
+              else
+                  localStorage.xp = 0.0
+                  xp_fill.scale.x = 0.0
+
           sounds.play 'Press_01'
         arguments:
           template: NLBH447HwkR92N
         lib: place
     extends:
       cgroup: Hostile
-    lastmod: 1735666158063
+    lastmod: 1735853117097
     uid: rMr86fJbFDGKK3
     group: Qp976PKNFcFJLC
     behaviors: []
@@ -686,13 +703,28 @@ assets:
           @kill = true
           rooms.current.score += 15
 
+          localStorage.xp++
+          for xp_fill in templates.list['xp_fill']
+              if(parseInt(localStorage.xp) < 10)
+                  tween.value(
+                      {
+                          from: (0.1 * (localStorage.xp - 1.0)),
+                          to: (0.1 * localStorage.xp),
+                          duration: 250
+                      }, (newValue) ->
+                          xp_fill.scale.x = newValue
+                  );
+              else
+                  localStorage.xp = 0.0
+                  xp_fill.scale.x = 0.0
+
           sounds.play 'Press_01'
         arguments:
           template: NLBH447HwkR92N
         lib: place
     extends:
       cgroup: Hostile
-    lastmod: 1735666151103
+    lastmod: 1735853108732
     uid: kjpH1C4Mq7hbzw
     group: Qp976PKNFcFJLC
     behaviors: []
@@ -1110,7 +1142,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1735667297389
+    lastmod: 1735848348568
     events:
       - eventKey: OnRoomStart
         code: |-
@@ -1224,9 +1256,10 @@ assets:
         uid: TPpGgD432gcqQp
         exts: {}
         customProperties: {}
+        bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1707942563546
+    lastmod: 1735848343735
     events:
       - eventKey: OnRoomStart
         code: |-
@@ -1445,11 +1478,13 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1735678587255
+    lastmod: 1735848341712
     events:
       - eventKey: OnRoomStart
         code: >-
           localStorage.roomsCleared = 0.0
+
+          localStorage.xp = 0.0
 
           style = styles.get 'GameIntroText'
 
@@ -1592,13 +1627,37 @@ assets:
     backgroundColor: '#000000'
     follow: -1
     backgrounds: []
-    copies: []
+    copies:
+      - x: 640
+        'y': 640
+        opacity: 0.7
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: BhwrCjw4th3Gtq
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 646
+        'y': 640
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 0
+          'y': 1
+        rotation: 0
+        uid: zTDCG8Df2FKq5N
+        exts: {}
+        customProperties: {}
+        bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1735678956902
+    lastmod: 1735849651893
     events:
       - eventKey: OnStep
-        code: |+
+        code: |
           vkeys.joystick({
               key: 'Vjoy1',
               tex: 'TrackPad',
@@ -1620,6 +1679,12 @@ assets:
               depth: 100
           });
 
+          #for xp_fill in templates.list['xp_fill']
+          #    if(parseInt(localStorage.xp) < 10)
+          #        xp_fill.scale.x = 0.1 * localStorage.xp
+          #    else
+          #        localStorage.xp = 0.0
+          #        xp_fill.scale.x = 0.0
         arguments: {}
         lib: core
       - eventKey: OnRoomStart
@@ -4868,6 +4933,100 @@ assets:
     extends: {}
     lastmod: 1735682475637
     uid: gqLCtnnC4P5BQT
+    behaviors: []
+    extendTypes: ''
+  - lastmod: 1735845157444
+    type: texture
+    name: empty_xp_bar
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 250
+      - 25
+    marginx: 0
+    marginy: 0
+    imgWidth: 500
+    imgHeight: 50
+    width: 500
+    height: 50
+    offx: 0
+    offy: 0
+    origname: ipC5HNDDqKk6Nmb.png
+    shape: rect
+    left: 250
+    right: 250
+    top: 25
+    bottom: 25
+    uid: pC5HNDDqKk6Nmb
+    padding: 1
+    isBlank: false
+    source: 'D:\Valentines2025\valentines2025\You Fight Monsters\img\empty_xp_bar.png'
+  - lastmod: 1735845205090
+    type: texture
+    name: xp_fill
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 244
+      - 18
+    marginx: 0
+    marginy: 0
+    imgWidth: 488
+    imgHeight: 37
+    width: 488
+    height: 37
+    offx: 0
+    offy: 0
+    origname: icFpRgRTBW2cWth.png
+    shape: rect
+    left: 244
+    right: 244
+    top: 18
+    bottom: 19
+    uid: cFpRgRTBW2cWth
+    padding: 1
+    isBlank: false
+    source: 'D:\Valentines2025\valentines2025\You Fight Monsters\img\xp_fill.png'
+  - type: template
+    baseClass: AnimatedSprite
+    name: empty_xp_bar
+    depth: 0
+    texture: pC5HNDDqKk6Nmb
+    playAnimationOnStart: false
+    loopAnimation: true
+    animationFPS: 30
+    visible: true
+    events:
+      - eventKey: OnStep
+        lib: core
+        code: '@move()'
+        arguments: {}
+    extends: {}
+    lastmod: 1735846716826
+    uid: BhwrCjw4th3Gtq
+    behaviors: []
+    extendTypes: ''
+  - type: template
+    baseClass: AnimatedSprite
+    name: xp_fill
+    depth: 0
+    texture: cFpRgRTBW2cWth
+    playAnimationOnStart: false
+    loopAnimation: true
+    animationFPS: 30
+    visible: true
+    events:
+      - eventKey: OnStep
+        lib: core
+        code: '@move()'
+        arguments: {}
+    extends: {}
+    lastmod: 1735847276455
+    uid: zTDCG8Df2FKq5N
     behaviors: []
     extendTypes: ''
 globalVars: []

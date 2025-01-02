@@ -11,6 +11,7 @@ libs:
   random: {}
   vkeys: {}
   tween: {}
+  transition: {}
 actions:
   - name: Shoot
     methods:
@@ -553,7 +554,21 @@ assets:
         code: |-
           @kill = true
           rooms.current.score += 10
+
           localStorage.xp++
+          for xp_fill in templates.list['xp_fill']
+              if(parseInt(localStorage.xp) < 10)
+                  tween.value(
+                      {
+                          from: (0.1 * (localStorage.xp - 1.0)),
+                          to: (0.1 * localStorage.xp),
+                          duration: 250
+                      }, (newValue) ->
+                          xp_fill.scale.x = newValue
+                  );
+              else
+                  localStorage.xp = 0.0
+                  xp_fill.scale.x = 0.0
 
           sounds.play 'Press_01'
         arguments:
@@ -561,7 +576,7 @@ assets:
         lib: place
     extends:
       cgroup: Hostile
-    lastmod: 1735848203461
+    lastmod: 1735853117097
     uid: rMr86fJbFDGKK3
     group: Qp976PKNFcFJLC
     behaviors: []
@@ -687,7 +702,21 @@ assets:
         code: |-
           @kill = true
           rooms.current.score += 15
+
           localStorage.xp++
+          for xp_fill in templates.list['xp_fill']
+              if(parseInt(localStorage.xp) < 10)
+                  tween.value(
+                      {
+                          from: (0.1 * (localStorage.xp - 1.0)),
+                          to: (0.1 * localStorage.xp),
+                          duration: 250
+                      }, (newValue) ->
+                          xp_fill.scale.x = newValue
+                  );
+              else
+                  localStorage.xp = 0.0
+                  xp_fill.scale.x = 0.0
 
           sounds.play 'Press_01'
         arguments:
@@ -695,7 +724,7 @@ assets:
         lib: place
     extends:
       cgroup: Hostile
-    lastmod: 1735849517314
+    lastmod: 1735853108732
     uid: kjpH1C4Mq7hbzw
     group: Qp976PKNFcFJLC
     behaviors: []
@@ -1113,10 +1142,12 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1735848348568
+    lastmod: 1735854940850
     events:
       - eventKey: OnRoomStart
         code: |-
+          transition.circleIn(425, 'FFC0CB');
+
           # asteroid timer
           @timer1 = 0.3
           # enemy timer
@@ -1173,11 +1204,20 @@ assets:
 
           if @score > (localStorage.roomsCleared * 100.0)
               if(rooms.current.name is 'Level1')
-                  rooms.switch 'Level2'
+                  transition.circleOut(425, 'FFC0CB')
+                      .then(() -> 
+                          rooms.switch('Level2');
+                      );
               else if(rooms.current.name is 'Level2')
-                  rooms.switch 'Level3'
+                  transition.circleOut(425, 'FFC0CB')
+                      .then(() -> 
+                          rooms.switch('Level3');
+                      );
               else if(rooms.current.name is 'Level3')
-                  rooms.switch 'Level1'
+                  transition.circleOut(425, 'FFC0CB')
+                      .then(() -> 
+                          rooms.switch('Level1');
+                      );
         arguments: {}
         lib: core
     uid: FGhG1GdHrF5bqR
@@ -1230,10 +1270,12 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1735848343735
+    lastmod: 1735854952655
     events:
       - eventKey: OnRoomStart
         code: |-
+          transition.circleIn(425, 'FFC0CB');
+
           # asteroid timer
           @timer1 = 0.3
           # enemy timer
@@ -1283,11 +1325,20 @@ assets:
 
           if @score > (localStorage.roomsCleared * 100.0)
               if(rooms.current.name is 'Level1')
-                  rooms.switch 'Level2'
+                  transition.circleOut(425, 'FFC0CB')
+                      .then(() -> 
+                          rooms.switch('Level2');
+                      );
               else if(rooms.current.name is 'Level2')
-                  rooms.switch 'Level3'
+                  transition.circleOut(425, 'FFC0CB')
+                      .then(() -> 
+                          rooms.switch('Level3');
+                      );
               else if(rooms.current.name is 'Level3')
-                  rooms.switch 'Level1'
+                  transition.circleOut(425, 'FFC0CB')
+                      .then(() -> 
+                          rooms.switch('Level1');
+                      );
         arguments: {}
         lib: core
     uid: 3jJMjc3R3K13h4
@@ -1337,12 +1388,15 @@ assets:
         uid: TPpGgD432gcqQp
         exts: {}
         customProperties: {}
+        bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1707928639709
+    lastmod: 1735854963054
     events:
       - eventKey: OnRoomStart
         code: |-
+          transition.circleIn(425, 'FFC0CB');
+
           # asteroid timer
           @timer1 = 0.3
           # enemy timer
@@ -1392,11 +1446,20 @@ assets:
 
           if @score > (localStorage.roomsCleared * 100.0)
               if(rooms.current.name is 'Level1')
-                  rooms.switch 'Level2'
+                  transition.circleOut(425, 'FFC0CB')
+                      .then(() -> 
+                          rooms.switch('Level2');
+                      );
               else if(rooms.current.name is 'Level2')
-                  rooms.switch 'Level3'
+                  transition.circleOut(425, 'FFC0CB')
+                      .then(() -> 
+                          rooms.switch('Level3');
+                      );
               else if(rooms.current.name is 'Level3')
-                  rooms.switch 'Level1'
+                  transition.circleOut(425, 'FFC0CB')
+                      .then(() -> 
+                          rooms.switch('Level1');
+                      );
         arguments: {}
         lib: core
     uid: KnTKRH2brkK4cF
@@ -1616,7 +1679,7 @@ assets:
         opacity: 1
         tint: 16777215
         scale:
-          x: 1.02459016
+          x: 0
           'y': 1
         rotation: 0
         uid: zTDCG8Df2FKq5N
@@ -1625,7 +1688,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1735849418433
+    lastmod: 1735849651893
     events:
       - eventKey: OnStep
         code: |
@@ -1650,12 +1713,12 @@ assets:
               depth: 100
           });
 
-          for xp_fill in templates.list['xp_fill']
-              if(parseInt(localStorage.xp) < 10)
-                  xp_fill.scale.x = 0.1 * localStorage.xp
-              else
-                  localStorage.xp = 0.0
-                  xp_fill.scale.x = 0.0
+          #for xp_fill in templates.list['xp_fill']
+          #    if(parseInt(localStorage.xp) < 10)
+          #        xp_fill.scale.x = 0.1 * localStorage.xp
+          #    else
+          #        localStorage.xp = 0.0
+          #        xp_fill.scale.x = 0.0
         arguments: {}
         lib: core
       - eventKey: OnRoomStart

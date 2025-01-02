@@ -1142,10 +1142,12 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1735848348568
+    lastmod: 1735854940850
     events:
       - eventKey: OnRoomStart
         code: |-
+          transition.circleIn(425, 'FFC0CB');
+
           # asteroid timer
           @timer1 = 0.3
           # enemy timer
@@ -1202,11 +1204,20 @@ assets:
 
           if @score > (localStorage.roomsCleared * 100.0)
               if(rooms.current.name is 'Level1')
-                  rooms.switch 'Level2'
+                  transition.circleOut(425, 'FFC0CB')
+                      .then(() -> 
+                          rooms.switch('Level2');
+                      );
               else if(rooms.current.name is 'Level2')
-                  rooms.switch 'Level3'
+                  transition.circleOut(425, 'FFC0CB')
+                      .then(() -> 
+                          rooms.switch('Level3');
+                      );
               else if(rooms.current.name is 'Level3')
-                  rooms.switch 'Level1'
+                  transition.circleOut(425, 'FFC0CB')
+                      .then(() -> 
+                          rooms.switch('Level1');
+                      );
         arguments: {}
         lib: core
     uid: FGhG1GdHrF5bqR
@@ -1259,10 +1270,12 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1735848343735
+    lastmod: 1735854952655
     events:
       - eventKey: OnRoomStart
         code: |-
+          transition.circleIn(425, 'FFC0CB');
+
           # asteroid timer
           @timer1 = 0.3
           # enemy timer
@@ -1312,11 +1325,20 @@ assets:
 
           if @score > (localStorage.roomsCleared * 100.0)
               if(rooms.current.name is 'Level1')
-                  rooms.switch 'Level2'
+                  transition.circleOut(425, 'FFC0CB')
+                      .then(() -> 
+                          rooms.switch('Level2');
+                      );
               else if(rooms.current.name is 'Level2')
-                  rooms.switch 'Level3'
+                  transition.circleOut(425, 'FFC0CB')
+                      .then(() -> 
+                          rooms.switch('Level3');
+                      );
               else if(rooms.current.name is 'Level3')
-                  rooms.switch 'Level1'
+                  transition.circleOut(425, 'FFC0CB')
+                      .then(() -> 
+                          rooms.switch('Level1');
+                      );
         arguments: {}
         lib: core
     uid: 3jJMjc3R3K13h4
@@ -1366,12 +1388,15 @@ assets:
         uid: TPpGgD432gcqQp
         exts: {}
         customProperties: {}
+        bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1707928639709
+    lastmod: 1735854963054
     events:
       - eventKey: OnRoomStart
         code: |-
+          transition.circleIn(425, 'FFC0CB');
+
           # asteroid timer
           @timer1 = 0.3
           # enemy timer
@@ -1421,11 +1446,20 @@ assets:
 
           if @score > (localStorage.roomsCleared * 100.0)
               if(rooms.current.name is 'Level1')
-                  rooms.switch 'Level2'
+                  transition.circleOut(425, 'FFC0CB')
+                      .then(() -> 
+                          rooms.switch('Level2');
+                      );
               else if(rooms.current.name is 'Level2')
-                  rooms.switch 'Level3'
+                  transition.circleOut(425, 'FFC0CB')
+                      .then(() -> 
+                          rooms.switch('Level3');
+                      );
               else if(rooms.current.name is 'Level3')
-                  rooms.switch 'Level1'
+                  transition.circleOut(425, 'FFC0CB')
+                      .then(() -> 
+                          rooms.switch('Level1');
+                      );
         arguments: {}
         lib: core
     uid: KnTKRH2brkK4cF
