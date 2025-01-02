@@ -1516,7 +1516,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1735682011190
+    lastmod: 1735683090497
     events:
       - eventKey: OnRoomStart
         code: >-
@@ -1559,11 +1559,11 @@ assets:
           i = 0
 
           while i < (localStorage.roomsCleared - 1.0)
-              templates.copy 'heart_template', ((camera.x - 550) + (i*50)), (camera.y + 200)
+              templates.copy 'heart_template', ((camera.x - 550) + (i*75)), (camera.y + 250)
               i++
 
           for heart in templates.list['heart_template']
-              @scale.x = @scale.y = 0.1
+              heart.scale.x = heart.scale.y = 0.1
 
           sounds.play 'Voice_recording'
         arguments: {}
@@ -4823,7 +4823,7 @@ assets:
     uid: tN7KTjQhz9CNGg
     behaviors: []
     extendTypes: ''
-  - lastmod: 1735681316137
+  - lastmod: 1735682470870
     type: texture
     name: heart
     untill: 0
@@ -4831,23 +4831,23 @@ assets:
       - 1
       - 1
     axis:
-      - 2500
-      - 2500
+      - 250
+      - 249
     marginx: 0
     marginy: 0
-    imgWidth: 5000
-    imgHeight: 5000
-    width: 5000
-    height: 5000
+    imgWidth: 500
+    imgHeight: 499
+    width: 500
+    height: 499
     offx: 0
     offy: 0
-    origname: ikR14Ldgh7n1W2m.png
+    origname: iRCR2DgNR9PmLFL.png
     shape: rect
-    left: 2500
-    right: 2500
-    top: 2500
-    bottom: 2500
-    uid: kR14Ldgh7n1W2m
+    left: 250
+    right: 250
+    top: 249
+    bottom: 250
+    uid: RCR2DgNR9PmLFL
     padding: 1
     isBlank: false
     source: 'D:\Valentines2025\valentines2025\You Fight Monsters\img\heart.png'
@@ -4855,7 +4855,7 @@ assets:
     baseClass: AnimatedSprite
     name: heart_template
     depth: 0
-    texture: kR14Ldgh7n1W2m
+    texture: RCR2DgNR9PmLFL
     playAnimationOnStart: false
     loopAnimation: true
     animationFPS: 30
@@ -4865,10 +4865,9 @@ assets:
         lib: core
         code: '@move()'
         arguments: {}
-    extends:
-      cgroup: ''
-    lastmod: 1735681353244
-    uid: 7fTQrKBLBNj276
+    extends: {}
+    lastmod: 1735682475637
+    uid: gqLCtnnC4P5BQT
     behaviors: []
     extendTypes: ''
 globalVars: []
