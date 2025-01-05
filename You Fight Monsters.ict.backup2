@@ -204,9 +204,12 @@ assets:
           if templates.isCopy(other)
               other.kill = true
 
-          rooms.current.lives--
+          #rooms.current.lives--
+          @currentLives = parseInt(storage.get('lives'))
+          @currentLives--
+          storage.set('lives', @currentLives)
 
-          if rooms.current.lives <= 0
+          if @currentLives <= 0
               @kill = true
               u.wait 1000
               .then =>
@@ -238,7 +241,7 @@ assets:
         lib: core
     extends:
       cgroup: ''
-    lastmod: 1735665887235
+    lastmod: 1736106780022
     uid: TPpGgD432gcqQp
     behaviors: []
     baseClass: AnimatedSprite
@@ -497,7 +500,7 @@ assets:
         lib: place
     extends:
       cgroup: Hostile
-    lastmod: 1735949762763
+    lastmod: 1736101446133
     uid: kjpH1C4Mq7hbzw
     group: Qp976PKNFcFJLC
     behaviors: []
@@ -701,7 +704,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1735956034135
+    lastmod: 1736113931447
     events:
       - eventKey: OnRoomStart
         code: |
@@ -719,15 +722,15 @@ assets:
           @scoreLabel.depth = 1000
 
 
-          @lives = 3
+          #@lives = 3
 
-          style = styles.get 'LivesText'
-          @livesLabel = new PIXI.Text 'Lives: ' + @lives, style
+          #style = styles.get 'LivesText'
+          #@livesLabel = new PIXI.Text 'Lives: ' + @lives, style
 
-          @addChild @livesLabel
-          @livesLabel.x = camera.width - 200
-          @livesLabel.y = 30
-          @livesLabel.depth = 1000
+          #@addChild @livesLabel
+          #@livesLabel.x = camera.width - 200
+          #@livesLabel.y = 30
+          #@livesLabel.depth = 1000
         arguments: {}
         lib: core
       - eventKey: Timer1
@@ -809,39 +812,62 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1735947712764
+    lastmod: 1736114389208
     events:
       - eventKey: OnRoomStart
-        code: |-
+        code: >-
           transition.circleIn(425, 'FFC0CB');
 
+
           # asteroid timer
+
           @timer1 = 0.3
+
           # enemy timer
+
           @timer2 = 3
 
+
           @score = 0
+
           style = styles.get 'ScoreText'
-          @scoreLabel = new PIXI.Text 'Score: ' + @score, style
+
+          @scoreLabel = new PIXI.Text 'Scoe: ' + @score, style
+
           @addChild @scoreLabel
+
           @scoreLabel.x = 30
+
           @scoreLabel.y = 30
+
           @scoreLabel.depth = 1000
 
 
-          @lives = 3
+          @currentLives = parseInt(storage.get('lives'))
+
+          #@currentLives++
+
+          storage.set('lives', @currentLives)
 
           style = styles.get 'LivesText'
-          @livesLabel = new PIXI.Text 'Lives: ' + @lives, style
+
+          @livesLabel = new PIXI.Text 'Lives: ' +
+          JSON.parse(storage.get('lives')), style
 
           @addChild @livesLabel
-          @livesLabel.x = camera.width - 200
+
+          @livesLabel.x = camera.width - 240
+
           @livesLabel.y = 30
+
           @livesLabel.depth = 1000
+
 
           localStorage.roomsCleared++
 
+
           @mainUi = rooms.append 'UI_InGame'
+
 
           soundSettings = 
               volume: 0.15
@@ -868,7 +894,7 @@ assets:
         code: >-
           @scoreLabel.text = 'Score: ' + @score
 
-          @livesLabel.text = 'Lives: ' + @lives
+          @livesLabel.text = 'Lives: ' + JSON.parse(storage.get('lives'))
 
 
           if not @transitioning and @score > (storage.get('roomsCleared') *
@@ -941,37 +967,59 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1735947570607
+    lastmod: 1736114383722
     events:
       - eventKey: OnRoomStart
-        code: |-
+        code: >-
           transition.circleIn(425, 'FFC0CB');
 
+
           # asteroid timer
+
           @timer1 = 0.3
+
           # enemy timer
+
           @timer2 = 3
 
+
           @score = 0
+
           style = styles.get 'ScoreText'
+
           @scoreLabel = new PIXI.Text 'Score: ' + @score, style
+
           @addChild @scoreLabel
+
           @scoreLabel.x = 30
+
           @scoreLabel.y = 30
+
           @scoreLabel.depth = 1000
 
 
-          @lives = 3
+          @currentLives = parseInt(storage.get('lives'))
+
+          #@currentLives++
+
+          storage.set('lives', @currentLives)
 
           style = styles.get 'LivesText'
-          @livesLabel = new PIXI.Text 'Lives: ' + @lives, style
+
+          @livesLabel = new PIXI.Text 'Lives: ' +
+          JSON.parse(storage.get('lives')), style
 
           @addChild @livesLabel
-          @livesLabel.x = camera.width - 200
+
+          @livesLabel.x = camera.width - 240
+
           @livesLabel.y = 30
+
           @livesLabel.depth = 1000
 
+
           localStorage.roomsCleared++
+
 
           @mainUi = rooms.append 'UI_InGame'
         arguments: {}
@@ -993,7 +1041,7 @@ assets:
         code: >-
           @scoreLabel.text = 'Score: ' + @score
 
-          @livesLabel.text = 'Lives: ' + @lives
+          @livesLabel.text = 'Lives: ' + JSON.parse(storage.get('lives'))
 
 
           if not @transitioning and @score > (storage.get('roomsCleared') *
@@ -1066,37 +1114,59 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1735947594025
+    lastmod: 1736114406324
     events:
       - eventKey: OnRoomStart
-        code: |-
+        code: >-
           transition.circleIn(425, 'FFC0CB');
 
+
           # asteroid timer
+
           @timer1 = 0.3
+
           # enemy timer
+
           @timer2 = 3
 
+
           @score = 0
+
           style = styles.get 'ScoreText'
+
           @scoreLabel = new PIXI.Text 'Score: ' + @score, style
+
           @addChild @scoreLabel
+
           @scoreLabel.x = 30
+
           @scoreLabel.y = 30
+
           @scoreLabel.depth = 1000
 
 
-          @lives = 3
+          @currentLives = parseInt(storage.get('lives'))
+
+          #@currentLives++
+
+          storage.set('lives', @currentLives)
 
           style = styles.get 'LivesText'
-          @livesLabel = new PIXI.Text 'Lives: ' + @lives, style
+
+          @livesLabel = new PIXI.Text 'Lives: ' +
+          JSON.parse(storage.get('lives')), style
 
           @addChild @livesLabel
-          @livesLabel.x = camera.width - 200
+
+          @livesLabel.x = camera.width - 240
+
           @livesLabel.y = 30
+
           @livesLabel.depth = 1000
 
+
           localStorage.roomsCleared++
+
 
           @mainUi = rooms.append 'UI_InGame'
         arguments: {}
@@ -1118,7 +1188,7 @@ assets:
         code: >-
           @scoreLabel.text = 'Score: ' + @score
 
-          @livesLabel.text = 'Lives: ' + @lives
+          @livesLabel.text = 'Lives: ' + JSON.parse(storage.get('lives'))
 
 
           if not @transitioning and @score > (storage.get('roomsCleared') *
@@ -1211,13 +1281,15 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1735956078668
+    lastmod: 1736114397301
     events:
       - eventKey: OnRoomStart
         code: >-
           localStorage.roomsCleared = 0.0
 
           localStorage.xp = 0.0
+
+          localStorage.lives = 3.0
 
           allPowerUpsArray =
           ['extraLife','extraAttack','shootFromSword','shootAroundPlayer','enhancedShootAroundPlayer','shield','bomb','extraSpeed']
@@ -1855,7 +1927,7 @@ assets:
       weight: '900'
       italic: true
       halign: right
-    lastmod: 1707885502334
+    lastmod: 1736107181272
     shadow:
       color: '#8A8A8A'
       x: 0
@@ -3746,24 +3818,41 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1735956063804
+    lastmod: 1736101330073
     events:
       - eventKey: OnRoomStart
         code: |-
           @myRandomThreePowerUps = []
-          #retrievedString = storage.get('listOfAllPowerUps')
-          #remainingPowerUps = JSON.parse(retrievedString)
           @remainingPowerUps = JSON.parse localStorage.listOfAllPowerUps
+
           i = 3
           while i > 0
-              myRandom = random(8-i)
-              @myRandomThreePowerUps.push(@remainingPowerUps[myRandom])
-              @remainingPowerUps.pop(@remainingPowerUps[myRandom])
+              getRandomInt = (min, max) ->
+                  min = Math.ceil(min)
+                  max = Math.floor(max)
+                  Math.floor(random(1) * (max - min + 1)) + min
+              @myRandom = getRandomInt(0, 7)
+              console.log('myRandom ' + @myRandom)
+              @myRandomThreePowerUps.push(@remainingPowerUps[@myRandom])
+              console.log('@remainingPowerUps[myRandom] ' + @remainingPowerUps[@myRandom])
+              #console.log('@myRandomThreePowerUps ' + @myRandomThreePowerUps)
+              @remainingPowerUps.splice(@myRandom, 1)
+              #console.log('@remainingPowerUps ' + @remainingPowerUps)
               i--
+              #console.log('i' + i)
+          console.log('@myRandomThreePowerUps ' + @myRandomThreePowerUps)
           storage.set('randomPowerUpOptions', @myRandomThreePowerUps)
-          console.log(storage.get('randomPowerUpOptions'))
+          #console.log(storage.get('randomPowerUpOptions'))
           for card in templates.list['Card_Button']
-              card.tex = 'Barrel'
+              console.log('new loop')
+              console.log('card ' + card)
+              console.log('@myRandomThreePowerUps ' + @myRandomThreePowerUps)
+              @oneButtonPower = @myRandomThreePowerUps.pop()
+              console.log('@oneButtonPower ' + @oneButtonPower)
+              card.tex = @oneButtonPower
+              card.power = @oneButtonPower
+              console.log('card.power ' + card.power)
+              
         arguments: {}
         lib: core
     behaviors: []
@@ -3784,15 +3873,53 @@ assets:
         code: '@move()'
         arguments: {}
       - eventKey: OnPointerClick
-        code: |-
+        code: >
           room = @getRoom()
+
           rooms.remove room
+
           pixiApp.ticker.speed = 1
+
+
+          #switch statement for @power:  depending on what @power is, give the
+          player XYZ abilities.
+
+          powerEffect = undefined
+
+          switch @power
+              when 'extraLife'
+                  powerEffect = @power
+                  localStorage.lives++
+                  #console.log 'extraLife inside switch'
+              when 'extraAttack'
+                  powerEffect = @power
+                  #console.log 'extraAttack inside switch'
+              when 'shootFromSword'
+                  powerEffect = @power
+                  #console.log 'shootFromSword inside switch'
+              when 'shootAroundPlayer'
+                  powerEffect = @power
+                  #console.log 'shootAroundPlayer inside switch'
+              when 'enhancedShootAroundPlayer'
+                  powerEffect = @power
+                  #console.log 'enhancedShootAroundPlayer inside switch'
+              when 'shield'
+                  powerEffect = @power
+                  #console.log 'shield inside switch'
+              when 'bomb'
+                  powerEffect = @power
+                  #console.log 'bomb inside switch'
+              when 'extraSpeed'
+                  powerEffect = @power
+                  #console.log 'extraSpeed inside switch'
+              else
+                  powerEffect = @power
+          console.log 'power outside switch: ' + @power
         arguments: {}
         lib: core
     extends:
       cgroup: ''
-    lastmod: 1735949773085
+    lastmod: 1736114450854
     uid: bGmKKpK13NTfq9
     behaviors: []
     extendTypes: ''
