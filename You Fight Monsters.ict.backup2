@@ -13,6 +13,8 @@ libs:
   tween: {}
   transition: {}
   storage: {}
+  matter:
+    matterUseStaticDeltaTime: true
 actions:
   - name: Shoot
     methods:
@@ -264,11 +266,57 @@ assets:
       - eventKey: OnStep
         lib: core
         code: >-
-          this.direction = u.pointDirection(this.x, this.y, rooms.playerX,
+          if place.occupied(this, @x, @y, 'Weapon_Sword')
+              if @x - rooms.playerX > 0 and @y - rooms.playerY > 0
+                  console.log 'if @x - rooms.playerX > 0 and @y - rooms.playerY > 0'
+                  @x = rooms.playerX + 200
+                  @y = rooms.playerY + 200
+              else if @x - rooms.playerX < 0 and @y - rooms.playerY > 0
+                  console.log 'if @x - rooms.playerX < 0 and @y - rooms.playerY > 0'
+                  @x = rooms.playerX - 200
+                  @y = rooms.playerY + 200
+              else if @x - rooms.playerX > 0 and @y - rooms.playerY < 0
+                  console.log 'if @x - rooms.playerX > 0 and @y - rooms.playerY < 0'
+                  @x = rooms.playerX + 200
+                  @y = rooms.playerY - 200
+              else if @x - rooms.playerX < 0 and @y - rooms.playerY < 0
+                  console.log 'if @x - rooms.playerX < 0 and @y - rooms.playerY < 0'
+                  @x = rooms.playerX - 200
+                  @y = rooms.playerY - 200
+              else
+                  this.move()
+              #@hspeed = @hspeed * -4
+              #@vspeed = @vspeed * -4
+              this.move()
+              console.log 'place.occupied'
+          else
+              @direction = u.pointDirection(this.x, this.y, rooms.playerX, rooms.playerY);
+              this.move()
+          #    @direction = u.pointDirection(rooms.playerX, rooms.playerY,
+          this.x, this.y);
+
+          #    @speed = 1500
+
+          #    this.move()
+
+          #    console.log 'direction ' + @direction
+
+          #else
+
+          #    @direction = u.pointDirection(this.x, this.y, rooms.playerX,
           rooms.playerY);
 
+          #    @speed = 150
 
-          this.move()
+          #    this.move()
+
+          #   console.log 'direction ' + @direction
+
+
+          #@direction = u.pointDirection(rooms.playerX, rooms.playerY, this.x,
+          this.y);
+
+          #@speed = 1500
 
 
           if @direction > 90 and @direction < 270
@@ -281,7 +329,7 @@ assets:
               @play()
         arguments: {}
       - eventKey: OnCreate
-        code: |
+        code: |-
           this.animationSpeed = 0.2;
           this.scale.x = 4;
           this.scale.y = 4;
@@ -289,6 +337,7 @@ assets:
           @speed = 150
           @direction = 90
           @timer1 = 1
+          @hp = 20
         arguments: {}
         lib: core
       - eventKey: collisionTemplate
@@ -301,7 +350,6 @@ assets:
         lib: place
       - eventKey: collisionTemplate
         code: |-
-          @kill = true
           rooms.current.score += 10
 
           #localStorage.xp++
@@ -310,7 +358,7 @@ assets:
           storage.set('xp', @currentXP)
 
           for xp_fill in templates.list['xp_fill']
-              if(parseInt(storage.get('xp')) < 10)
+              if(parseInt(storage.get('xp')) < 100)
                   tween.value(
                       {
                           from: (0.1 * (storage.get('xp') - 1.0)),
@@ -333,12 +381,73 @@ assets:
                       pixiApp.ticker.speed = 0
 
           sounds.play 'Press_01'
+
+          # health of slime reduced, killed if 0
+          @hp -= 1
+          console.log('@hp ' + @hp)
+          if(@hp < 1)
+              @kill = true
+
+          while place.occupied(this, @x, @y, 'Weapon_Sword')
+              @hspeed = @hspeed * -4
+              @vspeed = @vspeed * -4
+              this.move()
+          if @x - rooms.playerX > 0 and @y - rooms.playerY > 0
+              console.log 'if @x - rooms.playerX > 0 and @y - rooms.playerY > 0'
+              @x = rooms.playerX + 200
+              @y = rooms.playerY + 200
+              @direction = u.pointDirection(rooms.playerX, rooms.playerY, this.x, this.y);
+              @speed = 1500
+              this.move()
+              this.move()
+          else if @x - rooms.playerX < 0 and @y - rooms.playerY > 0
+              console.log 'if @x - rooms.playerX < 0 and @y - rooms.playerY > 0'
+              @x = rooms.playerX - 200
+              @y = rooms.playerY + 200
+              @hspeed = @hspeed * -4
+              @vspeed = @vspeed * -4
+              this.move()
+          else if @x - rooms.playerX > 0 and @y - rooms.playerY < 0
+              console.log 'if @x - rooms.playerX > 0 and @y - rooms.playerY < 0'
+              @x = rooms.playerX + 200
+              @y = rooms.playerY - 200
+              @hspeed = @hspeed * -4
+              @vspeed = @vspeed * -4
+              this.move()
+          else if @x - rooms.playerX < 0 and @y - rooms.playerY < 0
+              console.log 'if @x - rooms.playerX < 0 and @y - rooms.playerY < 0'
+              @x = rooms.playerX - 200
+              @y = rooms.playerY - 200
+              @hspeed = @hspeed * -4
+              @vspeed = @vspeed * -4
+              this.move()
+          else
+              this.move()
+          #@hspeed = @hspeed * -4
+          #@vspeed = @vspeed * -4
+          this.move()
+          console.log 'place.occupied'
         arguments:
           template: NLBH447HwkR92N
         lib: place
     extends:
       cgroup: Hostile
-    lastmod: 1735944876422
+      matterEnable: false
+      matterStatic: false
+      matterSensor: false
+      matterDensity: 0
+      matterRestitution: 0.1
+      matterFriction: 0
+      matterFrictionStatic: 0
+      matterFrictionAir: 0
+      matterFixPivot:
+        - 0
+        - 0
+      matterConstraint: !<tag:yaml.org,2002:js/undefined> ''
+      matterRopeLength: 0
+      matterRopeStiffness: 0
+      matterRopeDamping: 0
+    lastmod: 1737172711177
     uid: rMr86fJbFDGKK3
     group: Qp976PKNFcFJLC
     behaviors: []
@@ -442,7 +551,7 @@ assets:
               @play()
         arguments: {}
       - eventKey: OnCreate
-        code: |
+        code: |-
           this.animationSpeed = 0.2;
           this.scale.x = 4;
           this.scale.y = 4;
@@ -500,7 +609,7 @@ assets:
         lib: place
     extends:
       cgroup: Hostile
-    lastmod: 1736101446133
+    lastmod: 1737159525733
     uid: kjpH1C4Mq7hbzw
     group: Qp976PKNFcFJLC
     behaviors: []
@@ -812,7 +921,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1736114389208
+    lastmod: 1737168183460
     events:
       - eventKey: OnRoomStart
         code: >-
@@ -3818,7 +3927,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1736101330073
+    lastmod: 1736117702981
     events:
       - eventKey: OnRoomStart
         code: |-
@@ -3831,10 +3940,11 @@ assets:
                   min = Math.ceil(min)
                   max = Math.floor(max)
                   Math.floor(random(1) * (max - min + 1)) + min
-              @myRandom = getRandomInt(0, 7)
-              console.log('myRandom ' + @myRandom)
+              @myRandom = getRandomInt(0, (@remainingPowerUps.length - 1))
+              #console.log('myRandom ' + @myRandom)
+              #console.log('@remainingPowerUps length ' + @remainingPowerUps.length)
               @myRandomThreePowerUps.push(@remainingPowerUps[@myRandom])
-              console.log('@remainingPowerUps[myRandom] ' + @remainingPowerUps[@myRandom])
+              #console.log('@remainingPowerUps[myRandom] ' + @remainingPowerUps[@myRandom])
               #console.log('@myRandomThreePowerUps ' + @myRandomThreePowerUps)
               @remainingPowerUps.splice(@myRandom, 1)
               #console.log('@remainingPowerUps ' + @remainingPowerUps)
@@ -3844,14 +3954,14 @@ assets:
           storage.set('randomPowerUpOptions', @myRandomThreePowerUps)
           #console.log(storage.get('randomPowerUpOptions'))
           for card in templates.list['Card_Button']
-              console.log('new loop')
-              console.log('card ' + card)
-              console.log('@myRandomThreePowerUps ' + @myRandomThreePowerUps)
+              #console.log('new loop')
+              #console.log('card ' + card)
+              #console.log('@myRandomThreePowerUps ' + @myRandomThreePowerUps)
               @oneButtonPower = @myRandomThreePowerUps.pop()
-              console.log('@oneButtonPower ' + @oneButtonPower)
+              #console.log('@oneButtonPower ' + @oneButtonPower)
               card.tex = @oneButtonPower
               card.power = @oneButtonPower
-              console.log('card.power ' + card.power)
+              #console.log('card.power ' + card.power)
               
         arguments: {}
         lib: core
@@ -3919,7 +4029,7 @@ assets:
         lib: core
     extends:
       cgroup: ''
-    lastmod: 1736114450854
+    lastmod: 1736117318430
     uid: bGmKKpK13NTfq9
     behaviors: []
     extendTypes: ''

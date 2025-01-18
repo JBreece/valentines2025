@@ -3818,7 +3818,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1736101330073
+    lastmod: 1736117702981
     events:
       - eventKey: OnRoomStart
         code: |-
@@ -3831,10 +3831,11 @@ assets:
                   min = Math.ceil(min)
                   max = Math.floor(max)
                   Math.floor(random(1) * (max - min + 1)) + min
-              @myRandom = getRandomInt(0, 7)
-              console.log('myRandom ' + @myRandom)
+              @myRandom = getRandomInt(0, (@remainingPowerUps.length - 1))
+              #console.log('myRandom ' + @myRandom)
+              #console.log('@remainingPowerUps length ' + @remainingPowerUps.length)
               @myRandomThreePowerUps.push(@remainingPowerUps[@myRandom])
-              console.log('@remainingPowerUps[myRandom] ' + @remainingPowerUps[@myRandom])
+              #console.log('@remainingPowerUps[myRandom] ' + @remainingPowerUps[@myRandom])
               #console.log('@myRandomThreePowerUps ' + @myRandomThreePowerUps)
               @remainingPowerUps.splice(@myRandom, 1)
               #console.log('@remainingPowerUps ' + @remainingPowerUps)
@@ -3844,14 +3845,14 @@ assets:
           storage.set('randomPowerUpOptions', @myRandomThreePowerUps)
           #console.log(storage.get('randomPowerUpOptions'))
           for card in templates.list['Card_Button']
-              console.log('new loop')
-              console.log('card ' + card)
-              console.log('@myRandomThreePowerUps ' + @myRandomThreePowerUps)
+              #console.log('new loop')
+              #console.log('card ' + card)
+              #console.log('@myRandomThreePowerUps ' + @myRandomThreePowerUps)
               @oneButtonPower = @myRandomThreePowerUps.pop()
-              console.log('@oneButtonPower ' + @oneButtonPower)
+              #console.log('@oneButtonPower ' + @oneButtonPower)
               card.tex = @oneButtonPower
               card.power = @oneButtonPower
-              console.log('card.power ' + card.power)
+              #console.log('card.power ' + card.power)
               
         arguments: {}
         lib: core
@@ -3919,7 +3920,7 @@ assets:
         lib: core
     extends:
       cgroup: ''
-    lastmod: 1736101026921
+    lastmod: 1736117318430
     uid: bGmKKpK13NTfq9
     behaviors: []
     extendTypes: ''

@@ -13,6 +13,8 @@ libs:
   tween: {}
   transition: {}
   storage: {}
+  matter:
+    matterUseStaticDeltaTime: true
 actions:
   - name: Shoot
     methods:
@@ -264,11 +266,62 @@ assets:
       - eventKey: OnStep
         lib: core
         code: >-
-          this.direction = u.pointDirection(this.x, this.y, rooms.playerX,
+          if place.occupied(this, 'Weapon')
+              if @x - rooms.playerX > 0 and @y - rooms.playerY > 0
+                  console.log 'if @x - rooms.playerX > 0 and @y - rooms.playerY > 0'
+                  @direction = u.pointDirection(rooms.playerX, rooms.playerY, this.x, this.y);
+                  @speed = 550
+                  this.move()
+              else if @x - rooms.playerX < 0 and @y - rooms.playerY > 0
+                  console.log 'if @x - rooms.playerX < 0 and @y - rooms.playerY > 0'
+                  @direction = u.pointDirection(rooms.playerX, rooms.playerY, this.x, this.y);
+                  @speed = 550
+                  this.move()
+              else if @x - rooms.playerX > 0 and @y - rooms.playerY < 0
+                  console.log 'if @x - rooms.playerX > 0 and @y - rooms.playerY < 0'
+                  @direction = u.pointDirection(rooms.playerX, rooms.playerY, this.x, this.y);
+                  @speed = 550
+                  this.move()
+              else if @x - rooms.playerX < 0 and @y - rooms.playerY < 0
+                  console.log 'if @x - rooms.playerX < 0 and @y - rooms.playerY < 0'
+                  @direction = u.pointDirection(rooms.playerX, rooms.playerY, this.x, this.y);
+                  @speed = 550
+                  this.move()
+              else
+                  this.move()
+              #@hspeed = @hspeed * -4
+              #@vspeed = @vspeed * -4
+              this.move()
+              console.log 'place.occupied'
+          else
+              @speed = 150
+              @direction = u.pointDirection(this.x, this.y, rooms.playerX, rooms.playerY);
+              this.move()
+          #    @direction = u.pointDirection(rooms.playerX, rooms.playerY,
+          this.x, this.y);
+
+          #    @speed = 1500
+
+          #    this.move()
+
+          #    console.log 'direction ' + @direction
+
+          #else
+
+          #    @direction = u.pointDirection(this.x, this.y, rooms.playerX,
           rooms.playerY);
 
+          #    @speed = 150
 
-          this.move()
+          #    this.move()
+
+          #   console.log 'direction ' + @direction
+
+
+          #@direction = u.pointDirection(rooms.playerX, rooms.playerY, this.x,
+          this.y);
+
+          #@speed = 1500
 
 
           if @direction > 90 and @direction < 270
@@ -281,7 +334,7 @@ assets:
               @play()
         arguments: {}
       - eventKey: OnCreate
-        code: |
+        code: |-
           this.animationSpeed = 0.2;
           this.scale.x = 4;
           this.scale.y = 4;
@@ -289,6 +342,7 @@ assets:
           @speed = 150
           @direction = 90
           @timer1 = 1
+          @hp = 20
         arguments: {}
         lib: core
       - eventKey: collisionTemplate
@@ -300,17 +354,21 @@ assets:
           template: TPpGgD432gcqQp
         lib: place
       - eventKey: collisionTemplate
-        code: |-
-          @kill = true
+        code: >-
           rooms.current.score += 10
 
+
           #localStorage.xp++
+
           @currentXP = parseInt(storage.get('xp'))
+
           @currentXP++
+
           storage.set('xp', @currentXP)
 
+
           for xp_fill in templates.list['xp_fill']
-              if(parseInt(storage.get('xp')) < 10)
+              if(parseInt(storage.get('xp')) < 100)
                   tween.value(
                       {
                           from: (0.1 * (storage.get('xp') - 1.0)),
@@ -333,12 +391,118 @@ assets:
                       pixiApp.ticker.speed = 0
 
           sounds.play 'Press_01'
+
+
+          # health of slime reduced, killed if 0
+
+          @hp -= 1
+
+          console.log('@hp ' + @hp)
+
+          if(@hp < 1)
+              @kill = true
+
+          #while place.occupied(this, @x, @y, 'Weapon_Sword')
+
+          #    @hspeed = @hspeed * -4
+
+          #    @vspeed = @vspeed * -4
+
+          #    this.move()
+
+          #if @x - rooms.playerX > 0 and @y - rooms.playerY > 0
+
+          #    console.log 'if @x - rooms.playerX > 0 and @y - rooms.playerY >
+          0'
+
+          #    @x = rooms.playerX + 200
+
+          #    @y = rooms.playerY + 200
+
+          #    @direction = u.pointDirection(rooms.playerX, rooms.playerY,
+          this.x, this.y);
+
+          #    @speed = 1500
+
+          #    this.move()
+
+          #else if @x - rooms.playerX < 0 and @y - rooms.playerY > 0
+
+          #    console.log 'if @x - rooms.playerX < 0 and @y - rooms.playerY >
+          0'
+
+          #    @x = rooms.playerX - 200
+
+          #    @y = rooms.playerY + 200
+
+          #    @hspeed = @hspeed * -4
+
+          #    @vspeed = @vspeed * -4
+
+          #    this.move()
+
+          #else if @x - rooms.playerX > 0 and @y - rooms.playerY < 0
+
+          #    console.log 'if @x - rooms.playerX > 0 and @y - rooms.playerY <
+          0'
+
+          #    @x = rooms.playerX + 200
+
+          #    @y = rooms.playerY - 200
+
+          #    @hspeed = @hspeed * -4
+
+          #    @vspeed = @vspeed * -4
+
+          #    this.move()
+
+          #else if @x - rooms.playerX < 0 and @y - rooms.playerY < 0
+
+          #    console.log 'if @x - rooms.playerX < 0 and @y - rooms.playerY <
+          0'
+
+          #    @x = rooms.playerX - 200
+
+          #    @y = rooms.playerY - 200
+
+          #    @hspeed = @hspeed * -4
+
+          #    @vspeed = @vspeed * -4
+
+          #    this.move()
+
+          #else
+
+          #    this.move()
+
+          #@hspeed = @hspeed * -4
+
+          #@vspeed = @vspeed * -4
+
+          #this.move()
+
+          #console.log 'place.occupied'
         arguments:
           template: NLBH447HwkR92N
         lib: place
     extends:
       cgroup: Hostile
-    lastmod: 1735944876422
+      matterEnable: false
+      matterStatic: false
+      matterSensor: false
+      matterDensity: 0
+      matterRestitution: 0.1
+      matterFriction: 0
+      matterFrictionStatic: 0
+      matterFrictionAir: 0
+      matterFixPivot:
+        - 0
+        - 0
+      matterConstraint: !<tag:yaml.org,2002:js/undefined> ''
+      matterRopeLength: 0
+      matterRopeStiffness: 0
+      matterRopeDamping: 0
+    lastmod: 1737179652633
     uid: rMr86fJbFDGKK3
     group: Qp976PKNFcFJLC
     behaviors: []
@@ -401,8 +565,19 @@ assets:
           isUi: false
         lib: core
     extends:
-      cgroup: ''
-    lastmod: 1735665726093
+      cgroup: Weapon
+      matterEnable: false
+      matterStatic: false
+      matterSensor: false
+      matterDensity: 0
+      matterRestitution: 0
+      matterFriction: 0
+      matterFrictionStatic: 0
+      matterFrictionAir: 0
+      matterFixPivot:
+        - 0
+        - 0
+    lastmod: 1737178429349
     uid: NLBH447HwkR92N
     behaviors: []
     baseClass: AnimatedSprite
@@ -442,7 +617,7 @@ assets:
               @play()
         arguments: {}
       - eventKey: OnCreate
-        code: |
+        code: |-
           this.animationSpeed = 0.2;
           this.scale.x = 4;
           this.scale.y = 4;
@@ -500,7 +675,7 @@ assets:
         lib: place
     extends:
       cgroup: Hostile
-    lastmod: 1736101446133
+    lastmod: 1737159525733
     uid: kjpH1C4Mq7hbzw
     group: Qp976PKNFcFJLC
     behaviors: []
@@ -812,7 +987,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1736114389208
+    lastmod: 1737168183460
     events:
       - eventKey: OnRoomStart
         code: >-
