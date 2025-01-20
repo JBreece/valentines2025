@@ -110,20 +110,32 @@ assets:
       - eventKey: OnStep
         lib: core
         code: |
-          if @y < -40
+          @angle += u.time * 360
+
+          if @y < -4000 || @y > 4000 || @x < -4000 || @x > 4000
             @kill = true
 
           @move()
         arguments: {}
       - eventKey: OnCreate
         code: |
-          @speed = 18
+          @speed = 500
           @direction = 270
         arguments: {}
         lib: core
+      - eventKey: collisionTemplate
+        code: '@kill = true'
+        arguments:
+          template: kjpH1C4Mq7hbzw
+        lib: place
+      - eventKey: collisionTemplate
+        code: '@kill = true'
+        arguments:
+          template: rMr86fJbFDGKK3
+        lib: place
     extends:
-      cgroup: ''
-    lastmod: 1735949625056
+      cgroup: Weapon
+    lastmod: 1737353904536
     uid: RQcz1BgKQcQMgt
     behaviors: []
     baseClass: AnimatedSprite
@@ -145,12 +157,14 @@ assets:
     events:
       - eventKey: OnStep
         lib: core
-        code: |
+        code: |-
           # Move the ship
           # See Project > Actions and input methods panel
           # and "Actions" in the docs.
 
-          @x += 8 * u.delta * actions.MoveX.value # Move by X axis
+          @mySpeed = storage.get('speedLevel')
+
+          @x += 8 * u.delta * actions.MoveX.value * @mySpeed # Move by X axis
 
           # Check whether the ship fell off the viewport
           if @x < 0 # Have the ship crossed the left border?
@@ -162,7 +176,7 @@ assets:
           @move()
 
 
-          @y += 5.5 * u.delta * actions.MoveY.value # Move by Y axis
+          @y += 5.5 * u.delta * actions.MoveY.value * @mySpeed # Move by Y axis
 
           # Check whether the ship fell off the viewport
           if @y < 0 # Have the ship crossed the left border?
@@ -191,12 +205,38 @@ assets:
 
           rooms.playerX = @x
           rooms.playerY = @y
+
+
+          # shoot around player
+          if JSON.parse(storage.get('hasShootAroundPlayer')) == true
+              @frameCounter++
+              if @frameCounter == 50
+                  j = 0
+                  while j < 4
+                      if JSON.parse(storage.get('hasEnhancedShootAroundPlayer')) == true
+                          myBetterLaser = templates.copy 'LaserRed', @x, @y
+                          myBetterLaser.direction = (90 * j) - 45
+                          myBetterLaser.scale.x = myBetterLaser.scale.y = 0.75
+                      j++
+              if @frameCounter > 100
+                  i = 0
+                  while i < 4
+                      myLaser = templates.copy 'LaserBlue', @x, @y
+                      myLaser.direction = 90 * i
+                      myLaser.scale.x = myLaser.scale.y = 0.75
+                      if JSON.parse(storage.get('hasEnhancedShootAroundPlayer')) == true
+                          myBetterLaser = templates.copy 'LaserRed', @x, @y
+                          myBetterLaser.direction = (90 * i) - 45
+                          myBetterLaser.scale.x = myBetterLaser.scale.y = 0.75
+                      i++
+                  @frameCounter = 0
         arguments: {}
       - eventKey: OnCreate
         code: |-
           this.animationSpeed = 0.2;
           this.scale.x = 4;
           this.scale.y = 4;
+          @frameCounter = 0
         arguments: {}
         lib: core
       - eventKey: collisionCGroup
@@ -241,7 +281,7 @@ assets:
         lib: core
     extends:
       cgroup: ''
-    lastmod: 1736106780022
+    lastmod: 1737353201766
     uid: TPpGgD432gcqQp
     behaviors: []
     baseClass: AnimatedSprite
@@ -294,7 +334,7 @@ assets:
         lib: place
       - eventKey: collisionTemplate
         code: |+
-          console.log 'im hit'
+          #console.log 'im hit'
 
         arguments:
           template: NLBH447HwkR92N
@@ -319,7 +359,7 @@ assets:
       Test: ''
       SpeedMultiplier: 1
       HP: 3
-    lastmod: 1737323479608
+    lastmod: 1737350478978
     uid: rMr86fJbFDGKK3
     group: Qp976PKNFcFJLC
     behaviors:
@@ -395,7 +435,7 @@ assets:
       matterFixPivot:
         - 0
         - 0
-    lastmod: 1737178429349
+    lastmod: 1737353897838
     uid: NLBH447HwkR92N
     behaviors: []
     baseClass: AnimatedSprite
@@ -447,7 +487,7 @@ assets:
           template: TPpGgD432gcqQp
         lib: place
       - eventKey: collisionTemplate
-        code: console.log 'im hit'
+        code: '#console.log ''im hit'''
         arguments:
           template: NLBH447HwkR92N
         lib: place
@@ -456,7 +496,7 @@ assets:
       Test: ''
       SpeedMultiplier: 1.5
       HP: 2
-    lastmod: 1737323523939
+    lastmod: 1737350484216
     uid: kjpH1C4Mq7hbzw
     group: Qp976PKNFcFJLC
     behaviors:
@@ -769,7 +809,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1737322267756
+    lastmod: 1737323900036
     events:
       - eventKey: OnRoomStart
         code: >-
@@ -1241,7 +1281,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1736114397301
+    lastmod: 1737350170366
     events:
       - eventKey: OnRoomStart
         code: >-
@@ -1259,6 +1299,20 @@ assets:
           localStorage.randomPowerUpOptions = []
 
           localStorage.currentDeck = []
+
+          localStorage.strengthLevel = 1.0
+
+          localStorage.speedLevel = 1.0
+
+          localStorage.hasShootFromSword = false
+
+          localStorage.hasShootAroundPlayer = false
+
+          localStorage.hasEnhancedShootAroundPlayer = false
+
+          localStorage.hasShield = false
+
+          localStorage.hasBomb = false
 
           style = styles.get 'GameIntroText'
 
@@ -3778,7 +3832,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1736117702981
+    lastmod: 1737352558649
     events:
       - eventKey: OnRoomStart
         code: |-
@@ -3794,6 +3848,15 @@ assets:
               @myRandom = getRandomInt(0, (@remainingPowerUps.length - 1))
               #console.log('myRandom ' + @myRandom)
               #console.log('@remainingPowerUps length ' + @remainingPowerUps.length)
+
+              # added logic for checking if the player already has this power
+              if @remainingPowerUps[@myRandom] == 'shootAroundPlayer' && JSON.parse(storage.get('hasShootAroundPlayer')) == true
+                  while @remainingPowerUps[@myRandom] == 'shootAroundPlayer'
+                      @myRandom = getRandomInt(0, (@remainingPowerUps.length - 1))
+              else if @remainingPowerUps[@myRandom] == 'enhancedShootAroundPlayer' && JSON.parse(storage.get('hasShootAroundPlayer')) == false
+                  while @remainingPowerUps[@myRandom] == 'enhancedShootAroundPlayer'
+                      @myRandom = getRandomInt(0, (@remainingPowerUps.length - 1))
+
               @myRandomThreePowerUps.push(@remainingPowerUps[@myRandom])
               #console.log('@remainingPowerUps[myRandom] ' + @remainingPowerUps[@myRandom])
               #console.log('@myRandomThreePowerUps ' + @myRandomThreePowerUps)
@@ -3850,37 +3913,40 @@ assets:
           switch @power
               when 'extraLife'
                   powerEffect = @power
-                  localStorage.lives++
-                  #console.log 'extraLife inside switch'
+                  livesCount = parseInt(storage.get('lives'))
+                  livesCount++
+                  storage.set('lives', livesCount)
               when 'extraAttack'
                   powerEffect = @power
-                  #console.log 'extraAttack inside switch'
+                  strengthCount = parseInt(storage.get('strengthLevel'))
+                  strengthCount++
+                  storage.set('strengthLevel', strengthCount)
               when 'shootFromSword'
                   powerEffect = @power
-                  #console.log 'shootFromSword inside switch'
+                  storage.set('hasShootFromSword', true)
               when 'shootAroundPlayer'
                   powerEffect = @power
-                  #console.log 'shootAroundPlayer inside switch'
+                  storage.set('hasShootAroundPlayer', true)
               when 'enhancedShootAroundPlayer'
                   powerEffect = @power
-                  #console.log 'enhancedShootAroundPlayer inside switch'
+                  storage.set('hasEnhancedShootAroundPlayer', true)
               when 'shield'
                   powerEffect = @power
-                  #console.log 'shield inside switch'
               when 'bomb'
                   powerEffect = @power
-                  #console.log 'bomb inside switch'
               when 'extraSpeed'
                   powerEffect = @power
-                  #console.log 'extraSpeed inside switch'
+                  speedCount = parseInt(storage.get('speedLevel'))
+                  speedCount++
+                  storage.set('speedLevel', speedCount)
               else
                   powerEffect = @power
-          console.log 'power outside switch: ' + @power
+          #console.log 'power outside switch: ' + @power
         arguments: {}
         lib: core
     extends:
       cgroup: ''
-    lastmod: 1736117318430
+    lastmod: 1737350432800
     uid: bGmKKpK13NTfq9
     behaviors: []
     extendTypes: ''
@@ -4203,7 +4269,10 @@ assets:
       - eventKey: OnStep
         lib: core
         code: |
-          if @y > camera.height + 40
+          @angle += u.time * 360
+
+          #if @y > camera.height + 40
+          if @y < -4000 || @y > 4000 || @x < -4000 || @x > 4000
             @kill = true
 
           @move()
@@ -4212,13 +4281,24 @@ assets:
         arguments: {}
       - eventKey: OnCreate
         code: |
-          @speed = 8
+          @speed = 400
           @direction = 90
           @angle = random.deg()
         arguments: {}
         lib: core
-    extends: {}
-    lastmod: 1707887280585
+      - eventKey: collisionTemplate
+        code: '@kill = true'
+        arguments:
+          template: kjpH1C4Mq7hbzw
+        lib: place
+      - eventKey: collisionTemplate
+        code: '@kill = true'
+        arguments:
+          template: rMr86fJbFDGKK3
+        lib: place
+    extends:
+      cgroup: Weapon
+    lastmod: 1737353910615
     uid: gf47CJPPzRw84K
     behaviors: []
     baseClass: AnimatedSprite
@@ -5576,25 +5656,26 @@ assets:
         lib: core
       - eventKey: OnStep
         code: |-
-          console.log '@isBeingHit is ' + @isBeingHit
+          #console.log '@isBeingHit is ' + @isBeingHit
           if place.occupied(this, 'Weapon') and @isBeingHit == false
               @isBeingHit = true
               @frameCounter = 5
-              console.log 'place.occupied'
+              #console.log 'place.occupied'
 
               sounds.play 'Press_01'
 
               # health of slime reduced, killed if 0
-              @HP -= 1
-              console.log('@HP ' + @HP)
+              @HP -= 1 * parseInt(storage.get('strengthLevel'))
+              #console.log('@HP ' + @HP)
               if(@HP < 1)
                   rooms.current.score += 10
                   #localStorage.xp++
                   @currentXP = parseInt(storage.get('xp'))
                   @currentXP++
                   storage.set('xp', @currentXP)
+                  #console.log 'xp ' + storage.get('xp')
                   for xp_fill in templates.list['xp_fill']
-                      if(parseInt(storage.get('xp')) < 100)
+                      if(parseInt(storage.get('xp')) < 10)
                           tween.value(
                               {
                                   from: (0.1 * (storage.get('xp') - 1.0)),
@@ -5617,7 +5698,7 @@ assets:
                               pixiApp.ticker.speed = 0
                   @kill = true
           else if @isBeingHit == true
-              console.log 'frame counter ' + @frameCounter
+              #console.log 'frame counter ' + @frameCounter
               if @frameCounter > 0
                   @frameCounter--
                   if @x - rooms.playerX > 0 and @y - rooms.playerY > 0
@@ -5665,6 +5746,6 @@ assets:
         required: true
         fixedLength: 0
     extendTypes: ''
-    lastmod: 1737323477384
+    lastmod: 1737350471880
     uid: 6MjBr7mJtG2gw9
 globalVars: []
