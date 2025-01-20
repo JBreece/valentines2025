@@ -135,7 +135,7 @@ assets:
         lib: place
     extends:
       cgroup: Weapon
-    lastmod: 1737353904536
+    lastmod: 1737354711324
     uid: RQcz1BgKQcQMgt
     behaviors: []
     baseClass: AnimatedSprite
@@ -157,7 +157,7 @@ assets:
     events:
       - eventKey: OnStep
         lib: core
-        code: |-
+        code: |
           # Move the ship
           # See Project > Actions and input methods panel
           # and "Actions" in the docs.
@@ -230,6 +230,12 @@ assets:
                           myBetterLaser.scale.x = myBetterLaser.scale.y = 0.75
                       i++
                   @frameCounter = 0
+
+          # shield should follow player
+          if JSON.parse(storage.get('hasShield')) == true
+              myShield = templates.list['InGameShield'][0]
+              myShield.x = @x
+              myShield.y = @y
         arguments: {}
       - eventKey: OnCreate
         code: |-
@@ -261,9 +267,16 @@ assets:
         code: |-
           if rooms.playerFacing is 'left'
               templates.copy 'Weapon_Sword', @x - 30, @y
+              if JSON.parse(storage.get('hasShootFromSword')) == true
+                  myProjectile = templates.copy 'SlashProjectile', @x - 30, @y
+                  console.log 'myProjectile ' + myProjectile
+                  myProjectile.direction = 180
           else
               templates.copy 'Weapon_Sword', @x + 30, @y
-
+              if JSON.parse(storage.get('hasShootFromSword')) == true
+                  myProjectile = templates.copy 'SlashProjectile', @x + 30, @y
+                  console.log 'myProjectile ' + myProjectile
+                  myProjectile.direction = 0
           rooms.playerX = @x
           rooms.playerY = @y
 
@@ -281,7 +294,7 @@ assets:
         lib: core
     extends:
       cgroup: ''
-    lastmod: 1737353201766
+    lastmod: 1737399921449
     uid: TPpGgD432gcqQp
     behaviors: []
     baseClass: AnimatedSprite
@@ -809,7 +822,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1737323900036
+    lastmod: 1737399990344
     events:
       - eventKey: OnRoomStart
         code: >-
@@ -875,6 +888,12 @@ assets:
 
           if(not sounds.playing('long_chat'))
               sounds.play 'long_chat', soundSettings
+
+          if JSON.parse(storage.get('hasShield')) == true
+              player = templates.list['Knight_Idle'][0]
+              console.log 'player ' + player
+              console.log 'playerX ' + player.x
+              myShield = templates.copy 'InGameShield', player.x, player.y
         arguments: {}
         lib: core
       - eventKey: Timer1
@@ -967,7 +986,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1737321959529
+    lastmod: 1737399983486
     events:
       - eventKey: OnRoomStart
         code: >-
@@ -1022,6 +1041,13 @@ assets:
 
 
           @mainUi = rooms.append 'UI_InGame'
+
+
+          if JSON.parse(storage.get('hasShield')) == true
+              player = templates.list['Knight_Idle'][0]
+              console.log 'player ' + player
+              console.log 'playerX ' + player.x
+              myShield = templates.copy 'InGameShield', player.x, player.y
         arguments: {}
         lib: core
       - eventKey: Timer1
@@ -1114,7 +1140,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1737321971343
+    lastmod: 1737399996272
     events:
       - eventKey: OnRoomStart
         code: >-
@@ -1169,6 +1195,13 @@ assets:
 
 
           @mainUi = rooms.append 'UI_InGame'
+
+
+          if JSON.parse(storage.get('hasShield')) == true
+              player = templates.list['Knight_Idle'][0]
+              console.log 'player ' + player
+              console.log 'playerX ' + player.x
+              myShield = templates.copy 'InGameShield', player.x, player.y
         arguments: {}
         lib: core
       - eventKey: Timer1
@@ -1281,7 +1314,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1737350170366
+    lastmod: 1737397871181
     events:
       - eventKey: OnRoomStart
         code: >-
@@ -3349,36 +3382,6 @@ assets:
     group: !<tag:yaml.org,2002:js/undefined> ''
     source: >-
       D:\ctjs\app\data\ct.libs\vkeys\example\img\i85dd4cbb-1213-4656-8cfa-2ff088fb8d8f.png_prev.png
-  - lastmod: 1707925406524
-    type: texture
-    name: i439a0e00-4c24-4172-a1f3-9f74c7cd7beb
-    untill: 0
-    grid:
-      - 1
-      - 1
-    axis:
-      - 0
-      - 0
-    marginx: 0
-    marginy: 0
-    imgWidth: 274
-    imgHeight: 274
-    width: 274
-    height: 274
-    offx: 0
-    offy: 0
-    origname: iNtFmRP45tCdFL3.png
-    shape: rect
-    left: 0
-    right: 274
-    top: 0
-    bottom: 274
-    uid: NtFmRP45tCdFL3
-    padding: 1
-    isBlank: false
-    group: !<tag:yaml.org,2002:js/undefined> ''
-    source: >-
-      D:\ctjs\app\data\ct.libs\vkeys\example\img\i439a0e00-4c24-4172-a1f3-9f74c7cd7beb.png
   - lastmod: 1707926936069
     type: texture
     name: TrackBall
@@ -3914,7 +3917,7 @@ assets:
               when 'extraLife'
                   powerEffect = @power
                   livesCount = parseInt(storage.get('lives'))
-                  livesCount++
+                  livesCount += 2
                   storage.set('lives', livesCount)
               when 'extraAttack'
                   powerEffect = @power
@@ -3946,7 +3949,7 @@ assets:
         lib: core
     extends:
       cgroup: ''
-    lastmod: 1737350432800
+    lastmod: 1737397701129
     uid: bGmKKpK13NTfq9
     behaviors: []
     extendTypes: ''
@@ -5748,4 +5751,160 @@ assets:
     extendTypes: ''
     lastmod: 1737350471880
     uid: 6MjBr7mJtG2gw9
+  - type: template
+    baseClass: AnimatedSprite
+    name: SlashProjectile
+    depth: 0
+    texture: HHkTmhc18zh7D8
+    playAnimationOnStart: false
+    loopAnimation: true
+    animationFPS: 30
+    visible: true
+    events:
+      - eventKey: OnStep
+        lib: core
+        code: |-
+          if @direction == 180
+              @scale.x = -3
+          else if @direction == 0
+              @scale.x = 3
+          else
+              console.log 'something is wrong with slash projectile direction'
+          @move()
+          @play()
+        arguments: {}
+      - eventKey: OnCreate
+        code: |-
+          @speed = 700
+          @direction = 270
+        arguments: {}
+        lib: core
+      - eventKey: collisionTemplate
+        code: '@kill = true'
+        arguments:
+          template: rMr86fJbFDGKK3
+        lib: place
+      - eventKey: collisionTemplate
+        code: '@kill = true'
+        arguments:
+          template: kjpH1C4Mq7hbzw
+        lib: place
+    extends:
+      cgroup: Weapon
+    lastmod: 1737355504480
+    uid: 4JPPCb1pQKbfC6
+    behaviors: []
+    extendTypes: ''
+  - lastmod: 1737398772697
+    type: texture
+    name: InGameShield
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 137
+      - 137
+    marginx: 0
+    marginy: 0
+    imgWidth: 274
+    imgHeight: 274
+    width: 274
+    height: 274
+    offx: 0
+    offy: 0
+    origname: i78cR2Ff5Ckm1gc.png
+    shape: circle
+    left: 137
+    right: 137
+    top: 137
+    bottom: 137
+    uid: 78cR2Ff5Ckm1gc
+    padding: 1
+    isBlank: false
+    source: 'C:\Users\joshb\Downloads\InGameShield.png'
+    r: 137
+  - type: template
+    baseClass: AnimatedSprite
+    name: InGameShield
+    depth: 0
+    texture: F22w7Fjnk2ggzQ
+    playAnimationOnStart: false
+    loopAnimation: true
+    animationFPS: 30
+    visible: true
+    events:
+      - eventKey: OnStep
+        lib: core
+        code: '@move()'
+        arguments: {}
+      - eventKey: OnCreate
+        code: |-
+          @speed = 0
+          @direction = 0
+        arguments: {}
+        lib: core
+    extends:
+      cgroup: ''
+    lastmod: 1737399936326
+    uid: 9HK7WLdMcfrw71
+    behaviors: []
+    extendTypes: ''
+  - lastmod: 1737398924214
+    type: texture
+    name: Placeholder
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 64
+    imgHeight: 64
+    width: 64
+    height: 64
+    offx: 0
+    offy: 0
+    origname: iJ2C67htNdDmLpd.png
+    shape: rect
+    left: 0
+    right: 64
+    top: 0
+    bottom: 64
+    uid: J2C67htNdDmLpd
+    padding: 1
+    isBlank: false
+  - lastmod: 1737399730623
+    type: texture
+    name: pink_blue_neon
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 250
+      - 250
+    marginx: 0
+    marginy: 0
+    imgWidth: 501
+    imgHeight: 501
+    width: 501
+    height: 501
+    offx: 0
+    offy: 0
+    origname: inHQcnGwrMfgDwR.png
+    shape: circle
+    left: 250
+    right: 251
+    top: 250
+    bottom: 251
+    uid: nHQcnGwrMfgDwR
+    padding: 1
+    isBlank: false
+    source: >-
+      D:\Valentines2025\valentines2025\kenney_space-shooter-redux\PNG\pink_blue_neon.png
+    r: 250
 globalVars: []
