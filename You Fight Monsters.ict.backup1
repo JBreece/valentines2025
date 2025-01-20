@@ -135,7 +135,7 @@ assets:
         lib: place
     extends:
       cgroup: Weapon
-    lastmod: 1737354711324
+    lastmod: 1737410625427
     uid: RQcz1BgKQcQMgt
     behaviors: []
     baseClass: AnimatedSprite
@@ -232,10 +232,15 @@ assets:
                   @frameCounter = 0
 
           # shield should follow player
-          if JSON.parse(storage.get('hasShield')) == true
-              myShield = templates.list['InGameShield'][0]
-              myShield.x = @x
-              myShield.y = @y
+          if JSON.parse(storage.get('hasShieldPower')) == true
+              #if (templates.list['InGameShield'][0] == undefined)
+              if JSON.parse(storage.get('currentlyHasShield')) == true
+                  myShield = templates.list['InGameShield'][0]
+                  myShield.x = @x
+                  myShield.y = @y
+              else
+                  console.log 'waiting for next room'
+                  #console.log 'something is wrong with shield power'
         arguments: {}
       - eventKey: OnCreate
         code: |-
@@ -294,7 +299,7 @@ assets:
         lib: core
     extends:
       cgroup: ''
-    lastmod: 1737399921449
+    lastmod: 1737411576665
     uid: TPpGgD432gcqQp
     behaviors: []
     baseClass: AnimatedSprite
@@ -372,7 +377,7 @@ assets:
       Test: ''
       SpeedMultiplier: 1
       HP: 3
-    lastmod: 1737350478978
+    lastmod: 1737403324295
     uid: rMr86fJbFDGKK3
     group: Qp976PKNFcFJLC
     behaviors:
@@ -509,7 +514,7 @@ assets:
       Test: ''
       SpeedMultiplier: 1.5
       HP: 2
-    lastmod: 1737350484216
+    lastmod: 1737403320915
     uid: kjpH1C4Mq7hbzw
     group: Qp976PKNFcFJLC
     behaviors:
@@ -822,10 +827,10 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1737399990344
+    lastmod: 1737411590573
     events:
       - eventKey: OnRoomStart
-        code: >-
+        code: >
           transition.circleIn(425, 'FFC0CB');
 
 
@@ -889,11 +894,10 @@ assets:
           if(not sounds.playing('long_chat'))
               sounds.play 'long_chat', soundSettings
 
-          if JSON.parse(storage.get('hasShield')) == true
+          if JSON.parse(storage.get('hasShieldPower')) == true
               player = templates.list['Knight_Idle'][0]
-              console.log 'player ' + player
-              console.log 'playerX ' + player.x
               myShield = templates.copy 'InGameShield', player.x, player.y
+              storage.set('currentlyHasShield', true)
         arguments: {}
         lib: core
       - eventKey: Timer1
@@ -986,7 +990,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1737399983486
+    lastmod: 1737411637951
     events:
       - eventKey: OnRoomStart
         code: >-
@@ -1043,11 +1047,10 @@ assets:
           @mainUi = rooms.append 'UI_InGame'
 
 
-          if JSON.parse(storage.get('hasShield')) == true
+          if JSON.parse(storage.get('hasShieldPower')) == true
               player = templates.list['Knight_Idle'][0]
-              console.log 'player ' + player
-              console.log 'playerX ' + player.x
               myShield = templates.copy 'InGameShield', player.x, player.y
+              storage.set('currentlyHasShield', true)
         arguments: {}
         lib: core
       - eventKey: Timer1
@@ -1140,7 +1143,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1737399996272
+    lastmod: 1737411657560
     events:
       - eventKey: OnRoomStart
         code: >-
@@ -1197,11 +1200,10 @@ assets:
           @mainUi = rooms.append 'UI_InGame'
 
 
-          if JSON.parse(storage.get('hasShield')) == true
+          if JSON.parse(storage.get('hasShieldPower')) == true
               player = templates.list['Knight_Idle'][0]
-              console.log 'player ' + player
-              console.log 'playerX ' + player.x
               myShield = templates.copy 'InGameShield', player.x, player.y
+              storage.set('currentlyHasShield', true)
         arguments: {}
         lib: core
       - eventKey: Timer1
@@ -1314,7 +1316,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1737397871181
+    lastmod: 1737411314335
     events:
       - eventKey: OnRoomStart
         code: >-
@@ -1343,7 +1345,9 @@ assets:
 
           localStorage.hasEnhancedShootAroundPlayer = false
 
-          localStorage.hasShield = false
+          localStorage.hasShieldPower = false
+
+          localStorage.currentlyHasShield = false
 
           localStorage.hasBomb = false
 
@@ -3172,7 +3176,7 @@ assets:
     group: !<tag:yaml.org,2002:js/undefined> ''
     source: >-
       D:\ctjs\app\data\ct.libs\vkeys\example\img\i6ac1c03e-839d-4007-84aa-22bece53f0fe.png
-  - lastmod: 1707925406517
+  - lastmod: 1737400787817
     type: texture
     name: i85dd4cbb-1213-4656-8cfa-2ff088fb8d8f
     untill: 0
@@ -3180,8 +3184,8 @@ assets:
       - 1
       - 1
     axis:
-      - 0
-      - 0
+      - 60
+      - 60
     marginx: 0
     marginy: 0
     imgWidth: 121
@@ -3191,18 +3195,19 @@ assets:
     offx: 0
     offy: 0
     origname: iJd2FbT8R8T1dGn.png
-    shape: rect
-    left: 0
-    right: 121
-    top: 0
-    bottom: 121
+    shape: circle
+    left: 60
+    right: 61
+    top: 60
+    bottom: 61
     uid: Jd2FbT8R8T1dGn
     padding: 1
     isBlank: false
     group: !<tag:yaml.org,2002:js/undefined> ''
     source: >-
       D:\ctjs\app\data\ct.libs\vkeys\example\img\i85dd4cbb-1213-4656-8cfa-2ff088fb8d8f.png
-  - lastmod: 1707925406517
+    r: 60
+  - lastmod: 1737403218558
     type: texture
     name: i439a0e00-4c24-4172-a1f3-9f74c7cd7beb_prev
     untill: 0
@@ -3210,8 +3215,8 @@ assets:
       - 1
       - 1
     axis:
-      - 0
-      - 0
+      - 32
+      - 32
     marginx: 0
     marginy: 0
     imgWidth: 64
@@ -3221,17 +3226,18 @@ assets:
     offx: 0
     offy: 0
     origname: igwnKR3KhcLf5HP.png
-    shape: rect
-    left: 0
-    right: 64
-    top: 0
-    bottom: 64
+    shape: circle
+    left: 32
+    right: 32
+    top: 32
+    bottom: 32
     uid: gwnKR3KhcLf5HP
     padding: 1
     isBlank: false
     group: !<tag:yaml.org,2002:js/undefined> ''
     source: >-
       D:\ctjs\app\data\ct.libs\vkeys\example\img\i439a0e00-4c24-4172-a1f3-9f74c7cd7beb.png_prev.png
+    r: 32
   - lastmod: 1707928284634
     type: texture
     name: i6ac1c03e-839d-4007-84aa-22bece53f0fe_prev
@@ -3262,7 +3268,7 @@ assets:
     group: !<tag:yaml.org,2002:js/undefined> ''
     source: >-
       D:\ctjs\app\data\ct.libs\vkeys\example\img\i6ac1c03e-839d-4007-84aa-22bece53f0fe.png_prev.png
-  - lastmod: 1707925406521
+  - lastmod: 1737400784348
     type: texture
     name: i85dd4cbb-1213-4656-8cfa-2ff088fb8d8f_prev@2
     untill: 0
@@ -3270,8 +3276,8 @@ assets:
       - 1
       - 1
     axis:
-      - 0
-      - 0
+      - 64
+      - 64
     marginx: 0
     marginy: 0
     imgWidth: 128
@@ -3281,17 +3287,18 @@ assets:
     offx: 0
     offy: 0
     origname: itR469nJ8f1G3hn.png
-    shape: rect
-    left: 0
-    right: 128
-    top: 0
-    bottom: 128
+    shape: circle
+    left: 64
+    right: 64
+    top: 64
+    bottom: 64
     uid: tR469nJ8f1G3hn
     padding: 1
     isBlank: false
     group: !<tag:yaml.org,2002:js/undefined> ''
     source: >-
       D:\ctjs\app\data\ct.libs\vkeys\example\img\i85dd4cbb-1213-4656-8cfa-2ff088fb8d8f.png_prev@2.png
+    r: 64
   - lastmod: 1707928306893
     type: texture
     name: Attack_Pressed
@@ -3322,7 +3329,7 @@ assets:
     group: !<tag:yaml.org,2002:js/undefined> ''
     source: >-
       D:\ctjs\app\data\ct.libs\vkeys\example\img\i6ac1c03e-839d-4007-84aa-22bece53f0fe.png_prev@2.png
-  - lastmod: 1707925406523
+  - lastmod: 1737403229113
     type: texture
     name: i439a0e00-4c24-4172-a1f3-9f74c7cd7beb_prev@2
     untill: 0
@@ -3330,8 +3337,8 @@ assets:
       - 1
       - 1
     axis:
-      - 0
-      - 0
+      - 64
+      - 64
     marginx: 0
     marginy: 0
     imgWidth: 128
@@ -3341,18 +3348,19 @@ assets:
     offx: 0
     offy: 0
     origname: iqPpG5hHLM6mL9g.png
-    shape: rect
-    left: 0
-    right: 128
-    top: 0
-    bottom: 128
+    shape: circle
+    left: 64
+    right: 64
+    top: 64
+    bottom: 64
     uid: qPpG5hHLM6mL9g
     padding: 1
     isBlank: false
     group: !<tag:yaml.org,2002:js/undefined> ''
     source: >-
       D:\ctjs\app\data\ct.libs\vkeys\example\img\i439a0e00-4c24-4172-a1f3-9f74c7cd7beb.png_prev@2.png
-  - lastmod: 1707925406523
+    r: 64
+  - lastmod: 1737400780155
     type: texture
     name: i85dd4cbb-1213-4656-8cfa-2ff088fb8d8f_prev
     untill: 0
@@ -3360,8 +3368,8 @@ assets:
       - 1
       - 1
     axis:
-      - 0
-      - 0
+      - 32
+      - 32
     marginx: 0
     marginy: 0
     imgWidth: 64
@@ -3371,17 +3379,18 @@ assets:
     offx: 0
     offy: 0
     origname: in73Wc8NRDk69fz.png
-    shape: rect
-    left: 0
-    right: 64
-    top: 0
-    bottom: 64
+    shape: circle
+    left: 32
+    right: 32
+    top: 32
+    bottom: 32
     uid: n73Wc8NRDk69fz
     padding: 1
     isBlank: false
     group: !<tag:yaml.org,2002:js/undefined> ''
     source: >-
       D:\ctjs\app\data\ct.libs\vkeys\example\img\i85dd4cbb-1213-4656-8cfa-2ff088fb8d8f.png_prev.png
+    r: 32
   - lastmod: 1707926936069
     type: texture
     name: TrackBall
@@ -5828,7 +5837,7 @@ assets:
     baseClass: AnimatedSprite
     name: InGameShield
     depth: 0
-    texture: F22w7Fjnk2ggzQ
+    texture: nHQcnGwrMfgDwR
     playAnimationOnStart: false
     loopAnimation: true
     animationFPS: 30
@@ -5836,17 +5845,27 @@ assets:
     events:
       - eventKey: OnStep
         lib: core
-        code: '@move()'
+        code: |-
+          @angle += u.time * 360
+          @move()
         arguments: {}
       - eventKey: OnCreate
         code: |-
           @speed = 0
           @direction = 0
+          @scale.x = @scale.y = 0.5
         arguments: {}
         lib: core
+      - eventKey: collisionCGroup
+        code: |-
+          @kill = true
+          storage.set('currentlyHasShield', false)
+        arguments:
+          group: Hostile
+        lib: place
     extends:
-      cgroup: ''
-    lastmod: 1737399936326
+      cgroup: Weapon
+    lastmod: 1737411331490
     uid: 9HK7WLdMcfrw71
     behaviors: []
     extendTypes: ''
@@ -5877,7 +5896,7 @@ assets:
     uid: J2C67htNdDmLpd
     padding: 1
     isBlank: false
-  - lastmod: 1737399730623
+  - lastmod: 1737400833696
     type: texture
     name: pink_blue_neon
     untill: 0
@@ -5907,4 +5926,64 @@ assets:
     source: >-
       D:\Valentines2025\valentines2025\kenney_space-shooter-redux\PNG\pink_blue_neon.png
     r: 250
+  - lastmod: 1737400492254
+    type: texture
+    name: Circle_02
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 512
+    imgHeight: 512
+    width: 512
+    height: 512
+    offx: 0
+    offy: 0
+    origname: ipNPKctP3Hbr28C.png
+    shape: rect
+    left: 0
+    right: 512
+    top: 0
+    bottom: 512
+    uid: pNPKctP3Hbr28C
+    padding: 1
+    isBlank: false
+    source: >-
+      C:\Users\joshb\Downloads\ct.js.v5.2.1.for.win64\win64\package.nw\bundledAssets\textures\Kenney's
+      Particle Pack\Circle_02.png
+  - lastmod: 1737400881271
+    type: texture
+    name: ufoGreen
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 45
+      - 45
+    marginx: 0
+    marginy: 0
+    imgWidth: 91
+    imgHeight: 91
+    width: 91
+    height: 91
+    offx: 0
+    offy: 0
+    origname: iwt3wm3M7nHt9j9.png
+    shape: circle
+    left: 45
+    right: 46
+    top: 45
+    bottom: 46
+    uid: wt3wm3M7nHt9j9
+    padding: 1
+    isBlank: false
+    source: >-
+      D:\Valentines2025\valentines2025\kenney_space-shooter-redux\PNG\ufoGreen.png
+    r: 45
 globalVars: []

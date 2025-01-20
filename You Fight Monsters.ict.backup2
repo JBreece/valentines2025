@@ -135,7 +135,7 @@ assets:
         lib: place
     extends:
       cgroup: Weapon
-    lastmod: 1737354711324
+    lastmod: 1737410625427
     uid: RQcz1BgKQcQMgt
     behaviors: []
     baseClass: AnimatedSprite
@@ -233,9 +233,10 @@ assets:
 
           # shield should follow player
           if JSON.parse(storage.get('hasShield')) == true
-              myShield = templates.list['InGameShield'][0]
-              myShield.x = @x
-              myShield.y = @y
+              if (templates.list['InGameShield'][0] != undefined)
+                  myShield = templates.list['InGameShield'][0]
+                  myShield.x = @x
+                  myShield.y = @y
         arguments: {}
       - eventKey: OnCreate
         code: |-
@@ -294,7 +295,7 @@ assets:
         lib: core
     extends:
       cgroup: ''
-    lastmod: 1737399921449
+    lastmod: 1737403569327
     uid: TPpGgD432gcqQp
     behaviors: []
     baseClass: AnimatedSprite
@@ -372,7 +373,7 @@ assets:
       Test: ''
       SpeedMultiplier: 1
       HP: 3
-    lastmod: 1737350478978
+    lastmod: 1737403324295
     uid: rMr86fJbFDGKK3
     group: Qp976PKNFcFJLC
     behaviors:
@@ -509,7 +510,7 @@ assets:
       Test: ''
       SpeedMultiplier: 1.5
       HP: 2
-    lastmod: 1737350484216
+    lastmod: 1737403320915
     uid: kjpH1C4Mq7hbzw
     group: Qp976PKNFcFJLC
     behaviors:
@@ -3203,7 +3204,7 @@ assets:
     source: >-
       D:\ctjs\app\data\ct.libs\vkeys\example\img\i85dd4cbb-1213-4656-8cfa-2ff088fb8d8f.png
     r: 60
-  - lastmod: 1707925406517
+  - lastmod: 1737403218558
     type: texture
     name: i439a0e00-4c24-4172-a1f3-9f74c7cd7beb_prev
     untill: 0
@@ -3211,8 +3212,8 @@ assets:
       - 1
       - 1
     axis:
-      - 0
-      - 0
+      - 32
+      - 32
     marginx: 0
     marginy: 0
     imgWidth: 64
@@ -3222,17 +3223,18 @@ assets:
     offx: 0
     offy: 0
     origname: igwnKR3KhcLf5HP.png
-    shape: rect
-    left: 0
-    right: 64
-    top: 0
-    bottom: 64
+    shape: circle
+    left: 32
+    right: 32
+    top: 32
+    bottom: 32
     uid: gwnKR3KhcLf5HP
     padding: 1
     isBlank: false
     group: !<tag:yaml.org,2002:js/undefined> ''
     source: >-
       D:\ctjs\app\data\ct.libs\vkeys\example\img\i439a0e00-4c24-4172-a1f3-9f74c7cd7beb.png_prev.png
+    r: 32
   - lastmod: 1707928284634
     type: texture
     name: i6ac1c03e-839d-4007-84aa-22bece53f0fe_prev
@@ -3324,7 +3326,7 @@ assets:
     group: !<tag:yaml.org,2002:js/undefined> ''
     source: >-
       D:\ctjs\app\data\ct.libs\vkeys\example\img\i6ac1c03e-839d-4007-84aa-22bece53f0fe.png_prev@2.png
-  - lastmod: 1707925406523
+  - lastmod: 1737403229113
     type: texture
     name: i439a0e00-4c24-4172-a1f3-9f74c7cd7beb_prev@2
     untill: 0
@@ -3332,8 +3334,8 @@ assets:
       - 1
       - 1
     axis:
-      - 0
-      - 0
+      - 64
+      - 64
     marginx: 0
     marginy: 0
     imgWidth: 128
@@ -3343,17 +3345,18 @@ assets:
     offx: 0
     offy: 0
     origname: iqPpG5hHLM6mL9g.png
-    shape: rect
-    left: 0
-    right: 128
-    top: 0
-    bottom: 128
+    shape: circle
+    left: 64
+    right: 64
+    top: 64
+    bottom: 64
     uid: qPpG5hHLM6mL9g
     padding: 1
     isBlank: false
     group: !<tag:yaml.org,2002:js/undefined> ''
     source: >-
       D:\ctjs\app\data\ct.libs\vkeys\example\img\i439a0e00-4c24-4172-a1f3-9f74c7cd7beb.png_prev@2.png
+    r: 64
   - lastmod: 1737400780155
     type: texture
     name: i85dd4cbb-1213-4656-8cfa-2ff088fb8d8f_prev
@@ -5839,17 +5842,30 @@ assets:
     events:
       - eventKey: OnStep
         lib: core
-        code: '@move()'
+        code: |-
+          @angle += u.time * 360
+          @move()
         arguments: {}
       - eventKey: OnCreate
         code: |-
           @speed = 0
           @direction = 0
+          @scale.x = @scale.y = 0.5
         arguments: {}
         lib: core
+      - eventKey: collisionCGroup
+        code: >-
+          @kill = true
+
+          # storage.set('hasShield', false) # leaving this out for now, since I
+          want it to refresh every level as long as the user has it.  But I can
+          un-comment this later to make it expire when it's used once.
+        arguments:
+          group: Hostile
+        lib: place
     extends:
-      cgroup: ''
-    lastmod: 1737401127878
+      cgroup: Weapon
+    lastmod: 1737410652078
     uid: 9HK7WLdMcfrw71
     behaviors: []
     extendTypes: ''
