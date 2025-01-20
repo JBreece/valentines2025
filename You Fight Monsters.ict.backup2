@@ -13,8 +13,6 @@ libs:
   tween: {}
   transition: {}
   storage: {}
-  matter:
-    matterUseStaticDeltaTime: true
 actions:
   - name: Shoot
     methods:
@@ -266,32 +264,60 @@ assets:
       - eventKey: OnStep
         lib: core
         code: >-
-          if place.occupied(this, @x, @y, 'Weapon_Sword')
+          #console.log 'timer1 time left ' + @timer1.timeLeft
+
+          if place.occupied(this, 'Weapon') and @isBeingHit == false
+              @isBeingHit = true
+              console.log 'place.occupied'
+              @timer1 = 1
+          else if @isBeingHit == true
+
+              #new CtTimer 1000, 'test'
+              #@timer = timer.add 500, 'timer1'
+              #@timer.then =>
+              #    @isBeingHit = false
+              #    console.log 'Done!'
+              #.catch (e) =>
+              #    console.log 'Timer removed', e
+              #console.log @timer.time
+
               if @x - rooms.playerX > 0 and @y - rooms.playerY > 0
-                  console.log 'if @x - rooms.playerX > 0 and @y - rooms.playerY > 0'
-                  @x = rooms.playerX + 200
-                  @y = rooms.playerY + 200
+                  #console.log 'if @x - rooms.playerX > 0 and @y - rooms.playerY > 0'
+                  #pixiApp.ticker.speed = 0
+                  @timer1 = 1
+                  @direction = u.pointDirection(rooms.playerX, rooms.playerY, this.x, this.y);
+                  @speed = 550
+                  this.move()
               else if @x - rooms.playerX < 0 and @y - rooms.playerY > 0
-                  console.log 'if @x - rooms.playerX < 0 and @y - rooms.playerY > 0'
-                  @x = rooms.playerX - 200
-                  @y = rooms.playerY + 200
+                  #console.log 'if @x - rooms.playerX < 0 and @y - rooms.playerY > 0'
+                  @timer1 = 1
+                  @direction = u.pointDirection(rooms.playerX, rooms.playerY, this.x, this.y);
+                  @speed = 550
+                  this.move()
               else if @x - rooms.playerX > 0 and @y - rooms.playerY < 0
-                  console.log 'if @x - rooms.playerX > 0 and @y - rooms.playerY < 0'
-                  @x = rooms.playerX + 200
-                  @y = rooms.playerY - 200
+                  #console.log 'if @x - rooms.playerX > 0 and @y - rooms.playerY < 0'
+                  @timer1 = 1
+                  @direction = u.pointDirection(rooms.playerX, rooms.playerY, this.x, this.y);
+                  @speed = 550
+                  this.move()
               else if @x - rooms.playerX < 0 and @y - rooms.playerY < 0
-                  console.log 'if @x - rooms.playerX < 0 and @y - rooms.playerY < 0'
-                  @x = rooms.playerX - 200
-                  @y = rooms.playerY - 200
+                  #console.log 'if @x - rooms.playerX < 0 and @y - rooms.playerY < 0'
+                  @timer1 = 1
+                  @direction = u.pointDirection(rooms.playerX, rooms.playerY, this.x, this.y);
+                  @speed = 550
+                  this.move()
               else
                   this.move()
               #@hspeed = @hspeed * -4
               #@vspeed = @vspeed * -4
               this.move()
-              console.log 'place.occupied'
-          else
+              @isBeingHit = false  #NOTE - worst case scenario, if i can't get this timer thing to work, just un-comment this line and the collision will work anyway.  make sure to increase speed of knockback though.
+          else if @isBeingHit == false
+              @speed = 150
               @direction = u.pointDirection(this.x, this.y, rooms.playerX, rooms.playerY);
               this.move()
+          else
+              console.log 'there is a big problem with @isBeingHit'
           #    @direction = u.pointDirection(rooms.playerX, rooms.playerY,
           this.x, this.y);
 
@@ -338,6 +364,7 @@ assets:
           @direction = 90
           @timer1 = 1
           @hp = 20
+          @isBeingHit = false
         arguments: {}
         lib: core
       - eventKey: collisionTemplate
@@ -349,13 +376,18 @@ assets:
           template: TPpGgD432gcqQp
         lib: place
       - eventKey: collisionTemplate
-        code: |-
+        code: >-
           rooms.current.score += 10
 
+
           #localStorage.xp++
+
           @currentXP = parseInt(storage.get('xp'))
+
           @currentXP++
+
           storage.set('xp', @currentXP)
+
 
           for xp_fill in templates.list['xp_fill']
               if(parseInt(storage.get('xp')) < 100)
@@ -382,54 +414,108 @@ assets:
 
           sounds.play 'Press_01'
 
+
           # health of slime reduced, killed if 0
+
           @hp -= 1
+
           console.log('@hp ' + @hp)
+
           if(@hp < 1)
               @kill = true
 
-          while place.occupied(this, @x, @y, 'Weapon_Sword')
-              @hspeed = @hspeed * -4
-              @vspeed = @vspeed * -4
-              this.move()
-          if @x - rooms.playerX > 0 and @y - rooms.playerY > 0
-              console.log 'if @x - rooms.playerX > 0 and @y - rooms.playerY > 0'
-              @x = rooms.playerX + 200
-              @y = rooms.playerY + 200
-              @direction = u.pointDirection(rooms.playerX, rooms.playerY, this.x, this.y);
-              @speed = 1500
-              this.move()
-              this.move()
-          else if @x - rooms.playerX < 0 and @y - rooms.playerY > 0
-              console.log 'if @x - rooms.playerX < 0 and @y - rooms.playerY > 0'
-              @x = rooms.playerX - 200
-              @y = rooms.playerY + 200
-              @hspeed = @hspeed * -4
-              @vspeed = @vspeed * -4
-              this.move()
-          else if @x - rooms.playerX > 0 and @y - rooms.playerY < 0
-              console.log 'if @x - rooms.playerX > 0 and @y - rooms.playerY < 0'
-              @x = rooms.playerX + 200
-              @y = rooms.playerY - 200
-              @hspeed = @hspeed * -4
-              @vspeed = @vspeed * -4
-              this.move()
-          else if @x - rooms.playerX < 0 and @y - rooms.playerY < 0
-              console.log 'if @x - rooms.playerX < 0 and @y - rooms.playerY < 0'
-              @x = rooms.playerX - 200
-              @y = rooms.playerY - 200
-              @hspeed = @hspeed * -4
-              @vspeed = @vspeed * -4
-              this.move()
-          else
-              this.move()
+          #while place.occupied(this, @x, @y, 'Weapon_Sword')
+
+          #    @hspeed = @hspeed * -4
+
+          #    @vspeed = @vspeed * -4
+
+          #    this.move()
+
+          #if @x - rooms.playerX > 0 and @y - rooms.playerY > 0
+
+          #    console.log 'if @x - rooms.playerX > 0 and @y - rooms.playerY >
+          0'
+
+          #    @x = rooms.playerX + 200
+
+          #    @y = rooms.playerY + 200
+
+          #    @direction = u.pointDirection(rooms.playerX, rooms.playerY,
+          this.x, this.y);
+
+          #    @speed = 1500
+
+          #    this.move()
+
+          #else if @x - rooms.playerX < 0 and @y - rooms.playerY > 0
+
+          #    console.log 'if @x - rooms.playerX < 0 and @y - rooms.playerY >
+          0'
+
+          #    @x = rooms.playerX - 200
+
+          #    @y = rooms.playerY + 200
+
+          #    @hspeed = @hspeed * -4
+
+          #    @vspeed = @vspeed * -4
+
+          #    this.move()
+
+          #else if @x - rooms.playerX > 0 and @y - rooms.playerY < 0
+
+          #    console.log 'if @x - rooms.playerX > 0 and @y - rooms.playerY <
+          0'
+
+          #    @x = rooms.playerX + 200
+
+          #    @y = rooms.playerY - 200
+
+          #    @hspeed = @hspeed * -4
+
+          #    @vspeed = @vspeed * -4
+
+          #    this.move()
+
+          #else if @x - rooms.playerX < 0 and @y - rooms.playerY < 0
+
+          #    console.log 'if @x - rooms.playerX < 0 and @y - rooms.playerY <
+          0'
+
+          #    @x = rooms.playerX - 200
+
+          #    @y = rooms.playerY - 200
+
+          #    @hspeed = @hspeed * -4
+
+          #    @vspeed = @vspeed * -4
+
+          #    this.move()
+
+          #else
+
+          #    this.move()
+
           #@hspeed = @hspeed * -4
+
           #@vspeed = @vspeed * -4
-          this.move()
-          console.log 'place.occupied'
+
+          #this.move()
+
+          #console.log 'place.occupied'
         arguments:
           template: NLBH447HwkR92N
         lib: place
+      - eventKey: Timer1
+        code: |-
+          console.log 'timer1 is really working ' + @timeLeft
+          #pixiApp.ticker.speed = 1
+          @isBeingHit = false
+        arguments:
+          name: timer1
+          isUi: false
+        lib: core
     extends:
       cgroup: Hostile
       matterEnable: false
@@ -447,7 +533,7 @@ assets:
       matterRopeLength: 0
       matterRopeStiffness: 0
       matterRopeDamping: 0
-    lastmod: 1737172711177
+    lastmod: 1737225169290
     uid: rMr86fJbFDGKK3
     group: Qp976PKNFcFJLC
     behaviors: []
@@ -510,8 +596,19 @@ assets:
           isUi: false
         lib: core
     extends:
-      cgroup: ''
-    lastmod: 1735665726093
+      cgroup: Weapon
+      matterEnable: false
+      matterStatic: false
+      matterSensor: false
+      matterDensity: 0
+      matterRestitution: 0
+      matterFriction: 0
+      matterFrictionStatic: 0
+      matterFrictionAir: 0
+      matterFixPivot:
+        - 0
+        - 0
+    lastmod: 1737178429349
     uid: NLBH447HwkR92N
     behaviors: []
     baseClass: AnimatedSprite
@@ -921,7 +1018,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1737168183460
+    lastmod: 1737224584243
     events:
       - eventKey: OnRoomStart
         code: >-

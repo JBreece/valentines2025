@@ -13,8 +13,6 @@ libs:
   tween: {}
   transition: {}
   storage: {}
-  matter:
-    matterUseStaticDeltaTime: true
 actions:
   - name: Shoot
     methods:
@@ -265,65 +263,7 @@ assets:
     events:
       - eventKey: OnStep
         lib: core
-        code: >-
-          if place.occupied(this, 'Weapon')
-              if @x - rooms.playerX > 0 and @y - rooms.playerY > 0
-                  console.log 'if @x - rooms.playerX > 0 and @y - rooms.playerY > 0'
-                  @direction = u.pointDirection(rooms.playerX, rooms.playerY, this.x, this.y);
-                  @speed = 550
-                  this.move()
-              else if @x - rooms.playerX < 0 and @y - rooms.playerY > 0
-                  console.log 'if @x - rooms.playerX < 0 and @y - rooms.playerY > 0'
-                  @direction = u.pointDirection(rooms.playerX, rooms.playerY, this.x, this.y);
-                  @speed = 550
-                  this.move()
-              else if @x - rooms.playerX > 0 and @y - rooms.playerY < 0
-                  console.log 'if @x - rooms.playerX > 0 and @y - rooms.playerY < 0'
-                  @direction = u.pointDirection(rooms.playerX, rooms.playerY, this.x, this.y);
-                  @speed = 550
-                  this.move()
-              else if @x - rooms.playerX < 0 and @y - rooms.playerY < 0
-                  console.log 'if @x - rooms.playerX < 0 and @y - rooms.playerY < 0'
-                  @direction = u.pointDirection(rooms.playerX, rooms.playerY, this.x, this.y);
-                  @speed = 550
-                  this.move()
-              else
-                  this.move()
-              #@hspeed = @hspeed * -4
-              #@vspeed = @vspeed * -4
-              this.move()
-              console.log 'place.occupied'
-          else
-              @speed = 150
-              @direction = u.pointDirection(this.x, this.y, rooms.playerX, rooms.playerY);
-              this.move()
-          #    @direction = u.pointDirection(rooms.playerX, rooms.playerY,
-          this.x, this.y);
-
-          #    @speed = 1500
-
-          #    this.move()
-
-          #    console.log 'direction ' + @direction
-
-          #else
-
-          #    @direction = u.pointDirection(this.x, this.y, rooms.playerX,
-          rooms.playerY);
-
-          #    @speed = 150
-
-          #    this.move()
-
-          #   console.log 'direction ' + @direction
-
-
-          #@direction = u.pointDirection(rooms.playerX, rooms.playerY, this.x,
-          this.y);
-
-          #@speed = 1500
-
-
+        code: |-
           if @direction > 90 and @direction < 270
               @tex = 'Slime_Run'
               @scale.x = -4
@@ -341,8 +281,9 @@ assets:
 
           @speed = 150
           @direction = 90
-          @timer1 = 1
+          #@timerBeingHit = 1
           @hp = 20
+          @isBeingHit = false
         arguments: {}
         lib: core
       - eventKey: collisionTemplate
@@ -485,6 +426,20 @@ assets:
         arguments:
           template: NLBH447HwkR92N
         lib: place
+      - eventKey: Timer1
+        code: >-
+          console.log 'timerBeingHit is really working ' +
+          @timerBeingHit.timeLeft
+
+          #pixiApp.ticker.speed = 1
+
+          @isBeingHit = false
+
+          console.log '@isBeingHit is ' + @isBeingHit
+        arguments:
+          name: timerBeingHit
+          isUi: false
+        lib: core
     extends:
       cgroup: Hostile
       matterEnable: false
@@ -502,10 +457,12 @@ assets:
       matterRopeLength: 0
       matterRopeStiffness: 0
       matterRopeDamping: 0
-    lastmod: 1737179652633
+      Test: ''
+    lastmod: 1737258989930
     uid: rMr86fJbFDGKK3
     group: Qp976PKNFcFJLC
-    behaviors: []
+    behaviors:
+      - 6MjBr7mJtG2gw9
     baseClass: AnimatedSprite
     nineSliceSettings:
       left: 16
@@ -987,11 +944,14 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1737168183460
+    lastmod: 1737258980360
     events:
       - eventKey: OnRoomStart
         code: >-
           transition.circleIn(425, 'FFC0CB');
+
+
+          #console.log 'room timer ' + timer
 
 
           # asteroid timer
@@ -5781,4 +5741,63 @@ assets:
     source: >-
       C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Dungeon Crawler
       16x16\Torch_6x1.png
+  - type: behavior
+    name: EnemyKnockback
+    behaviorType: template
+    events:
+      - eventKey: OnCreate
+        code: console.log 'behavior timer ' + timer
+        arguments: {}
+        lib: core
+      - eventKey: OnStep
+        code: |-
+          console.log '@isBeingHit is ' + @isBeingHit
+          if place.occupied(this, 'Weapon') and @isBeingHit == false
+              @isBeingHit = true
+              @frameCounter = 5
+              console.log 'place.occupied'
+          else if @isBeingHit == true
+              console.log 'frame counter ' + @frameCounter
+              if @frameCounter > 0
+                  @frameCounter--
+                  if @x - rooms.playerX > 0 and @y - rooms.playerY > 0
+                      @direction = u.pointDirection(rooms.playerX, rooms.playerY, this.x, this.y);
+                      @speed = 550
+                      this.move()
+                  else if @x - rooms.playerX < 0 and @y - rooms.playerY > 0
+                      @direction = u.pointDirection(rooms.playerX, rooms.playerY, this.x, this.y);
+                      @speed = 550
+                      this.move()
+                  else if @x - rooms.playerX > 0 and @y - rooms.playerY < 0
+                      @direction = u.pointDirection(rooms.playerX, rooms.playerY, this.x, this.y);
+                      @speed = 550
+                      this.move()
+                  else if @x - rooms.playerX < 0 and @y - rooms.playerY < 0
+                      @direction = u.pointDirection(rooms.playerX, rooms.playerY, this.x, this.y);
+                      @speed = 550
+                      this.move()
+                  else
+                      this.move()
+                  this.move()
+              else
+                  @isBeingHit = false  #NOTE - worst case scenario, if i can't get this timer thing to work, just un-comment this line and the collision will work anyway.  make sure to increase speed of knockback though.
+          else if @isBeingHit == false
+              @speed = 150
+              @direction = u.pointDirection(this.x, this.y, rooms.playerX, rooms.playerY);
+              this.move()
+          else
+              console.log 'there is a big problem with @isBeingHit'
+        arguments: {}
+        lib: core
+    specification:
+      - structure: atomic
+        type: text
+        mappedType: number
+        name: Test
+        readableName: Test
+        required: true
+        fixedLength: 0
+    extendTypes: ''
+    lastmod: 1737312456204
+    uid: 6MjBr7mJtG2gw9
 globalVars: []
