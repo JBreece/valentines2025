@@ -231,16 +231,25 @@ assets:
                       i++
                   @frameCounter = 0
 
+
           # shield should follow player
-          if JSON.parse(storage.get('hasShield')) == true
-              if (templates.list['InGameShield'][0] == undefined)
-                  myShield = templates.copy 'InGameShield', @x, @y
-                  myShield.x = @x
-                  myShield.y = @y
-              else
+          if JSON.parse(storage.get('hasShieldPower')) == true
+              #if (templates.list['InGameShield'][0] == undefined)
+              if JSON.parse(storage.get('currentlyHasShield')) == true
                   myShield = templates.list['InGameShield'][0]
                   myShield.x = @x
                   myShield.y = @y
+              else
+                  console.log 'waiting for next room'
+                  #console.log 'something is wrong with shield power'
+
+
+          if JSON.parse(storage.get('hasBomb')) == true
+              @frameCounterBomb++
+              if @frameCounterBomb == 100
+                  myBomb = templates.copy 'Bomb', @x, @y
+                  myBomb.scale.x = myBomb.scale.y = 2.75
+                  @frameCounterBomb = 0
         arguments: {}
       - eventKey: OnCreate
         code: |-
@@ -248,6 +257,7 @@ assets:
           this.scale.x = 4;
           this.scale.y = 4;
           @frameCounter = 0
+          @frameCounterBomb = 0
         arguments: {}
         lib: core
       - eventKey: collisionCGroup
@@ -299,7 +309,7 @@ assets:
         lib: core
     extends:
       cgroup: ''
-    lastmod: 1737410908003
+    lastmod: 1737413513887
     uid: TPpGgD432gcqQp
     behaviors: []
     baseClass: AnimatedSprite
@@ -827,7 +837,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1737410804764
+    lastmod: 1737413597289
     events:
       - eventKey: OnRoomStart
         code: >
@@ -893,6 +903,11 @@ assets:
 
           if(not sounds.playing('long_chat'))
               sounds.play 'long_chat', soundSettings
+
+          if JSON.parse(storage.get('hasShieldPower')) == true
+              player = templates.list['Knight_Idle'][0]
+              myShield = templates.copy 'InGameShield', player.x, player.y
+              storage.set('currentlyHasShield', true)
         arguments: {}
         lib: core
       - eventKey: Timer1
@@ -985,7 +1000,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1737399983486
+    lastmod: 1737411637951
     events:
       - eventKey: OnRoomStart
         code: >-
@@ -1042,11 +1057,10 @@ assets:
           @mainUi = rooms.append 'UI_InGame'
 
 
-          if JSON.parse(storage.get('hasShield')) == true
+          if JSON.parse(storage.get('hasShieldPower')) == true
               player = templates.list['Knight_Idle'][0]
-              console.log 'player ' + player
-              console.log 'playerX ' + player.x
               myShield = templates.copy 'InGameShield', player.x, player.y
+              storage.set('currentlyHasShield', true)
         arguments: {}
         lib: core
       - eventKey: Timer1
@@ -1139,7 +1153,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1737399996272
+    lastmod: 1737411657560
     events:
       - eventKey: OnRoomStart
         code: >-
@@ -1196,11 +1210,10 @@ assets:
           @mainUi = rooms.append 'UI_InGame'
 
 
-          if JSON.parse(storage.get('hasShield')) == true
+          if JSON.parse(storage.get('hasShieldPower')) == true
               player = templates.list['Knight_Idle'][0]
-              console.log 'player ' + player
-              console.log 'playerX ' + player.x
               myShield = templates.copy 'InGameShield', player.x, player.y
+              storage.set('currentlyHasShield', true)
         arguments: {}
         lib: core
       - eventKey: Timer1
@@ -1313,7 +1326,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1737400720317
+    lastmod: 1737412000618
     events:
       - eventKey: OnRoomStart
         code: >-
@@ -1342,7 +1355,9 @@ assets:
 
           localStorage.hasEnhancedShootAroundPlayer = false
 
-          localStorage.hasShield = false
+          localStorage.hasShieldPower = false
+
+          localStorage.currentlyHasShield = false
 
           localStorage.hasBomb = false
 
@@ -2226,7 +2241,7 @@ assets:
     source: >-
       C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Dungeon Crawler
       16x16\HitEffect_3x1.png
-  - lastmod: 1707800860578
+  - lastmod: 1737412279062
     type: texture
     name: Explosion
     untill: 0
@@ -2234,8 +2249,8 @@ assets:
       - 7
       - 1
     axis:
-      - 0
-      - 0
+      - 16
+      - 16
     marginx: 0
     marginy: 0
     imgWidth: 224
@@ -2246,10 +2261,10 @@ assets:
     offy: 0
     origname: i391LrLQQLFBL7C.png
     shape: rect
-    left: 0
-    right: 32
-    top: 0
-    bottom: 32
+    left: 16
+    right: 16
+    top: 16
+    bottom: 16
     uid: 391LrLQQLFBL7C
     padding: 1
     isBlank: false
@@ -2257,6 +2272,7 @@ assets:
     source: >-
       C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Dungeon Crawler
       16x16\Explosion_7x1.png
+    r: 16
   - lastmod: 1707880237889
     type: texture
     name: Goblin_Run
@@ -3939,8 +3955,10 @@ assets:
                   storage.set('hasEnhancedShootAroundPlayer', true)
               when 'shield'
                   powerEffect = @power
+                  storage.set('hasShieldPower', true)
               when 'bomb'
                   powerEffect = @power
+                  storage.set('hasBomb', true)
               when 'extraSpeed'
                   powerEffect = @power
                   speedCount = parseInt(storage.get('speedLevel'))
@@ -3953,7 +3971,7 @@ assets:
         lib: core
     extends:
       cgroup: ''
-    lastmod: 1737397701129
+    lastmod: 1737413624491
     uid: bGmKKpK13NTfq9
     behaviors: []
     extendTypes: ''
@@ -4565,7 +4583,7 @@ assets:
       bottom: 16
     style: -1
     extendTypes: ''
-  - lastmod: 1707800860559
+  - lastmod: 1737413130633
     type: texture
     name: Bomb
     untill: 0
@@ -4573,8 +4591,8 @@ assets:
       - 10
       - 1
     axis:
-      - 0
-      - 0
+      - 8
+      - 8
     marginx: 0
     marginy: 0
     imgWidth: 160
@@ -4584,11 +4602,11 @@ assets:
     offx: 0
     offy: 0
     origname: iNc94twdKb41RJJ.png
-    shape: rect
-    left: 0
-    right: 16
-    top: 0
-    bottom: 16
+    shape: circle
+    left: 8
+    right: 8
+    top: 8
+    bottom: 8
     uid: Nc94twdKb41RJJ
     padding: 1
     isBlank: false
@@ -4596,6 +4614,7 @@ assets:
     source: >-
       C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Dungeon Crawler
       16x16\Bomb_10x1.png
+    r: 8
   - lastmod: 1707800860565
     type: texture
     name: Bookshelf
@@ -5854,13 +5873,13 @@ assets:
       - eventKey: collisionCGroup
         code: |-
           @kill = true
-          storage.set('hasShield', false)
+          storage.set('currentlyHasShield', false)
         arguments:
           group: Hostile
         lib: place
     extends:
       cgroup: Weapon
-    lastmod: 1737411019209
+    lastmod: 1737411331490
     uid: 9HK7WLdMcfrw71
     behaviors: []
     extendTypes: ''
@@ -5981,4 +6000,68 @@ assets:
     source: >-
       D:\Valentines2025\valentines2025\kenney_space-shooter-redux\PNG\ufoGreen.png
     r: 45
+  - type: template
+    baseClass: AnimatedSprite
+    name: Bomb
+    depth: 0
+    texture: Nc94twdKb41RJJ
+    playAnimationOnStart: false
+    loopAnimation: true
+    animationFPS: 30
+    visible: true
+    events:
+      - eventKey: OnStep
+        lib: core
+        code: |-
+          @move()
+          @play()
+        arguments: {}
+      - eventKey: OnCreate
+        code: '@timer1 = 1.25'
+        arguments: {}
+        lib: core
+      - eventKey: Timer1
+        code: |-
+          myExplosion = templates.copy 'Explosion', @x, @y
+          myExplosion.scale.x = myExplosion.scale.y = 3
+          #myExplosion.x += 15
+          #myExplosion.y += 15
+          @kill = true
+        arguments:
+          name: timer1
+          isUi: false
+        lib: core
+    extends:
+      cgroup: ''
+    lastmod: 1737413555956
+    uid: nj68gG9f25Jkzg
+    behaviors: []
+    extendTypes: ''
+  - type: template
+    baseClass: AnimatedSprite
+    name: Explosion
+    depth: 0
+    texture: 391LrLQQLFBL7C
+    playAnimationOnStart: false
+    loopAnimation: true
+    animationFPS: 30
+    visible: true
+    events:
+      - eventKey: OnStep
+        lib: core
+        code: |-
+          @move()
+          @loop = false
+          @play()
+        arguments: {}
+      - eventKey: OnAnimationComplete
+        code: '@kill = true'
+        arguments: {}
+        lib: core
+    extends:
+      cgroup: Weapon
+    lastmod: 1737413057538
+    uid: W8rjHR14D8d2G2
+    behaviors: []
+    extendTypes: ''
 globalVars: []
