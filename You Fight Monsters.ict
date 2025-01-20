@@ -135,7 +135,7 @@ assets:
         lib: place
     extends:
       cgroup: Weapon
-    lastmod: 1737353904536
+    lastmod: 1737354711324
     uid: RQcz1BgKQcQMgt
     behaviors: []
     baseClass: AnimatedSprite
@@ -261,9 +261,16 @@ assets:
         code: |-
           if rooms.playerFacing is 'left'
               templates.copy 'Weapon_Sword', @x - 30, @y
+              if JSON.parse(storage.get('hasShootFromSword')) == true
+                  myProjectile = templates.copy 'SlashProjectile', @x - 30, @y
+                  console.log 'myProjectile ' + myProjectile
+                  myProjectile.direction = 180
           else
               templates.copy 'Weapon_Sword', @x + 30, @y
-
+              if JSON.parse(storage.get('hasShootFromSword')) == true
+                  myProjectile = templates.copy 'SlashProjectile', @x + 30, @y
+                  console.log 'myProjectile ' + myProjectile
+                  myProjectile.direction = 0
           rooms.playerX = @x
           rooms.playerY = @y
 
@@ -281,7 +288,7 @@ assets:
         lib: core
     extends:
       cgroup: ''
-    lastmod: 1737353201766
+    lastmod: 1737355591615
     uid: TPpGgD432gcqQp
     behaviors: []
     baseClass: AnimatedSprite
@@ -5748,4 +5755,48 @@ assets:
     extendTypes: ''
     lastmod: 1737350471880
     uid: 6MjBr7mJtG2gw9
+  - type: template
+    baseClass: AnimatedSprite
+    name: SlashProjectile
+    depth: 0
+    texture: HHkTmhc18zh7D8
+    playAnimationOnStart: false
+    loopAnimation: true
+    animationFPS: 30
+    visible: true
+    events:
+      - eventKey: OnStep
+        lib: core
+        code: |-
+          if @direction == 180
+              @scale.x = -3
+          else if @direction == 0
+              @scale.x = 3
+          else
+              console.log 'something is wrong with slash projectile direction'
+          @move()
+          @play()
+        arguments: {}
+      - eventKey: OnCreate
+        code: |-
+          @speed = 700
+          @direction = 270
+        arguments: {}
+        lib: core
+      - eventKey: collisionTemplate
+        code: '@kill = true'
+        arguments:
+          template: rMr86fJbFDGKK3
+        lib: place
+      - eventKey: collisionTemplate
+        code: '@kill = true'
+        arguments:
+          template: kjpH1C4Mq7hbzw
+        lib: place
+    extends:
+      cgroup: Weapon
+    lastmod: 1737355504480
+    uid: 4JPPCb1pQKbfC6
+    behaviors: []
+    extendTypes: ''
 globalVars: []

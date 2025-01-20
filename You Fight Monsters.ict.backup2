@@ -112,7 +112,7 @@ assets:
         code: |
           @angle += u.time * 360
 
-          if @y < -40
+          if @y < -4000 || @y > 4000 || @x < -4000 || @x > 4000
             @kill = true
 
           @move()
@@ -123,9 +123,19 @@ assets:
           @direction = 270
         arguments: {}
         lib: core
+      - eventKey: collisionTemplate
+        code: '@kill = true'
+        arguments:
+          template: kjpH1C4Mq7hbzw
+        lib: place
+      - eventKey: collisionTemplate
+        code: '@kill = true'
+        arguments:
+          template: rMr86fJbFDGKK3
+        lib: place
     extends:
-      cgroup: ''
-    lastmod: 1737352406738
+      cgroup: Weapon
+    lastmod: 1737353904536
     uid: RQcz1BgKQcQMgt
     behaviors: []
     baseClass: AnimatedSprite
@@ -200,7 +210,7 @@ assets:
           # shoot around player
           if JSON.parse(storage.get('hasShootAroundPlayer')) == true
               @frameCounter++
-              if @frameCounter == 40
+              if @frameCounter == 50
                   j = 0
                   while j < 4
                       if JSON.parse(storage.get('hasEnhancedShootAroundPlayer')) == true
@@ -208,7 +218,7 @@ assets:
                           myBetterLaser.direction = (90 * j) - 45
                           myBetterLaser.scale.x = myBetterLaser.scale.y = 0.75
                       j++
-              if @frameCounter > 80
+              if @frameCounter > 100
                   i = 0
                   while i < 4
                       myLaser = templates.copy 'LaserBlue', @x, @y
@@ -271,7 +281,7 @@ assets:
         lib: core
     extends:
       cgroup: ''
-    lastmod: 1737353160047
+    lastmod: 1737353201766
     uid: TPpGgD432gcqQp
     behaviors: []
     baseClass: AnimatedSprite
@@ -425,7 +435,7 @@ assets:
       matterFixPivot:
         - 0
         - 0
-    lastmod: 1737178429349
+    lastmod: 1737353897838
     uid: NLBH447HwkR92N
     behaviors: []
     baseClass: AnimatedSprite
@@ -4259,7 +4269,10 @@ assets:
       - eventKey: OnStep
         lib: core
         code: |
-          if @y > camera.height + 40
+          @angle += u.time * 360
+
+          #if @y > camera.height + 40
+          if @y < -4000 || @y > 4000 || @x < -4000 || @x > 4000
             @kill = true
 
           @move()
@@ -4273,9 +4286,19 @@ assets:
           @angle = random.deg()
         arguments: {}
         lib: core
+      - eventKey: collisionTemplate
+        code: '@kill = true'
+        arguments:
+          template: kjpH1C4Mq7hbzw
+        lib: place
+      - eventKey: collisionTemplate
+        code: '@kill = true'
+        arguments:
+          template: rMr86fJbFDGKK3
+        lib: place
     extends:
-      cgroup: ''
-    lastmod: 1737352827787
+      cgroup: Weapon
+    lastmod: 1737353910615
     uid: gf47CJPPzRw84K
     behaviors: []
     baseClass: AnimatedSprite
