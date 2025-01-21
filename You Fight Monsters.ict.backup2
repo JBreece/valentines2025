@@ -38,7 +38,7 @@ actions:
       - code: keyboard.ArrowRight
       - code: vkeys.Vjoy1X
 scripts: []
-startroom: fbqm39dBmNcgcC
+startroom: KnTKRH2brkK4cF
 contentTypes: []
 settings:
   authoring:
@@ -164,28 +164,37 @@ assets:
 
           @mySpeed = storage.get('speedLevel')
 
+          #if !(place.occupied this, @x, @y, 'Wall')
           @x += 8 * u.delta * actions.MoveX.value * @mySpeed # Move by X axis
-
           # Check whether the ship fell off the viewport
           if @x < 0 # Have the ship crossed the left border?
               @x = 0 # Go back to the left border
-
           if @x > camera.width # Have the ship crossed the right border?
               @x = camera.width # Go back to the right border
 
-          @move()
-
-
+          #if !(place.occupied this, @x, @y, 'Wall')
           @y += 5.5 * u.delta * actions.MoveY.value * @mySpeed # Move by Y axis
-
           # Check whether the ship fell off the viewport
           if @y < 0 # Have the ship crossed the left border?
               @y = 0 # Go back to the left border
-
           if @y > camera.height # Have the ship crossed the right border?
               @y = camera.height # Go back to the right border
 
-          @move()
+          if place.occupied this, 'Wall'
+              @x = @xprev
+              @y = @yprev
+          @moveSmart 'Wall', 4
+
+              #console.log 'occupied'
+              #@collided = @moveSmart('Wall')
+              #if (@collided && @collided.y)
+              #    @vspeed = 0
+              #if (@collided)
+              #    console.log 'collided fr'
+              #console.log 'collided ' + @collided
+
+          #if place.occupied this, @x, @y, 'Wall'
+              
 
 
           if actions.MoveX.value < 0 and @tex isnt 'Knight_Run'
@@ -248,7 +257,7 @@ assets:
               @frameCounterBomb++
               if @frameCounterBomb == 100
                   myBomb = templates.copy 'Bomb', @x, @y
-                  myBomb.scale.x = myBomb.scale.y = 3
+                  myBomb.scale.x = myBomb.scale.y = 2.75
                   @frameCounterBomb = 0
         arguments: {}
       - eventKey: OnCreate
@@ -309,7 +318,7 @@ assets:
         lib: core
     extends:
       cgroup: ''
-    lastmod: 1737413052820
+    lastmod: 1737431828848
     uid: TPpGgD432gcqQp
     behaviors: []
     baseClass: AnimatedSprite
@@ -835,9 +844,33 @@ assets:
         exts: {}
         customProperties: {}
         bindings: {}
+      - x: 744
+        'y': 192
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1.8333333299999999
+          'y': 1
+        rotation: 0
+        uid: WM34ndP8KT723D
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 328
+        'y': 512
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1.16666667
+          'y': 1
+        rotation: 0
+        uid: WM34ndP8KT723D
+        exts: {}
+        customProperties: {}
+        bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1737411590573
+    lastmod: 1737431988602
     events:
       - eventKey: OnRoomStart
         code: >
@@ -998,12 +1031,72 @@ assets:
         exts: {}
         customProperties: {}
         bindings: {}
+      - x: 312
+        'y': 488
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1.16666667
+          'y': 2.5
+        rotation: 0
+        uid: WM34ndP8KT723D
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 744
+        'y': 256
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 0.5
+          'y': 1
+        rotation: 0
+        uid: WM34ndP8KT723D
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 896
+        'y': 424
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1.8333333299999999
+          'y': 1
+        rotation: 1.5707963267948966
+        uid: WM34ndP8KT723D
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 256
+        'y': 232
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1.8333333299999999
+          'y': 1
+        rotation: 1.5707963267948966
+        uid: WM34ndP8KT723D
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 488
+        'y': 192
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 0.5
+          'y': 1
+        rotation: 0
+        uid: WM34ndP8KT723D
+        exts: {}
+        customProperties: {}
+        bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1737411637951
+    lastmod: 1737432636707
     events:
       - eventKey: OnRoomStart
-        code: >-
+        code: >
           transition.circleIn(425, 'FFC0CB');
 
 
@@ -1077,7 +1170,7 @@ assets:
           isUi: false
         lib: core
       - eventKey: OnDraw
-        code: >-
+        code: >
           @scoreLabel.text = 'Score: ' + @score
 
           @livesLabel.text = 'Lives: ' + JSON.parse(storage.get('lives'))
@@ -1151,9 +1244,81 @@ assets:
         exts: {}
         customProperties: {}
         bindings: {}
+      - x: 360
+        'y': 192
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1.8333333299999999
+          'y': 1
+        rotation: -0.7853981633974483
+        uid: WM34ndP8KT723D
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 936
+        'y': 192
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1.8333333299999999
+          'y': 1
+        rotation: -0.7853981633974483
+        uid: WM34ndP8KT723D
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 256
+        'y': 438.627417
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1.31066017
+          'y': 1.31066017
+        rotation: -0.7853981633974483
+        uid: WM34ndP8KT723D
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 552
+        'y': 512
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1.8333333299999999
+          'y': 1
+        rotation: -0.7853981633974483
+        uid: WM34ndP8KT723D
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 904
+        'y': 448
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1.16666667
+          'y': 1
+        rotation: -0.7853981633974483
+        uid: WM34ndP8KT723D
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 649.372583
+        'y': 246.627417
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1.20710678
+          'y': 1.20710678
+        rotation: -0.7853981633974483
+        uid: WM34ndP8KT723D
+        exts: {}
+        customProperties: {}
+        bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1737411657560
+    lastmod: 1737433489097
     events:
       - eventKey: OnRoomStart
         code: >-
@@ -1505,7 +1670,7 @@ assets:
     copies:
       - x: 640
         'y': 640
-        opacity: 0.7
+        opacity: 0.33
         tint: 16777215
         scale:
           x: 1
@@ -1529,7 +1694,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1735949817367
+    lastmod: 1737432294589
     events:
       - eventKey: OnStep
         code: |
@@ -2390,7 +2555,7 @@ assets:
     source: >-
       C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Dungeon Crawler
       16x16\Goblin_Idle_6x1.png
-  - lastmod: 1707800860584
+  - lastmod: 1737423289682
     type: texture
     name: Menu_Button_Press
     untill: 0
@@ -2398,8 +2563,8 @@ assets:
       - 1
       - 1
     axis:
-      - 0
-      - 0
+      - 48
+      - 16
     marginx: 0
     marginy: 0
     imgWidth: 96
@@ -2410,10 +2575,10 @@ assets:
     offy: 0
     origname: iHKfMMwhmrDMfLN.png
     shape: rect
-    left: 0
-    right: 96
-    top: 0
-    bottom: 32
+    left: 46
+    right: 46
+    top: 11
+    bottom: 14
     uid: HKfMMwhmrDMfLN
     padding: 1
     isBlank: false
@@ -3955,8 +4120,10 @@ assets:
                   storage.set('hasEnhancedShootAroundPlayer', true)
               when 'shield'
                   powerEffect = @power
+                  storage.set('hasShieldPower', true)
               when 'bomb'
                   powerEffect = @power
+                  storage.set('hasBomb', true)
               when 'extraSpeed'
                   powerEffect = @power
                   speedCount = parseInt(storage.get('speedLevel'))
@@ -3969,7 +4136,7 @@ assets:
         lib: core
     extends:
       cgroup: ''
-    lastmod: 1737397701129
+    lastmod: 1737413624491
     uid: bGmKKpK13NTfq9
     behaviors: []
     extendTypes: ''
@@ -4581,7 +4748,7 @@ assets:
       bottom: 16
     style: -1
     extendTypes: ''
-  - lastmod: 1707800860559
+  - lastmod: 1737413130633
     type: texture
     name: Bomb
     untill: 0
@@ -4589,8 +4756,8 @@ assets:
       - 10
       - 1
     axis:
-      - 0
-      - 0
+      - 8
+      - 8
     marginx: 0
     marginy: 0
     imgWidth: 160
@@ -4600,11 +4767,11 @@ assets:
     offx: 0
     offy: 0
     origname: iNc94twdKb41RJJ.png
-    shape: rect
-    left: 0
-    right: 16
-    top: 0
-    bottom: 16
+    shape: circle
+    left: 8
+    right: 8
+    top: 8
+    bottom: 8
     uid: Nc94twdKb41RJJ
     padding: 1
     isBlank: false
@@ -4612,6 +4779,7 @@ assets:
     source: >-
       C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Dungeon Crawler
       16x16\Bomb_10x1.png
+    r: 8
   - lastmod: 1707800860565
     type: texture
     name: Bookshelf
@@ -5748,7 +5916,10 @@ assets:
           else if @isBeingHit == false
               @speed = 150 * @SpeedMultiplier
               @direction = u.pointDirection(this.x, this.y, rooms.playerX, rooms.playerY);
-              this.move()
+              if place.occupied this, 'Wall'
+                  @x = @xprev
+                  @y = @yprev
+              @moveSmart 'Wall', 4
           else
               console.log 'there is a big problem with @isBeingHit'
         arguments: {}
@@ -5769,7 +5940,7 @@ assets:
         required: true
         fixedLength: 0
     extendTypes: ''
-    lastmod: 1737350471880
+    lastmod: 1737431914679
     uid: 6MjBr7mJtG2gw9
   - type: template
     baseClass: AnimatedSprite
@@ -6014,13 +6185,15 @@ assets:
           @play()
         arguments: {}
       - eventKey: OnCreate
-        code: '@timer1 = 1.5'
+        code: '@timer1 = 1.25'
         arguments: {}
         lib: core
       - eventKey: Timer1
         code: |-
           myExplosion = templates.copy 'Explosion', @x, @y
           myExplosion.scale.x = myExplosion.scale.y = 3
+          #myExplosion.x += 15
+          #myExplosion.y += 15
           @kill = true
         arguments:
           name: timer1
@@ -6028,7 +6201,7 @@ assets:
         lib: core
     extends:
       cgroup: ''
-    lastmod: 1737413067330
+    lastmod: 1737413555956
     uid: nj68gG9f25Jkzg
     behaviors: []
     extendTypes: ''
@@ -6057,6 +6230,47 @@ assets:
       cgroup: Weapon
     lastmod: 1737413057538
     uid: W8rjHR14D8d2G2
+    behaviors: []
+    extendTypes: ''
+  - type: template
+    baseClass: AnimatedSprite
+    name: Wall
+    depth: 0
+    texture: HKfMMwhmrDMfLN
+    playAnimationOnStart: false
+    loopAnimation: true
+    animationFPS: 30
+    visible: true
+    events:
+      - eventKey: OnStep
+        lib: core
+        code: |-
+          if rooms.current.name is 'Level3'
+              console.log 'wall Frame counter ' + @frameCounter
+              @frameCounter++
+              if @frameCounter < 80
+                  @x += 0.7 * u.delta * @mySpeed
+                  @y -= 0.7 * u.delta * @mySpeed
+              else if @frameCounter > 80 && @frameCounter < 160
+                  @x -= 0.7 * u.delta * @mySpeed
+                  @y += 0.7 * u.delta * @mySpeed
+              else if @frameCounter == 160
+                  @frameCounter = 0
+              else
+                  console.log 'there is a problem with wall frame counter'
+
+          @move()
+        arguments: {}
+      - eventKey: OnCreate
+        code: |-
+          @frameCounter = 0
+          @mySpeed = 0.9
+        arguments: {}
+        lib: core
+    extends:
+      cgroup: Wall
+    lastmod: 1737433845267
+    uid: WM34ndP8KT723D
     behaviors: []
     extendTypes: ''
 globalVars: []
