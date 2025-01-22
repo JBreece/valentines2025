@@ -38,7 +38,7 @@ actions:
       - code: keyboard.ArrowRight
       - code: vkeys.Vjoy1X
 scripts: []
-startroom: KnTKRH2brkK4cF
+startroom: fbqm39dBmNcgcC
 contentTypes: []
 settings:
   authoring:
@@ -90,7 +90,9 @@ settings:
     forceSmoothSplashScreen: false
     hideLoadingLogo: false
   fps: 30
-palette: []
+palette:
+  - '#FF1717'
+  - '#FF1717'
 assets:
   - name: Hostile
     icon: folder
@@ -274,12 +276,18 @@ assets:
           if templates.isCopy(other)
               other.kill = true
 
+          myRedFlashEffect = templates.copy 'red_flash_effect', @x, @y
+          myRedFlashEffect.scale.x = myRedFlashEffect.scale.y = 8
+          @timer5 = 0.05
+
+
           #rooms.current.lives--
           @currentLives = parseInt(storage.get('lives'))
           @currentLives--
           storage.set('lives', @currentLives)
 
           if @currentLives <= 0
+              myExplosion = templates.copy 'Explosion_Enemy', @x, @y
               @kill = true
               u.wait 1000
               .then =>
@@ -316,9 +324,21 @@ assets:
               rooms.playerFacing = 'right'
         arguments: {}
         lib: core
+      - eventKey: Timer5
+        code: |-
+          myRedFlashEffect = templates.copy 'red_flash_effect', @x, @y
+          myRedFlashEffect.scale.x = myRedFlashEffect.scale.y = 8
+        arguments:
+          name: timer5
+          isUi: false
+        lib: core
     extends:
       cgroup: Player
-    lastmod: 1737434644218
+      lightTexture@@texture: -1
+      lightColor: '#FF1717'
+      lightOpacity: false
+      lightScale: 500
+    lastmod: 1737514356284
     uid: TPpGgD432gcqQp
     behaviors: []
     baseClass: AnimatedSprite
@@ -869,8 +889,9 @@ assets:
         customProperties: {}
         bindings: {}
     tiles: []
-    extends: {}
-    lastmod: 1737434240884
+    extends:
+      lightAmbientColor: '#4F4F4F'
+    lastmod: 1737514263867
     events:
       - eventKey: OnRoomStart
         code: >
@@ -924,7 +945,11 @@ assets:
           @livesLabel.depth = 1000
 
 
-          localStorage.roomsCleared++
+          @currentRoomsCleared = parseInt(localStorage.roomsCleared)
+
+          @currentRoomsCleared++
+
+          localStorage.roomsCleared = @currentRoomsCleared
 
 
           @mainUi = rooms.append 'UI_InGame'
@@ -963,8 +988,8 @@ assets:
           @livesLabel.text = 'Lives: ' + JSON.parse(storage.get('lives'))
 
 
-          if not @transitioning and @score > (storage.get('roomsCleared') *
-          10.0)
+          if not @transitioning and @score >
+          (JSON.parse(storage.get('roomsCleared')) * 10.0)
               @transitioning = true # Needed to add transitioning flag, otherwise room switch happens every frame until transition is done
               if(rooms.current.name is 'Level1')
                   transition.circleOut(425, 'FFC0CB')
@@ -1093,7 +1118,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1737434382692
+    lastmod: 1737512509089
     events:
       - eventKey: OnRoomStart
         code: >
@@ -1144,7 +1169,11 @@ assets:
           @livesLabel.depth = 1000
 
 
-          localStorage.roomsCleared++
+          @currentRoomsCleared = parseInt(localStorage.roomsCleared)
+
+          @currentRoomsCleared++
+
+          localStorage.roomsCleared = @currentRoomsCleared
 
 
           @mainUi = rooms.append 'UI_InGame'
@@ -1318,7 +1347,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1737434095192
+    lastmod: 1737512514843
     events:
       - eventKey: OnRoomStart
         code: >-
@@ -1369,7 +1398,11 @@ assets:
           @livesLabel.depth = 1000
 
 
-          localStorage.roomsCleared++
+          @currentRoomsCleared = parseInt(localStorage.roomsCleared)
+
+          @currentRoomsCleared++
+
+          localStorage.roomsCleared = @currentRoomsCleared
 
 
           @mainUi = rooms.append 'UI_InGame'
@@ -1491,7 +1524,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1737434167495
+    lastmod: 1737511893585
     events:
       - eventKey: OnRoomStart
         code: >-
@@ -1591,7 +1624,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1735683090497
+    lastmod: 1737513282013
     events:
       - eventKey: OnRoomStart
         code: >-
@@ -1600,10 +1633,14 @@ assets:
           ningning = templates.list['ningning_status'][0]
 
           if templates.valid ningning
-              if ((localStorage.roomsCleared - 1.0) < 3)
+              if ((parseInt(localStorage.roomsCleared) - 1.0) < 3)
                   ningning.tex = "ningning_lose"
                   @EndGameText = new PIXI.Text 'Uh oh! Ningning is still captive! \n You need to defeat more of the BTS army to save her! \n Try again!', style
+              else if ((parseInt(localStorage.roomsCleared) - 1.0) > 2)
+                  ningning.tex = "ningning_win"
+                  @EndGameText = new PIXI.Text 'YOU SAVED NINGNING!! \n Great job!', style
               else
+                  console.log 'there is something wrong with the roomsCleared counter'
                   ningning.tex = "ningning_win"
                   @EndGameText = new PIXI.Text 'YOU SAVED NINGNING!! \n Great job!', style
 
@@ -3291,7 +3328,7 @@ assets:
     source: >-
       C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Game
       UI\Button_03.png
-  - lastmod: 1707889900556
+  - lastmod: 1737510708663
     type: texture
     name: Button_35
     untill: 0
@@ -5887,6 +5924,7 @@ assets:
                               rooms.append 'UI_Deck', settings
                               # Turns u.delta into 0, effectively stopping the game
                               pixiApp.ticker.speed = 0
+                  myExplosion = templates.copy 'Explosion_Enemy', @x, @y
                   @kill = true
           else if @isBeingHit == true
               #console.log 'frame counter ' + @frameCounter
@@ -5940,7 +5978,7 @@ assets:
         required: true
         fixedLength: 0
     extendTypes: ''
-    lastmod: 1737431914679
+    lastmod: 1737511190026
     uid: 6MjBr7mJtG2gw9
   - type: template
     baseClass: AnimatedSprite
@@ -6201,7 +6239,7 @@ assets:
         lib: core
     extends:
       cgroup: ''
-    lastmod: 1737413555956
+    lastmod: 1737508517461
     uid: nj68gG9f25Jkzg
     behaviors: []
     extendTypes: ''
@@ -6228,7 +6266,7 @@ assets:
         lib: core
     extends:
       cgroup: Weapon
-    lastmod: 1737413057538
+    lastmod: 1737508598398
     uid: W8rjHR14D8d2G2
     behaviors: []
     extendTypes: ''
@@ -6326,8 +6364,100 @@ assets:
         lib: core
     extends:
       cgroup: Wall
-    lastmod: 1737434671906
+      lightTexture@@texture: -1
+      lightColor: '#ffffff'
+      lightOpacity: false
+      lightScale: 0
+    lastmod: 1737510651235
     uid: 8jWN9fWf8Tj451
+    behaviors: []
+    extendTypes: ''
+  - type: template
+    baseClass: AnimatedSprite
+    name: Explosion_Enemy
+    depth: 0
+    texture: 9Tb9p1Kbj2Dj21
+    playAnimationOnStart: false
+    loopAnimation: true
+    animationFPS: 30
+    visible: true
+    events:
+      - eventKey: OnStep
+        lib: core
+        code: |-
+          @move()
+          @loop = false
+          @play()
+        arguments: {}
+      - eventKey: OnAnimationComplete
+        code: '@kill = true'
+        arguments: {}
+        lib: core
+      - eventKey: OnCreate
+        code: |
+          @scale.x = @scale.y = 3
+        arguments: {}
+        lib: core
+    extends:
+      cgroup: Weapon
+    lastmod: 1737509131959
+    uid: 2MQ6CDWn2n3k8H
+    behaviors: []
+    extendTypes: ''
+  - lastmod: 1737511057810
+    type: texture
+    name: red_flash_effect
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 251
+      - 251
+    marginx: 0
+    marginy: 0
+    imgWidth: 502
+    imgHeight: 502
+    width: 502
+    height: 502
+    offx: 0
+    offy: 0
+    origname: iB7LcmqtnC327pW.png
+    shape: rect
+    left: 251
+    right: 251
+    top: 251
+    bottom: 251
+    uid: B7LcmqtnC327pW
+    padding: 1
+    isBlank: false
+    source: 'C:\Users\joshb\Downloads\red_flash_effect.png'
+  - type: template
+    baseClass: AnimatedSprite
+    name: red_flash_effect
+    depth: 0
+    texture: B7LcmqtnC327pW
+    playAnimationOnStart: false
+    loopAnimation: true
+    animationFPS: 30
+    visible: true
+    events:
+      - eventKey: OnStep
+        lib: core
+        code: |-
+          @move()
+          @frameCounter++
+          if @frameCounter == 1
+              @kill = true
+        arguments: {}
+      - eventKey: OnCreate
+        code: '@frameCounter = 0'
+        arguments: {}
+        lib: core
+    extends:
+      cgroup: ''
+    lastmod: 1737514362238
+    uid: FzPJ8btwHbznWR
     behaviors: []
     extendTypes: ''
 globalVars: []
