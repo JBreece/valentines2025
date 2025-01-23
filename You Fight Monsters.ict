@@ -182,40 +182,45 @@ assets:
           if @y > camera.height # Have the ship crossed the right border?
               @y = camera.height # Go back to the right border
 
+          if actions.MoveX.value < 0
+              @scale.x = -4
+              rooms.playerFacing = 'left'
+              @direction = 180
+          else if actions.MoveX.value > 0
+              @scale.x = 4
+              rooms.playerFacing = 'right'
+              @direction = 0
+
+          if actions.MoveX.value != 0 or actions.MoveY.value != 0
+              @tex = 'Knight_Run'
+          else
+              @tex = 'Knight_Idle'
+          @play()
+
+          #if actions.MoveX.value < 0 and @tex isnt 'Knight_Run'
+          #    @tex = 'Knight_Run'
+          #    @scale.x = -4
+          #    rooms.playerFacing = 'left'
+          #    @play()
+          #else if actions.MoveX.value > 0 and @tex isnt 'Knight_Run'
+          #    @tex = 'Knight_Run'
+          #    @scale.x = 4
+          #    rooms.playerFacing = 'right'
+          #    @play()
+          #else if actions.MoveY.value isnt 0 and @tex isnt 'Knight_Run'
+          #    @tex = 'Knight_Run'
+          #    @play()
+          #else if actions.MoveX.value is 0 and actions.MoveY.value is 0
+          #    @tex = 'Knight_Idle'
+          #    @play()
+
+          rooms.playerX = @x
+          rooms.playerY = @y
+
           if place.occupied this, 'Wall'
               @x = @xprev
               @y = @yprev
           @moveSmart 'Wall', 4
-
-              #console.log 'occupied'
-              #@collided = @moveSmart('Wall')
-              #if (@collided && @collided.y)
-              #    @vspeed = 0
-              #if (@collided)
-              #    console.log 'collided fr'
-              #console.log 'collided ' + @collided
-
-          #if place.occupied this, @x, @y, 'Wall'
-              
-
-
-          if actions.MoveX.value < 0 and @tex isnt 'Knight_Run'
-              @tex = 'Knight_Run'
-              @scale.x = -4
-              @play()
-          else if actions.MoveX.value > 0 and @tex isnt 'Knight_Run'
-              @tex = 'Knight_Run'
-              @scale.x = 4
-              @play()
-          else if actions.MoveY.value isnt 0 and @tex isnt 'Knight_Run'
-              @tex = 'Knight_Run'
-              @play()
-          else if actions.MoveX.value is 0 and actions.MoveY.value is 0
-              @tex = 'Knight_Idle'
-              @play()
-
-          rooms.playerX = @x
-          rooms.playerY = @y
 
 
           # shoot around player
@@ -342,7 +347,7 @@ assets:
       lightColor: '#FF1717'
       lightOpacity: false
       lightScale: 500
-    lastmod: 1737573511505
+    lastmod: 1737666512976
     uid: TPpGgD432gcqQp
     behaviors: []
     baseClass: AnimatedSprite
@@ -585,12 +590,13 @@ assets:
         arguments: {}
       - eventKey: OnPointerClick
         code: |
+          @kill = true
           rooms.switch 'Level1'
         arguments: {}
         lib: core
     extends:
       cgroup: ''
-    lastmod: 1735945036134
+    lastmod: 1737664607493
     uid: kcFf2prcFFNrLj
     behaviors: []
     baseClass: AnimatedSprite
@@ -1747,7 +1753,7 @@ assets:
     tiles: []
     extends:
       lightAmbientColor: '#4F4F4F'
-    lastmod: 1737605980868
+    lastmod: 1737664899012
     events:
       - eventKey: OnRoomStart
         code: >
@@ -4089,7 +4095,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1737594380873
+    lastmod: 1737666504045
     events:
       - eventKey: OnStep
         code: |
@@ -8928,12 +8934,6 @@ assets:
     animationFPS: 30
     visible: true
     events:
-      - eventKey: OnStep
-        lib: core
-        code: |-
-          @move()
-          #@play()
-        arguments: {}
       - eventKey: OnCreate
         code: |-
           @gotoAndStop(0)
@@ -8942,7 +8942,7 @@ assets:
         lib: core
     extends:
       cgroup: ''
-    lastmod: 1737576773391
+    lastmod: 1737665138509
     uid: t6T4Q8T7T7F3q8
     behaviors: []
     extendTypes: ''
@@ -8956,20 +8956,13 @@ assets:
     animationFPS: 30
     visible: true
     events:
-      - eventKey: OnStep
-        lib: core
-        code: |-
-          @move()
-          #@play()
-        arguments: {}
       - eventKey: OnCreate
-        code: |
-          @gotoAndStop(20)
+        code: '@gotoAndStop(20)'
         arguments: {}
         lib: core
     extends:
       cgroup: ''
-    lastmod: 1737575931856
+    lastmod: 1737665146997
     uid: qDgjPQ7tL3MhgF
     behaviors: []
     extendTypes: ''

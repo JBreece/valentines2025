@@ -585,12 +585,13 @@ assets:
         arguments: {}
       - eventKey: OnPointerClick
         code: |
+          @kill = true
           rooms.switch 'Level1'
         arguments: {}
         lib: core
     extends:
       cgroup: ''
-    lastmod: 1735945036134
+    lastmod: 1737664607493
     uid: kcFf2prcFFNrLj
     behaviors: []
     baseClass: AnimatedSprite
@@ -1747,7 +1748,7 @@ assets:
     tiles: []
     extends:
       lightAmbientColor: '#4F4F4F'
-    lastmod: 1737576387386
+    lastmod: 1737664899012
     events:
       - eventKey: OnRoomStart
         code: >
@@ -1828,7 +1829,7 @@ assets:
         code: >
           # asteroid timer
 
-          @timer1 = (random.range 4, 6) / localStorage.roomsCleared
+          @timer1 = (random.range 3, 5) / localStorage.roomsCleared + 1
 
 
           randomEnemy = random.dice 'Slime', 'Goblin'
@@ -1854,7 +1855,7 @@ assets:
 
 
           if not @transitioning and @score >
-          (JSON.parse(storage.get('roomsCleared')) * 10.0)
+          (JSON.parse(storage.get('roomsCleared')) * 50.0)
               @transitioning = true # Needed to add transitioning flag, otherwise room switch happens every frame until transition is done
               if(rooms.current.name is 'Level1')
                   transition.circleOut(425, 'FFC0CB')
@@ -2607,7 +2608,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1737576908762
+    lastmod: 1737605988155
     events:
       - eventKey: OnRoomStart
         code: >
@@ -2677,7 +2678,7 @@ assets:
       - eventKey: Timer1
         code: |
           # asteroid timer
-          @timer1 = (random.range 4, 6) / localStorage.roomsCleared
+          @timer1 = (random.range 3, 5) / localStorage.roomsCleared + 1
 
           randomEnemy = random.dice 'Slime', 'Goblin'
           randomY = random camera.height
@@ -2695,7 +2696,7 @@ assets:
 
 
           if not @transitioning and @score > (storage.get('roomsCleared') *
-          10.0)
+          50.0)
               @transitioning = true # Needed to add transitioning flag, otherwise room switch happens every frame until transition is done
               if(rooms.current.name is 'Level1')
                   transition.circleOut(425, 'FFC0CB')
@@ -3604,7 +3605,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1737577153412
+    lastmod: 1737605997449
     events:
       - eventKey: OnRoomStart
         code: >-
@@ -3674,7 +3675,7 @@ assets:
       - eventKey: Timer1
         code: |
           # asteroid timer
-          @timer1 = (random.range 4, 6) / localStorage.roomsCleared
+          @timer1 = (random.range 3, 5) / localStorage.roomsCleared + 1
 
           randomEnemy = random.dice 'Slime', 'Goblin'
           randomY = random camera.height
@@ -3692,7 +3693,7 @@ assets:
 
 
           if not @transitioning and @score > (storage.get('roomsCleared') *
-          10.0)
+          50.0)
               @transitioning = true # Needed to add transitioning flag, otherwise room switch happens every frame until transition is done
               if(rooms.current.name is 'Level1')
                   transition.circleOut(425, 'FFC0CB')
@@ -8928,12 +8929,6 @@ assets:
     animationFPS: 30
     visible: true
     events:
-      - eventKey: OnStep
-        lib: core
-        code: |-
-          @move()
-          #@play()
-        arguments: {}
       - eventKey: OnCreate
         code: |-
           @gotoAndStop(0)
@@ -8942,7 +8937,7 @@ assets:
         lib: core
     extends:
       cgroup: ''
-    lastmod: 1737576773391
+    lastmod: 1737665138509
     uid: t6T4Q8T7T7F3q8
     behaviors: []
     extendTypes: ''
@@ -8956,20 +8951,13 @@ assets:
     animationFPS: 30
     visible: true
     events:
-      - eventKey: OnStep
-        lib: core
-        code: |-
-          @move()
-          #@play()
-        arguments: {}
       - eventKey: OnCreate
-        code: |
-          @gotoAndStop(20)
+        code: '@gotoAndStop(20)'
         arguments: {}
         lib: core
     extends:
       cgroup: ''
-    lastmod: 1737575931856
+    lastmod: 1737665146997
     uid: qDgjPQ7tL3MhgF
     behaviors: []
     extendTypes: ''
