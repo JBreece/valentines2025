@@ -3781,7 +3781,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1737520475255
+    lastmod: 1737594320767
     events:
       - eventKey: OnRoomStart
         code: >-
@@ -3988,48 +3988,108 @@ assets:
         exts: {}
         customProperties: {}
         bindings: {}
-      - x: 128
-        'y': 576
+      - x: 146.50000009
+        'y': 559.50000028
         opacity: 1
         tint: 16777215
         scale:
-          x: 1
-          'y': 1
+          x: 1.2032967
+          'y': 1.17368421
         rotation: 0
         uid: JjFQM6fmNjL8mw
         exts: {}
         customProperties:
           CardSlot: 1
         bindings: {}
-      - x: 192
-        'y': 576
+      - x: 210.50000008
+        'y': 559.50000023
         opacity: 1
         tint: 16777215
         scale:
-          x: 1
-          'y': 1
+          x: 1.2032967
+          'y': 1.17368421
         rotation: 0
         uid: JjFQM6fmNjL8mw
         exts: {}
         customProperties:
           CardSlot: 2
         bindings: {}
-      - x: 256
-        'y': 576
+      - x: 274.50000008
+        'y': 559.50000023
         opacity: 1
         tint: 16777215
         scale:
-          x: 1
-          'y': 1
+          x: 1.2032967
+          'y': 1.17368421
         rotation: 0
         uid: JjFQM6fmNjL8mw
         exts: {}
         customProperties:
           CardSlot: 3
         bindings: {}
+      - x: 338.50000008
+        'y': 559.50000023
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1.2032967
+          'y': 1.17368421
+        rotation: 0
+        uid: JjFQM6fmNjL8mw
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1042.50000008
+        'y': 559.50000023
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1.2032967
+          'y': 1.17368421
+        rotation: 0
+        uid: JjFQM6fmNjL8mw
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1106.50000008
+        'y': 559.50000023
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1.2032967
+          'y': 1.17368421
+        rotation: 0
+        uid: JjFQM6fmNjL8mw
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1170.50000008
+        'y': 559.50000023
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1.2032967
+          'y': 1.17368421
+        rotation: 0
+        uid: JjFQM6fmNjL8mw
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1234.50000008
+        'y': 559.50000023
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1.2032967
+          'y': 1.17368421
+        rotation: 0
+        uid: JjFQM6fmNjL8mw
+        exts: {}
+        customProperties: {}
+        bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1737521135329
+    lastmod: 1737594380873
     events:
       - eventKey: OnStep
         code: |
@@ -4063,9 +4123,25 @@ assets:
         arguments: {}
         lib: core
       - eventKey: OnRoomStart
-        code: |-
+        code: >-
           for card in templates.list['DeckCard']
               card.alpha = 0
+          @allPowerUps = JSON.parse(localStorage.listOfAllPowerUps)
+
+          @myCurrentDeck = storage.get('currentDeck')
+
+          if @myCurrentDeck != 'test' # TODO, careful, this will break if i
+          change the default value of myCurrentDeck
+              # Create an array to hold the powers that are found in myCurrentDeck
+              @myCurrentPowers = (power for power in @allPowerUps when @myCurrentDeck.includes power)
+              for power in @myCurrentPowers
+                  for card in templates.list['DeckCard']
+                      if card.tex == 'Button_35'
+                          card.tex = power
+                          card.alpha = 1
+                          break
+                      else
+                          continue
         arguments: {}
         lib: core
       - eventKey: OnRoomEnd
@@ -6492,7 +6568,16 @@ assets:
               else
                   powerEffect = @power
 
-          #for card in templates.list['deckCard']
+          uiLayer = rooms.list['UI_InGame'][0]
+
+
+          for card in templates.list['DeckCard']
+              if card.tex == 'Button_35'
+                  card.tex = @power
+                  card.alpha = 1
+                  break
+              else
+                  continue
               #if card.CardSlot == cardCount # don't overwrite previous card, rather put power on a new card
                   #card.tex = @power
                   #card.alpha = 1
@@ -6506,7 +6591,7 @@ assets:
         lib: core
     extends:
       cgroup: ''
-    lastmod: 1737591289640
+    lastmod: 1737592341155
     uid: bGmKKpK13NTfq9
     behaviors: []
     extendTypes: ''

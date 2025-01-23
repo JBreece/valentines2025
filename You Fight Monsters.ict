@@ -1747,7 +1747,7 @@ assets:
     tiles: []
     extends:
       lightAmbientColor: '#4F4F4F'
-    lastmod: 1737576387386
+    lastmod: 1737605980868
     events:
       - eventKey: OnRoomStart
         code: >
@@ -1828,7 +1828,7 @@ assets:
         code: >
           # asteroid timer
 
-          @timer1 = (random.range 4, 6) / localStorage.roomsCleared
+          @timer1 = (random.range 3, 5) / localStorage.roomsCleared + 1
 
 
           randomEnemy = random.dice 'Slime', 'Goblin'
@@ -1854,7 +1854,7 @@ assets:
 
 
           if not @transitioning and @score >
-          (JSON.parse(storage.get('roomsCleared')) * 10.0)
+          (JSON.parse(storage.get('roomsCleared')) * 50.0)
               @transitioning = true # Needed to add transitioning flag, otherwise room switch happens every frame until transition is done
               if(rooms.current.name is 'Level1')
                   transition.circleOut(425, 'FFC0CB')
@@ -2607,7 +2607,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1737576908762
+    lastmod: 1737605988155
     events:
       - eventKey: OnRoomStart
         code: >
@@ -2677,7 +2677,7 @@ assets:
       - eventKey: Timer1
         code: |
           # asteroid timer
-          @timer1 = (random.range 4, 6) / localStorage.roomsCleared
+          @timer1 = (random.range 3, 5) / localStorage.roomsCleared + 1
 
           randomEnemy = random.dice 'Slime', 'Goblin'
           randomY = random camera.height
@@ -2695,7 +2695,7 @@ assets:
 
 
           if not @transitioning and @score > (storage.get('roomsCleared') *
-          10.0)
+          50.0)
               @transitioning = true # Needed to add transitioning flag, otherwise room switch happens every frame until transition is done
               if(rooms.current.name is 'Level1')
                   transition.circleOut(425, 'FFC0CB')
@@ -3604,7 +3604,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1737577153412
+    lastmod: 1737605997449
     events:
       - eventKey: OnRoomStart
         code: >-
@@ -3674,7 +3674,7 @@ assets:
       - eventKey: Timer1
         code: |
           # asteroid timer
-          @timer1 = (random.range 4, 6) / localStorage.roomsCleared
+          @timer1 = (random.range 3, 5) / localStorage.roomsCleared + 1
 
           randomEnemy = random.dice 'Slime', 'Goblin'
           randomY = random camera.height
@@ -3692,7 +3692,7 @@ assets:
 
 
           if not @transitioning and @score > (storage.get('roomsCleared') *
-          10.0)
+          50.0)
               @transitioning = true # Needed to add transitioning flag, otherwise room switch happens every frame until transition is done
               if(rooms.current.name is 'Level1')
                   transition.circleOut(425, 'FFC0CB')

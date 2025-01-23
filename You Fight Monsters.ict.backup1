@@ -1747,7 +1747,7 @@ assets:
     tiles: []
     extends:
       lightAmbientColor: '#4F4F4F'
-    lastmod: 1737576387386
+    lastmod: 1737605980868
     events:
       - eventKey: OnRoomStart
         code: >
@@ -1828,7 +1828,7 @@ assets:
         code: >
           # asteroid timer
 
-          @timer1 = (random.range 4, 6) / localStorage.roomsCleared
+          @timer1 = (random.range 3, 5) / localStorage.roomsCleared + 1
 
 
           randomEnemy = random.dice 'Slime', 'Goblin'
@@ -1854,7 +1854,7 @@ assets:
 
 
           if not @transitioning and @score >
-          (JSON.parse(storage.get('roomsCleared')) * 10.0)
+          (JSON.parse(storage.get('roomsCleared')) * 50.0)
               @transitioning = true # Needed to add transitioning flag, otherwise room switch happens every frame until transition is done
               if(rooms.current.name is 'Level1')
                   transition.circleOut(425, 'FFC0CB')
@@ -2607,7 +2607,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1737576908762
+    lastmod: 1737605988155
     events:
       - eventKey: OnRoomStart
         code: >
@@ -2677,7 +2677,7 @@ assets:
       - eventKey: Timer1
         code: |
           # asteroid timer
-          @timer1 = (random.range 4, 6) / localStorage.roomsCleared
+          @timer1 = (random.range 3, 5) / localStorage.roomsCleared + 1
 
           randomEnemy = random.dice 'Slime', 'Goblin'
           randomY = random camera.height
@@ -2695,7 +2695,7 @@ assets:
 
 
           if not @transitioning and @score > (storage.get('roomsCleared') *
-          10.0)
+          50.0)
               @transitioning = true # Needed to add transitioning flag, otherwise room switch happens every frame until transition is done
               if(rooms.current.name is 'Level1')
                   transition.circleOut(425, 'FFC0CB')
@@ -3604,7 +3604,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1737577153412
+    lastmod: 1737605997449
     events:
       - eventKey: OnRoomStart
         code: >-
@@ -3674,7 +3674,7 @@ assets:
       - eventKey: Timer1
         code: |
           # asteroid timer
-          @timer1 = (random.range 4, 6) / localStorage.roomsCleared
+          @timer1 = (random.range 3, 5) / localStorage.roomsCleared + 1
 
           randomEnemy = random.dice 'Slime', 'Goblin'
           randomY = random camera.height
@@ -3692,7 +3692,7 @@ assets:
 
 
           if not @transitioning and @score > (storage.get('roomsCleared') *
-          10.0)
+          50.0)
               @transitioning = true # Needed to add transitioning flag, otherwise room switch happens every frame until transition is done
               if(rooms.current.name is 'Level1')
                   transition.circleOut(425, 'FFC0CB')
@@ -3988,100 +3988,100 @@ assets:
         exts: {}
         customProperties: {}
         bindings: {}
-      - x: 114.50000004
-        'y': 591.50000011
+      - x: 146.50000009
+        'y': 559.50000028
         opacity: 1
         tint: 16777215
         scale:
-          x: 0.85164835
-          'y': 0.83684211
+          x: 1.2032967
+          'y': 1.17368421
         rotation: 0
         uid: JjFQM6fmNjL8mw
         exts: {}
         customProperties:
           CardSlot: 1
         bindings: {}
-      - x: 178.5
-        'y': 591.5
+      - x: 210.50000008
+        'y': 559.50000023
         opacity: 1
         tint: 16777215
         scale:
-          x: 0.85164835
-          'y': 0.83684211
+          x: 1.2032967
+          'y': 1.17368421
         rotation: 0
         uid: JjFQM6fmNjL8mw
         exts: {}
         customProperties:
           CardSlot: 2
         bindings: {}
-      - x: 242.5
-        'y': 591.5
+      - x: 274.50000008
+        'y': 559.50000023
         opacity: 1
         tint: 16777215
         scale:
-          x: 0.85164835
-          'y': 0.83684211
+          x: 1.2032967
+          'y': 1.17368421
         rotation: 0
         uid: JjFQM6fmNjL8mw
         exts: {}
         customProperties:
           CardSlot: 3
         bindings: {}
-      - x: 306.5
-        'y': 591.5
+      - x: 338.50000008
+        'y': 559.50000023
         opacity: 1
         tint: 16777215
         scale:
-          x: 0.85164835
-          'y': 0.83684211
+          x: 1.2032967
+          'y': 1.17368421
         rotation: 0
         uid: JjFQM6fmNjL8mw
         exts: {}
         customProperties: {}
         bindings: {}
-      - x: 1010.5
-        'y': 591.5
+      - x: 1042.50000008
+        'y': 559.50000023
         opacity: 1
         tint: 16777215
         scale:
-          x: 0.85164835
-          'y': 0.83684211
+          x: 1.2032967
+          'y': 1.17368421
         rotation: 0
         uid: JjFQM6fmNjL8mw
         exts: {}
         customProperties: {}
         bindings: {}
-      - x: 1074.5
-        'y': 591.5
+      - x: 1106.50000008
+        'y': 559.50000023
         opacity: 1
         tint: 16777215
         scale:
-          x: 0.85164835
-          'y': 0.83684211
+          x: 1.2032967
+          'y': 1.17368421
         rotation: 0
         uid: JjFQM6fmNjL8mw
         exts: {}
         customProperties: {}
         bindings: {}
-      - x: 1138.5
-        'y': 591.5
+      - x: 1170.50000008
+        'y': 559.50000023
         opacity: 1
         tint: 16777215
         scale:
-          x: 0.85164835
-          'y': 0.83684211
+          x: 1.2032967
+          'y': 1.17368421
         rotation: 0
         uid: JjFQM6fmNjL8mw
         exts: {}
         customProperties: {}
         bindings: {}
-      - x: 1202.5
-        'y': 591.5
+      - x: 1234.50000008
+        'y': 559.50000023
         opacity: 1
         tint: 16777215
         scale:
-          x: 0.85164835
-          'y': 0.83684211
+          x: 1.2032967
+          'y': 1.17368421
         rotation: 0
         uid: JjFQM6fmNjL8mw
         exts: {}
@@ -4089,7 +4089,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1737594282084
+    lastmod: 1737594380873
     events:
       - eventKey: OnStep
         code: |
