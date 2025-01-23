@@ -269,6 +269,10 @@ assets:
           this.scale.y = 4;
           @frameCounter = 0
           @frameCounterBomb = 0
+
+          camera.follow = this
+          camera.borderX = 450
+          camera.borderY = 200
         arguments: {}
         lib: core
       - eventKey: collisionCGroup
@@ -338,7 +342,7 @@ assets:
       lightColor: '#FF1717'
       lightOpacity: false
       lightScale: 500
-    lastmod: 1737514356284
+    lastmod: 1737573511505
     uid: TPpGgD432gcqQp
     behaviors: []
     baseClass: AnimatedSprite
@@ -888,10 +892,862 @@ assets:
         exts: {}
         customProperties: {}
         bindings: {}
+      - x: 64
+        'y': 0
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 192
+        'y': -64
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 320
+        'y': 0
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 448
+        'y': -64
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 576
+        'y': 0
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 704
+        'y': -64
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 832
+        'y': 0
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 960
+        'y': -64
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1088
+        'y': 0
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1216
+        'y': -64
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1280
+        'y': 64
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1216
+        'y': 192
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1280
+        'y': 320
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1216
+        'y': 448
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1280
+        'y': 576
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1216
+        'y': 640
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1152
+        'y': 704
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1024
+        'y': 768
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 896
+        'y': 704
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 768
+        'y': 768
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 640
+        'y': 704
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 512
+        'y': 768
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 384
+        'y': 704
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 256
+        'y': 768
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 128
+        'y': 704
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 0
+        'y': 768
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: -64
+        'y': 704
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 0
+        'y': 576
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: -64
+        'y': 512
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 0
+        'y': 384
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: -64
+        'y': 256
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 0
+        'y': 128
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: -64
+        'y': 0
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: -64
+        'y': -256
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: -256
+        'y': -64
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: -320
+        'y': 384
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: -320
+        'y': 896
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 256
+        'y': 1088
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 896
+        'y': 960
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1344
+        'y': 960
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1536
+        'y': 576
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1408
+        'y': 256
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1536
+        'y': -128
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1088
+        'y': -192
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 384
+        'y': -320
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 832
+        'y': -320
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: -448
+        'y': 704
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: -448
+        'y': 64
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: -384
+        'y': -320
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 640
+        'y': -448
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1280
+        'y': -384
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1728
+        'y': 192
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1664
+        'y': -448
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1664
+        'y': 832
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 640
+        'y': 1216
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1280
+        'y': 1152
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: -64
+        'y': 1088
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: -64
+        'y': 384
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: -64
+        'y': 128
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 320
+        'y': -64
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 576
+        'y': -64
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 832
+        'y': -64
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1088
+        'y': -64
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1280
+        'y': 192
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1280
+        'y': 448
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1152
+        'y': 768
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 896
+        'y': 768
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 640
+        'y': 768
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 384
+        'y': 768
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 128
+        'y': 768
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 64
+        'y': -64
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
     tiles: []
     extends:
       lightAmbientColor: '#4F4F4F'
-    lastmod: 1737514263867
+    lastmod: 1737576387386
     events:
       - eventKey: OnRoomStart
         code: >
@@ -969,14 +1825,23 @@ assets:
         arguments: {}
         lib: core
       - eventKey: Timer1
-        code: |
+        code: >
           # asteroid timer
+
           @timer1 = (random.range 4, 6) / localStorage.roomsCleared
 
+
           randomEnemy = random.dice 'Slime', 'Goblin'
-          randomY = random camera.height
-          randomX = random.dice camera.left, camera.right
-          templates.copy randomEnemy, randomX, randomY, -100
+
+          #randomY = random camera.height
+
+          randomY = random.range((camera.height - 281), (camera.height + 281))
+          #281 added to the height on each side is proportional to 500 added to
+          the width on each side
+
+          randomX = random.dice((camera.left - 500), (camera.right + 500))
+
+          templates.copy randomEnemy, randomX, randomY
         arguments:
           name: Timer1
           isUi: false
@@ -1116,9 +1981,633 @@ assets:
         exts: {}
         customProperties: {}
         bindings: {}
+      - x: 64
+        'y': -64
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 2BT5DNF7mL8HCF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: -64
+        'y': 64
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 2BT5DNF7mL8HCF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 256
+        'y': -64
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 2BT5DNF7mL8HCF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 448
+        'y': -64
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 2BT5DNF7mL8HCF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 640
+        'y': -64
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 2BT5DNF7mL8HCF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 832
+        'y': -64
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 2BT5DNF7mL8HCF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1024
+        'y': -64
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 2BT5DNF7mL8HCF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1216
+        'y': -64
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 2BT5DNF7mL8HCF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1280
+        'y': 64
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 2BT5DNF7mL8HCF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1280
+        'y': 192
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 2BT5DNF7mL8HCF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1280
+        'y': 320
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 2BT5DNF7mL8HCF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1280
+        'y': 448
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 2BT5DNF7mL8HCF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1280
+        'y': 640
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 2BT5DNF7mL8HCF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1152
+        'y': 704
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 2BT5DNF7mL8HCF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 960
+        'y': 704
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 2BT5DNF7mL8HCF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 768
+        'y': 704
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 2BT5DNF7mL8HCF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 576
+        'y': 704
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 2BT5DNF7mL8HCF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 384
+        'y': 704
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 2BT5DNF7mL8HCF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 192
+        'y': 704
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 2BT5DNF7mL8HCF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 0
+        'y': 704
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 2BT5DNF7mL8HCF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: -64
+        'y': 576
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 2BT5DNF7mL8HCF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: -64
+        'y': 448
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 2BT5DNF7mL8HCF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: -64
+        'y': 320
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 2BT5DNF7mL8HCF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: -64
+        'y': 192
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 2BT5DNF7mL8HCF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 192
+        'y': 0
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 2BT5DNF7mL8HCF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 576
+        'y': 0
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 2BT5DNF7mL8HCF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 960
+        'y': 0
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 2BT5DNF7mL8HCF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1216
+        'y': 128
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 2BT5DNF7mL8HCF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1216
+        'y': 384
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 2BT5DNF7mL8HCF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1216
+        'y': 576
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 2BT5DNF7mL8HCF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1024
+        'y': 640
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 2BT5DNF7mL8HCF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 704
+        'y': 640
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 2BT5DNF7mL8HCF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 320
+        'y': 640
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 2BT5DNF7mL8HCF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 0
+        'y': 512
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 2BT5DNF7mL8HCF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 0
+        'y': 256
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 2BT5DNF7mL8HCF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 0
+        'y': 0
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 2BT5DNF7mL8HCF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: -256
+        'y': 256
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 2BT5DNF7mL8HCF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: -192
+        'y': -64
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 2BT5DNF7mL8HCF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 128
+        'y': -192
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 2BT5DNF7mL8HCF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 448
+        'y': -256
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 2BT5DNF7mL8HCF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 832
+        'y': -128
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 2BT5DNF7mL8HCF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1280
+        'y': -256
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 2BT5DNF7mL8HCF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1472
+        'y': 0
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 2BT5DNF7mL8HCF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1600
+        'y': 384
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 2BT5DNF7mL8HCF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1408
+        'y': 704
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 2BT5DNF7mL8HCF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1088
+        'y': 896
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 2BT5DNF7mL8HCF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 384
+        'y': 896
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 2BT5DNF7mL8HCF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 768
+        'y': 832
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 2BT5DNF7mL8HCF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 64
+        'y': 960
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 2BT5DNF7mL8HCF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: -192
+        'y': 704
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 2BT5DNF7mL8HCF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1472
+        'y': 192
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 2BT5DNF7mL8HCF
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1472
+        'y': -192
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: 2BT5DNF7mL8HCF
+        exts: {}
+        customProperties: {}
+        bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1737512509089
+    lastmod: 1737576908762
     events:
       - eventKey: OnRoomStart
         code: >
@@ -1345,9 +2834,777 @@ assets:
         exts: {}
         customProperties: {}
         bindings: {}
+      - x: 0
+        'y': 0
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 0
+        'y': 192
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 0
+        'y': 384
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 0
+        'y': 576
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 64
+        'y': 704
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 192
+        'y': 704
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 320
+        'y': 704
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 448
+        'y': 704
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 576
+        'y': 704
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 704
+        'y': 704
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 832
+        'y': 704
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 960
+        'y': 704
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1088
+        'y': 704
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1216
+        'y': 704
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1280
+        'y': 640
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1280
+        'y': 512
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1280
+        'y': 384
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1280
+        'y': 256
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1280
+        'y': 128
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1280
+        'y': 0
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1152
+        'y': 0
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 960
+        'y': 0
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 768
+        'y': 0
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 576
+        'y': 0
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 384
+        'y': 0
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 192
+        'y': 0
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 64
+        'y': -64
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 320
+        'y': -64
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 512
+        'y': -64
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 704
+        'y': -64
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 896
+        'y': -64
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1088
+        'y': -64
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1152
+        'y': 768
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 896
+        'y': 768
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 640
+        'y': 768
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 384
+        'y': 768
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 128
+        'y': 768
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: -64
+        'y': 512
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: -64
+        'y': 320
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: -64
+        'y': 128
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: -192
+        'y': -128
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 128
+        'y': -192
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 448
+        'y': -192
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 832
+        'y': -192
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1216
+        'y': -192
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1408
+        'y': -128
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1536
+        'y': 256
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1408
+        'y': 576
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1344
+        'y': 896
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 832
+        'y': 960
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 512
+        'y': 896
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 128
+        'y': 960
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: -128
+        'y': 832
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: -256
+        'y': 448
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: -320
+        'y': 256
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: -384
+        'y': 0
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: -320
+        'y': 640
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: -320
+        'y': 896
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1600
+        'y': 704
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1600
+        'y': 0
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1600
+        'y': -192
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1664
+        'y': 512
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1600
+        'y': 960
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1088
+        'y': 896
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QmCrNnJNRDdF7p
+        exts: {}
+        customProperties: {}
+        bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1737512514843
+    lastmod: 1737577153412
     events:
       - eventKey: OnRoomStart
         code: >-
@@ -1524,7 +3781,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1737511893585
+    lastmod: 1737594320767
     events:
       - eventKey: OnRoomStart
         code: >-
@@ -1541,7 +3798,9 @@ assets:
 
           localStorage.randomPowerUpOptions = []
 
-          localStorage.currentDeck = []
+          localStorage.currentDeck = 'test'
+
+          localStorage.cardCounter = 0.0
 
           localStorage.strengthLevel = 1.0
 
@@ -1729,9 +3988,108 @@ assets:
         exts: {}
         customProperties: {}
         bindings: {}
+      - x: 146.50000009
+        'y': 559.50000028
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1.2032967
+          'y': 1.17368421
+        rotation: 0
+        uid: JjFQM6fmNjL8mw
+        exts: {}
+        customProperties:
+          CardSlot: 1
+        bindings: {}
+      - x: 210.50000008
+        'y': 559.50000023
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1.2032967
+          'y': 1.17368421
+        rotation: 0
+        uid: JjFQM6fmNjL8mw
+        exts: {}
+        customProperties:
+          CardSlot: 2
+        bindings: {}
+      - x: 274.50000008
+        'y': 559.50000023
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1.2032967
+          'y': 1.17368421
+        rotation: 0
+        uid: JjFQM6fmNjL8mw
+        exts: {}
+        customProperties:
+          CardSlot: 3
+        bindings: {}
+      - x: 338.50000008
+        'y': 559.50000023
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1.2032967
+          'y': 1.17368421
+        rotation: 0
+        uid: JjFQM6fmNjL8mw
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1042.50000008
+        'y': 559.50000023
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1.2032967
+          'y': 1.17368421
+        rotation: 0
+        uid: JjFQM6fmNjL8mw
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1106.50000008
+        'y': 559.50000023
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1.2032967
+          'y': 1.17368421
+        rotation: 0
+        uid: JjFQM6fmNjL8mw
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1170.50000008
+        'y': 559.50000023
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1.2032967
+          'y': 1.17368421
+        rotation: 0
+        uid: JjFQM6fmNjL8mw
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1234.50000008
+        'y': 559.50000023
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1.2032967
+          'y': 1.17368421
+        rotation: 0
+        uid: JjFQM6fmNjL8mw
+        exts: {}
+        customProperties: {}
+        bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1737432294589
+    lastmod: 1737594380873
     events:
       - eventKey: OnStep
         code: |
@@ -1765,7 +4123,25 @@ assets:
         arguments: {}
         lib: core
       - eventKey: OnRoomStart
-        code: ''
+        code: >-
+          for card in templates.list['DeckCard']
+              card.alpha = 0
+          @allPowerUps = JSON.parse(localStorage.listOfAllPowerUps)
+
+          @myCurrentDeck = storage.get('currentDeck')
+
+          if @myCurrentDeck != 'test' # TODO, careful, this will break if i
+          change the default value of myCurrentDeck
+              # Create an array to hold the powers that are found in myCurrentDeck
+              @myCurrentPowers = (power for power in @allPowerUps when @myCurrentDeck.includes power)
+              for power in @myCurrentPowers
+                  for card in templates.list['DeckCard']
+                      if card.tex == 'Button_35'
+                          card.tex = power
+                          card.alpha = 1
+                          break
+                      else
+                          continue
         arguments: {}
         lib: core
       - eventKey: OnRoomEnd
@@ -2970,7 +5346,7 @@ assets:
       - x: -8
         'y': -2
     closedStrip: true
-  - lastmod: 1707800942718
+  - lastmod: 1737576600390
     type: texture
     name: Tileset_Autumn
     untill: 0
@@ -3032,7 +5408,7 @@ assets:
     source: >-
       C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\RPG Nature
       Tileset ΓÇö Seasons\Tileset_Ice_20x9.png
-  - lastmod: 1707800942725
+  - lastmod: 1737575322430
     type: texture
     name: Tileset_Summer
     untill: 0
@@ -3055,7 +5431,7 @@ assets:
     left: 0
     right: 32
     top: 0
-    bottom: 32
+    bottom: 64
     uid: c9mjbbd57HD9tB
     padding: 1
     isBlank: false
@@ -4057,50 +6433,54 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1737352558649
+    lastmod: 1737591285492
     events:
       - eventKey: OnRoomStart
-        code: |-
+        code: >-
           @myRandomThreePowerUps = []
+
           @remainingPowerUps = JSON.parse localStorage.listOfAllPowerUps
 
+
           i = 3
+
           while i > 0
               getRandomInt = (min, max) ->
                   min = Math.ceil(min)
                   max = Math.floor(max)
                   Math.floor(random(1) * (max - min + 1)) + min
               @myRandom = getRandomInt(0, (@remainingPowerUps.length - 1))
-              #console.log('myRandom ' + @myRandom)
-              #console.log('@remainingPowerUps length ' + @remainingPowerUps.length)
 
               # added logic for checking if the player already has this power
-              if @remainingPowerUps[@myRandom] == 'shootAroundPlayer' && JSON.parse(storage.get('hasShootAroundPlayer')) == true
-                  while @remainingPowerUps[@myRandom] == 'shootAroundPlayer'
+
+              @myDeck = storage.get('currentDeck')
+              if @myDeck.includes(@remainingPowerUps[@myRandom])
+                  while @myDeck.includes(@remainingPowerUps[@myRandom])
                       @myRandom = getRandomInt(0, (@remainingPowerUps.length - 1))
-              else if @remainingPowerUps[@myRandom] == 'enhancedShootAroundPlayer' && JSON.parse(storage.get('hasShootAroundPlayer')) == false
-                  while @remainingPowerUps[@myRandom] == 'enhancedShootAroundPlayer'
-                      @myRandom = getRandomInt(0, (@remainingPowerUps.length - 1))
+                      if @remainingPowerUps[@myRandom] == 'enhancedShootAroundPlayer' && JSON.parse(storage.get('hasShootAroundPlayer')) == false
+                          while @remainingPowerUps[@myRandom] == 'enhancedShootAroundPlayer'
+                              @myRandom = getRandomInt(0, (@remainingPowerUps.length - 1))
+
+              # THIS LOGIC FOR SHOOTAROUNDPLAYER VS ENHANCED WORKS
+              #if @remainingPowerUps[@myRandom] == 'shootAroundPlayer' && JSON.parse(storage.get('hasShootAroundPlayer')) == true
+              #    while @remainingPowerUps[@myRandom] == 'shootAroundPlayer'
+              #        @myRandom = getRandomInt(0, (@remainingPowerUps.length - 1))
+              #else if @remainingPowerUps[@myRandom] == 'enhancedShootAroundPlayer' && JSON.parse(storage.get('hasShootAroundPlayer')) == false
+              #    while @remainingPowerUps[@myRandom] == 'enhancedShootAroundPlayer'
+              #        @myRandom = getRandomInt(0, (@remainingPowerUps.length - 1))
 
               @myRandomThreePowerUps.push(@remainingPowerUps[@myRandom])
-              #console.log('@remainingPowerUps[myRandom] ' + @remainingPowerUps[@myRandom])
-              #console.log('@myRandomThreePowerUps ' + @myRandomThreePowerUps)
               @remainingPowerUps.splice(@myRandom, 1)
-              #console.log('@remainingPowerUps ' + @remainingPowerUps)
               i--
-              #console.log('i' + i)
-          console.log('@myRandomThreePowerUps ' + @myRandomThreePowerUps)
-          storage.set('randomPowerUpOptions', @myRandomThreePowerUps)
-          #console.log(storage.get('randomPowerUpOptions'))
+          storage.set('randomPowerUpOptions', @myRandomThreePowerUps) # is this
+          necessary?  i don't think this does anything.
+
+
           for card in templates.list['Card_Button']
-              #console.log('new loop')
-              #console.log('card ' + card)
-              #console.log('@myRandomThreePowerUps ' + @myRandomThreePowerUps)
               @oneButtonPower = @myRandomThreePowerUps.pop()
-              #console.log('@oneButtonPower ' + @oneButtonPower)
+              #storage.set('currentDeck', storage.get('currentDeck') + ' ' + @oneButtonPower)
               card.tex = @oneButtonPower
               card.power = @oneButtonPower
-              #console.log('card.power ' + card.power)
               
         arguments: {}
         lib: core
@@ -4123,6 +6503,25 @@ assets:
         arguments: {}
       - eventKey: OnPointerClick
         code: >
+          #cardCount = parseInt(storage.get('cardCounter'))
+
+          #cardCount++
+
+          #if cardCount > 3
+
+          #    console.log 'you must discard a card' # TODO make this a text
+          shown to the player
+                  
+          #storage.set('cardCounter', cardCount)
+
+
+          @newDeck = storage.get('currentDeck')
+
+          @newDeck += @power
+
+          storage.set('currentDeck', @newDeck)
+
+
           room = @getRoom()
 
           rooms.remove room
@@ -4133,11 +6532,11 @@ assets:
           #switch statement for @power:  depending on what @power is, give the
           player XYZ abilities.
 
-          powerEffect = undefined
+          powerEffect = undefined # is this necessary?
 
           switch @power
               when 'extraLife'
-                  powerEffect = @power
+                  powerEffect = @power # are any of these necessary?
                   livesCount = parseInt(storage.get('lives'))
                   livesCount += 2
                   storage.set('lives', livesCount)
@@ -4168,12 +6567,31 @@ assets:
                   storage.set('speedLevel', speedCount)
               else
                   powerEffect = @power
+
+          uiLayer = rooms.list['UI_InGame'][0]
+
+
+          for card in templates.list['DeckCard']
+              if card.tex == 'Button_35'
+                  card.tex = @power
+                  card.alpha = 1
+                  break
+              else
+                  continue
+              #if card.CardSlot == cardCount # don't overwrite previous card, rather put power on a new card
+                  #card.tex = @power
+                  #card.alpha = 1
+              #if storage.get('currentDeck').includes(@power)
+                  #card.tex = @power
           #console.log 'power outside switch: ' + @power
+
+          #storage.set('currentDeck', storage.get('currentDeck') + ' ' +
+          @oneButtonPower)
         arguments: {}
         lib: core
     extends:
       cgroup: ''
-    lastmod: 1737413624491
+    lastmod: 1737592341155
     uid: bGmKKpK13NTfq9
     behaviors: []
     extendTypes: ''
@@ -6458,6 +8876,211 @@ assets:
       cgroup: ''
     lastmod: 1737514362238
     uid: FzPJ8btwHbznWR
+    behaviors: []
+    extendTypes: ''
+  - type: template
+    baseClass: AnimatedSprite
+    name: DeckCard
+    depth: 0
+    texture: 9FL4tqJpPgJR1T
+    playAnimationOnStart: false
+    loopAnimation: true
+    animationFPS: 30
+    visible: true
+    events:
+      - eventKey: OnStep
+        lib: core
+        code: '@move()'
+        arguments: {}
+    extends:
+      cgroup: ''
+    lastmod: 1737518084814
+    uid: JjFQM6fmNjL8mw
+    behaviors: []
+    extendTypes: ''
+  - type: template
+    baseClass: AnimatedSprite
+    name: Wall_Stationary
+    depth: 0
+    texture: HKfMMwhmrDMfLN
+    playAnimationOnStart: false
+    loopAnimation: true
+    animationFPS: 30
+    visible: true
+    events:
+      - eventKey: OnStep
+        lib: core
+        code: '@move()'
+        arguments: {}
+    extends:
+      cgroup: Wall
+    lastmod: 1737574472236
+    uid: zFG7NH8BqDqwW8
+    behaviors: []
+    extendTypes: ''
+  - type: template
+    baseClass: AnimatedSprite
+    name: TreeTop
+    depth: 0
+    texture: c9mjbbd57HD9tB
+    playAnimationOnStart: false
+    loopAnimation: true
+    animationFPS: 30
+    visible: true
+    events:
+      - eventKey: OnStep
+        lib: core
+        code: |-
+          @move()
+          #@play()
+        arguments: {}
+      - eventKey: OnCreate
+        code: |-
+          @gotoAndStop(0)
+          templates.copy 'TreeBottom', @x, @y + @height
+        arguments: {}
+        lib: core
+    extends:
+      cgroup: ''
+    lastmod: 1737576773391
+    uid: t6T4Q8T7T7F3q8
+    behaviors: []
+    extendTypes: ''
+  - type: template
+    baseClass: AnimatedSprite
+    name: TreeBottom
+    depth: 0
+    texture: c9mjbbd57HD9tB
+    playAnimationOnStart: false
+    loopAnimation: true
+    animationFPS: 30
+    visible: true
+    events:
+      - eventKey: OnStep
+        lib: core
+        code: |-
+          @move()
+          #@play()
+        arguments: {}
+      - eventKey: OnCreate
+        code: |
+          @gotoAndStop(20)
+        arguments: {}
+        lib: core
+    extends:
+      cgroup: ''
+    lastmod: 1737575931856
+    uid: qDgjPQ7tL3MhgF
+    behaviors: []
+    extendTypes: ''
+  - type: template
+    baseClass: AnimatedSprite
+    name: TreeTop_Autumn
+    depth: 0
+    texture: 4hm6dm4GCqcz14
+    playAnimationOnStart: false
+    loopAnimation: true
+    animationFPS: 30
+    visible: true
+    events:
+      - eventKey: OnStep
+        lib: core
+        code: |-
+          @move()
+          #@play()
+        arguments: {}
+      - eventKey: OnCreate
+        code: |-
+          @gotoAndStop(0)
+          templates.copy 'TreeBottom_Autumn', @x, @y + @height
+        arguments: {}
+        lib: core
+    extends:
+      cgroup: ''
+    lastmod: 1737576779759
+    uid: 2BT5DNF7mL8HCF
+    behaviors: []
+    extendTypes: ''
+  - type: template
+    baseClass: AnimatedSprite
+    name: TreeBottom_Autumn
+    depth: 0
+    texture: 4hm6dm4GCqcz14
+    playAnimationOnStart: false
+    loopAnimation: true
+    animationFPS: 30
+    visible: true
+    events:
+      - eventKey: OnStep
+        lib: core
+        code: |-
+          @move()
+          #@play()
+        arguments: {}
+      - eventKey: OnCreate
+        code: |
+          @gotoAndStop(15)
+        arguments: {}
+        lib: core
+    extends:
+      cgroup: ''
+    lastmod: 1737576621948
+    uid: thR15z2bN9jPNF
+    behaviors: []
+    extendTypes: ''
+  - type: template
+    baseClass: AnimatedSprite
+    name: TreeTop_Ice
+    depth: 0
+    texture: pc8c8d9f1TpNkk
+    playAnimationOnStart: false
+    loopAnimation: true
+    animationFPS: 30
+    visible: true
+    events:
+      - eventKey: OnStep
+        lib: core
+        code: |-
+          @move()
+          #@play()
+        arguments: {}
+      - eventKey: OnCreate
+        code: |-
+          @gotoAndStop(0)
+          templates.copy 'TreeBottom_Ice', @x, @y + @height
+        arguments: {}
+        lib: core
+    extends:
+      cgroup: ''
+    lastmod: 1737576995167
+    uid: QmCrNnJNRDdF7p
+    behaviors: []
+    extendTypes: ''
+  - type: template
+    baseClass: AnimatedSprite
+    name: TreeBottom_Ice
+    depth: 0
+    texture: pc8c8d9f1TpNkk
+    playAnimationOnStart: false
+    loopAnimation: true
+    animationFPS: 30
+    visible: true
+    events:
+      - eventKey: OnStep
+        lib: core
+        code: |-
+          @move()
+          #@play()
+        arguments: {}
+      - eventKey: OnCreate
+        code: |
+          @gotoAndStop(20)
+        arguments: {}
+        lib: core
+    extends:
+      cgroup: ''
+    lastmod: 1737576979226
+    uid: WjHmgwBfnq3J7M
     behaviors: []
     extendTypes: ''
 globalVars: []
