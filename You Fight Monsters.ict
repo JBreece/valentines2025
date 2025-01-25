@@ -5,7 +5,8 @@ libs:
   place:
     gridX: 1024
     gridY: 1024
-  pointer: {}
+  pointer:
+    startlocked: false
   keyboard.polyfill: {}
   keyboard: {}
   random: {}
@@ -16,8 +17,6 @@ libs:
 actions:
   - name: Shoot
     methods:
-      - code: keyboard.Space
-      - code: pointer.Primary
       - code: vkeys.Vk1
   - name: MoveY
     methods:
@@ -610,7 +609,7 @@ assets:
   - type: template
     name: Attack
     depth: 0
-    texture: 9FL4tqJpPgJR1T
+    texture: D3mWdhkRzQ2cGK
     playAnimationOnStart: false
     loopAnimation: true
     animationFPS: 30
@@ -618,11 +617,15 @@ assets:
     events:
       - eventKey: OnStep
         lib: core
-        code: this.move()
+        code: |-
+          this.move()
+
+          if pointer.collides(this)
+              console.log 'being pressed'
         arguments: {}
     extends:
       cgroup: ''
-    lastmod: 1735665651905
+    lastmod: 1737782474375
     uid: rfwgmnG4H4Lpc5
     behaviors: []
     baseClass: AnimatedSprite
@@ -1753,7 +1756,7 @@ assets:
     tiles: []
     extends:
       lightAmbientColor: '#4F4F4F'
-    lastmod: 1737664899012
+    lastmod: 1737783379126
     events:
       - eventKey: OnRoomStart
         code: >
@@ -4095,7 +4098,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1737666504045
+    lastmod: 1737783383699
     events:
       - eventKey: OnStep
         code: |
