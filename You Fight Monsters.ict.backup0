@@ -658,7 +658,7 @@ assets:
         lib: core
     extends:
       cgroup: ''
-    lastmod: 1739480126612
+    lastmod: 1739480312961
     uid: rfwgmnG4H4Lpc5
     behaviors: []
     baseClass: AnimatedSprite
@@ -1617,66 +1617,22 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1737605988155
+    lastmod: 1739480565868
     events:
       - eventKey: OnRoomStart
-        code: >
+        code: |
           transition.circleIn(425, 'FFC0CB');
 
-
           # asteroid timer
-
           @timer1 = 1
-
           # enemy timer
-
           #@timer2 = 3
 
-
-          @score = 0
-
-          style = styles.get 'ScoreText'
-
-          @scoreLabel = new PIXI.Text 'Score: ' + @score, style
-
-          @addChild @scoreLabel
-
-          @scoreLabel.x = 30
-
-          @scoreLabel.y = 30
-
-          @scoreLabel.depth = 1000
-
-
-          @currentLives = parseInt(storage.get('lives'))
-
-          #@currentLives++
-
-          storage.set('lives', @currentLives)
-
-          style = styles.get 'LivesText'
-
-          @livesLabel = new PIXI.Text 'Lives: ' +
-          JSON.parse(storage.get('lives')), style
-
-          @addChild @livesLabel
-
-          @livesLabel.x = camera.width - 240
-
-          @livesLabel.y = 30
-
-          @livesLabel.depth = 1000
-
-
           @currentRoomsCleared = parseInt(localStorage.roomsCleared)
-
           @currentRoomsCleared++
-
           localStorage.roomsCleared = @currentRoomsCleared
 
-
           @mainUi = rooms.append 'UI_InGame'
-
 
           if JSON.parse(storage.get('hasShieldPower')) == true
               player = templates.list['Knight_Idle'][0]
@@ -1699,11 +1655,6 @@ assets:
         lib: core
       - eventKey: OnDraw
         code: >
-          @scoreLabel.text = 'Score: ' + @score
-
-          @livesLabel.text = 'Lives: ' + JSON.parse(storage.get('lives'))
-
-
           if not @transitioning and @score > (storage.get('roomsCleared') *
           50.0)
               @transitioning = true # Needed to add transitioning flag, otherwise room switch happens every frame until transition is done
@@ -2614,66 +2565,22 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1737605997449
+    lastmod: 1739480586869
     events:
       - eventKey: OnRoomStart
-        code: >-
+        code: |-
           transition.circleIn(425, 'FFC0CB');
 
-
           # asteroid timer
-
           @timer1 = 1
-
           # enemy timer
-
           #@timer2 = 3
 
-
-          @score = 0
-
-          style = styles.get 'ScoreText'
-
-          @scoreLabel = new PIXI.Text 'Score: ' + @score, style
-
-          @addChild @scoreLabel
-
-          @scoreLabel.x = 30
-
-          @scoreLabel.y = 30
-
-          @scoreLabel.depth = 1000
-
-
-          @currentLives = parseInt(storage.get('lives'))
-
-          #@currentLives++
-
-          storage.set('lives', @currentLives)
-
-          style = styles.get 'LivesText'
-
-          @livesLabel = new PIXI.Text 'Lives: ' +
-          JSON.parse(storage.get('lives')), style
-
-          @addChild @livesLabel
-
-          @livesLabel.x = camera.width - 240
-
-          @livesLabel.y = 30
-
-          @livesLabel.depth = 1000
-
-
           @currentRoomsCleared = parseInt(localStorage.roomsCleared)
-
           @currentRoomsCleared++
-
           localStorage.roomsCleared = @currentRoomsCleared
 
-
           @mainUi = rooms.append 'UI_InGame'
-
 
           if JSON.parse(storage.get('hasShieldPower')) == true
               player = templates.list['Knight_Idle'][0]
@@ -2696,11 +2603,6 @@ assets:
         lib: core
       - eventKey: OnDraw
         code: >-
-          @scoreLabel.text = 'Score: ' + @score
-
-          @livesLabel.text = 'Lives: ' + JSON.parse(storage.get('lives'))
-
-
           if not @transitioning and @score > (storage.get('roomsCleared') *
           50.0)
               @transitioning = true # Needed to add transitioning flag, otherwise room switch happens every frame until transition is done
@@ -3135,7 +3037,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1739478301432
+    lastmod: 1739480529526
     events:
       - eventKey: OnStep
         code: |
@@ -3153,6 +3055,41 @@ assets:
         lib: core
       - eventKey: OnRoomStart
         code: >-
+          @score = 0
+
+          style = styles.get 'ScoreText'
+
+          @scoreLabel = new PIXI.Text 'Scoe: ' + @score, style
+
+          @addChild @scoreLabel
+
+          @scoreLabel.x = 30
+
+          @scoreLabel.y = 30
+
+          @scoreLabel.depth = 1000
+
+
+          @currentLives = parseInt(storage.get('lives'))
+
+          #@currentLives++
+
+          storage.set('lives', @currentLives)
+
+          style = styles.get 'LivesText'
+
+          @livesLabel = new PIXI.Text 'Lives: ' +
+          JSON.parse(storage.get('lives')), style
+
+          @addChild @livesLabel
+
+          @livesLabel.x = camera.width - 240
+
+          @livesLabel.y = 30
+
+          @livesLabel.depth = 1000
+
+
           for card in templates.list['DeckCard']
               card.alpha = 0
           @allPowerUps = JSON.parse(localStorage.listOfAllPowerUps)
@@ -3175,6 +3112,12 @@ assets:
         lib: core
       - eventKey: OnRoomEnd
         code: sounds.stop()
+        arguments: {}
+        lib: core
+      - eventKey: OnDraw
+        code: |-
+          @scoreLabel.text = 'Score: ' + @score
+          @livesLabel.text = 'Lives: ' + JSON.parse(storage.get('lives'))
         arguments: {}
         lib: core
     uid: 9fg2w7TD2dCrbk
@@ -9051,69 +8994,24 @@ assets:
     tiles: []
     extends:
       lightAmbientColor: '#4F4F4F'
-    lastmod: 1739475920362
+    lastmod: 1739480514826
     events:
       - eventKey: OnRoomStart
-        code: >
+        code: |
           transition.circleIn(425, 'FFC0CB');
-
 
           #console.log 'room timer ' + timer
 
-
           # asteroid timer
-
           @timer1 = 1
-
           # enemy timer
-
           #@timer2 = 3
 
-
-          @score = 0
-
-          style = styles.get 'ScoreText'
-
-          @scoreLabel = new PIXI.Text 'Scoe: ' + @score, style
-
-          @addChild @scoreLabel
-
-          @scoreLabel.x = 30
-
-          @scoreLabel.y = 30
-
-          @scoreLabel.depth = 1000
-
-
-          @currentLives = parseInt(storage.get('lives'))
-
-          #@currentLives++
-
-          storage.set('lives', @currentLives)
-
-          style = styles.get 'LivesText'
-
-          @livesLabel = new PIXI.Text 'Lives: ' +
-          JSON.parse(storage.get('lives')), style
-
-          @addChild @livesLabel
-
-          @livesLabel.x = camera.width - 240
-
-          @livesLabel.y = 30
-
-          @livesLabel.depth = 1000
-
-
           @currentRoomsCleared = parseInt(localStorage.roomsCleared)
-
           @currentRoomsCleared++
-
           localStorage.roomsCleared = @currentRoomsCleared
 
-
           @mainUi = rooms.append 'UI_InGame'
-
 
           soundSettings = 
               volume: 0.15
@@ -9152,11 +9050,6 @@ assets:
         lib: core
       - eventKey: OnDraw
         code: >-
-          @scoreLabel.text = 'Score: ' + @score
-
-          @livesLabel.text = 'Lives: ' + JSON.parse(storage.get('lives'))
-
-
           if not @transitioning and @score >
           (JSON.parse(storage.get('roomsCleared')) * 50.0)
               @transitioning = true # Needed to add transitioning flag, otherwise room switch happens every frame until transition is done

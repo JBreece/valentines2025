@@ -18,7 +18,6 @@ actions:
   - name: Shoot
     methods:
       - code: vkeys.Vk1
-      - code: pointer.Any
   - name: MoveY
     methods:
       - code: keyboard.ArrowUp
@@ -659,7 +658,7 @@ assets:
         lib: core
     extends:
       cgroup: ''
-    lastmod: 1739480126612
+    lastmod: 1739480312961
     uid: rfwgmnG4H4Lpc5
     behaviors: []
     baseClass: AnimatedSprite
