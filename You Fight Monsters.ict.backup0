@@ -5,7 +5,8 @@ libs:
   place:
     gridX: 1024
     gridY: 1024
-  pointer: {}
+  pointer:
+    startlocked: false
   keyboard.polyfill: {}
   keyboard: {}
   random: {}
@@ -16,8 +17,6 @@ libs:
 actions:
   - name: Shoot
     methods:
-      - code: keyboard.Space
-      - code: pointer.Primary
       - code: vkeys.Vk1
   - name: MoveY
     methods:
@@ -164,6 +163,8 @@ assets:
           # See Project > Actions and input methods panel
           # and "Actions" in the docs.
 
+          camera.shiftX = this.scale.x * 15
+
           @mySpeed = storage.get('speedLevel')
 
           #if !(place.occupied this, @x, @y, 'Wall')
@@ -182,40 +183,45 @@ assets:
           if @y > camera.height # Have the ship crossed the right border?
               @y = camera.height # Go back to the right border
 
+          if actions.MoveX.value < 0
+              @scale.x = -4
+              rooms.playerFacing = 'left'
+              @direction = 180
+          else if actions.MoveX.value > 0
+              @scale.x = 4
+              rooms.playerFacing = 'right'
+              @direction = 0
+
+          if actions.MoveX.value != 0 or actions.MoveY.value != 0
+              @tex = 'Knight_Run'
+          else
+              @tex = 'Knight_Idle'
+          @play()
+
+          #if actions.MoveX.value < 0 and @tex isnt 'Knight_Run'
+          #    @tex = 'Knight_Run'
+          #    @scale.x = -4
+          #    rooms.playerFacing = 'left'
+          #    @play()
+          #else if actions.MoveX.value > 0 and @tex isnt 'Knight_Run'
+          #    @tex = 'Knight_Run'
+          #    @scale.x = 4
+          #    rooms.playerFacing = 'right'
+          #    @play()
+          #else if actions.MoveY.value isnt 0 and @tex isnt 'Knight_Run'
+          #    @tex = 'Knight_Run'
+          #    @play()
+          #else if actions.MoveX.value is 0 and actions.MoveY.value is 0
+          #    @tex = 'Knight_Idle'
+          #    @play()
+
+          rooms.playerX = @x
+          rooms.playerY = @y
+
           if place.occupied this, 'Wall'
               @x = @xprev
               @y = @yprev
           @moveSmart 'Wall', 4
-
-              #console.log 'occupied'
-              #@collided = @moveSmart('Wall')
-              #if (@collided && @collided.y)
-              #    @vspeed = 0
-              #if (@collided)
-              #    console.log 'collided fr'
-              #console.log 'collided ' + @collided
-
-          #if place.occupied this, @x, @y, 'Wall'
-              
-
-
-          if actions.MoveX.value < 0 and @tex isnt 'Knight_Run'
-              @tex = 'Knight_Run'
-              @scale.x = -4
-              @play()
-          else if actions.MoveX.value > 0 and @tex isnt 'Knight_Run'
-              @tex = 'Knight_Run'
-              @scale.x = 4
-              @play()
-          else if actions.MoveY.value isnt 0 and @tex isnt 'Knight_Run'
-              @tex = 'Knight_Run'
-              @play()
-          else if actions.MoveX.value is 0 and actions.MoveY.value is 0
-              @tex = 'Knight_Idle'
-              @play()
-
-          rooms.playerX = @x
-          rooms.playerY = @y
 
 
           # shoot around player
@@ -273,6 +279,7 @@ assets:
           camera.follow = this
           camera.borderX = 450
           camera.borderY = 200
+          camera.drift = 0.95;
         arguments: {}
         lib: core
       - eventKey: collisionCGroup
@@ -299,27 +306,6 @@ assets:
         arguments:
           group: Hostile
         lib: place
-      - eventKey: OnActionPress
-        code: |-
-          if rooms.playerFacing is 'left'
-              templates.copy 'Weapon_Sword', @x - 30, @y
-              if JSON.parse(storage.get('hasShootFromSword')) == true
-                  myProjectile = templates.copy 'SlashProjectile', @x - 30, @y
-                  console.log 'myProjectile ' + myProjectile
-                  myProjectile.direction = 180
-          else
-              templates.copy 'Weapon_Sword', @x + 30, @y
-              if JSON.parse(storage.get('hasShootFromSword')) == true
-                  myProjectile = templates.copy 'SlashProjectile', @x + 30, @y
-                  console.log 'myProjectile ' + myProjectile
-                  myProjectile.direction = 0
-          rooms.playerX = @x
-          rooms.playerY = @y
-
-          sounds.play 'DrawKnife_02'
-        arguments:
-          action: Shoot
-        lib: core
       - eventKey: OnDraw
         code: |-
           if @scale.x is -4
@@ -342,7 +328,7 @@ assets:
       lightColor: '#FF1717'
       lightOpacity: false
       lightScale: 500
-    lastmod: 1737573511505
+    lastmod: 1739479003107
     uid: TPpGgD432gcqQp
     behaviors: []
     baseClass: AnimatedSprite
@@ -605,7 +591,7 @@ assets:
   - type: template
     name: Attack
     depth: 0
-    texture: 9FL4tqJpPgJR1T
+    texture: D3mWdhkRzQ2cGK
     playAnimationOnStart: false
     loopAnimation: true
     animationFPS: 30
@@ -613,11 +599,66 @@ assets:
     events:
       - eventKey: OnStep
         lib: core
-        code: this.move()
+        code: |-
+          this.button.x = this.x;
+          this.button.y = this.y;
+
+          #console.log('pointer position ', pointer.x, ' ', pointer.y)
+          #console.log('button position ', @button.x, ' ', @button.y)
+
+          #if pointer.collides(this.button)
+          if actions.Shoot.pressed
+              #console.log('collision is happening !! ', @beingPressed)
+              
+              if @beingPressed == false
+
+                  #console.log('player is shooting!')
+
+                  if rooms.playerFacing is 'left'
+                      templates.copy 'Weapon_Sword', rooms.playerX - 30, rooms.playerY
+                      if JSON.parse(storage.get('hasShootFromSword')) == true
+                          myProjectile = templates.copy 'SlashProjectile', rooms.playerX - 30, rooms.playerY
+                          #console.log 'myProjectile ' + myProjectile
+                          myProjectile.direction = 180
+                  else
+                      templates.copy 'Weapon_Sword', rooms.playerX + 30, rooms.playerY
+                      if JSON.parse(storage.get('hasShootFromSword')) == true
+                          myProjectile = templates.copy 'SlashProjectile', rooms.playerX + 30, rooms.playerY
+                          #console.log 'myProjectile ' + myProjectile
+                          myProjectile.direction = 0
+                  #rooms.playerX = @x
+                  #rooms.playerY = @y
+
+                  sounds.play 'DrawKnife_02'
+
+              @beingPressed = true
+
+          else
+              #console.log 'not being pressed'
+              @beingPressed = false
         arguments: {}
+      - eventKey: OnCreate
+        code: |-
+          @button = vkeys.button({
+              key: 'Vk1',
+              texNormal: 'Attack',
+              texActive: 'Attack_Pressed',
+              #x: () => camera.right - 130,
+              #y: () => camera.bottom - 130,
+              x: () => this.x,
+              y: () => this.y,
+              alpha: 0.7,
+              depth: 100
+              container: rooms.templates.UI_InGame
+          });
+
+          #this.button.visible = false;
+          this.button.parent = this.parent;
+        arguments: {}
+        lib: core
     extends:
       cgroup: ''
-    lastmod: 1735665651905
+    lastmod: 1739480126612
     uid: rfwgmnG4H4Lpc5
     behaviors: []
     baseClass: AnimatedSprite
@@ -639,11 +680,32 @@ assets:
     events:
       - eventKey: OnStep
         lib: core
-        code: this.move()
+        code: |-
+          this.button.x = this.x;
+          this.button.y = this.y;
         arguments: {}
+      - eventKey: OnCreate
+        code: |-
+          @button = vkeys.joystick({
+              key: 'Vjoy1',
+              tex: 'TrackPad',
+              trackballTex: 'TrackBall',
+              depth: 100,
+              alpha: 0.7,
+              #x: () => camera.left + 170,
+              #y: () => camera.bottom - 170,
+              x: () => this.x,
+              y: () => this.y,
+              container: rooms.templates.UI_InGame
+          });
+
+          #this.button.visible = false;
+          this.button.parent = this.parent;
+        arguments: {}
+        lib: core
     extends:
       cgroup: ''
-    lastmod: 1735665716715
+    lastmod: 1739477839334
     uid: QKJz8N9w457JKm
     behaviors: []
     baseClass: AnimatedSprite
@@ -822,1059 +884,6 @@ assets:
         arguments: {}
         lib: core
     uid: 5RMfBzk5T5njrk
-    behaviors: []
-    extendTypes: ''
-  - type: room
-    oncreate: ''
-    onstep: ''
-    ondraw: ''
-    onleave: ''
-    gridX: 64
-    gridY: 64
-    diagonalGrid: false
-    simulate: true
-    width: 1280
-    height: 720
-    restrictCamera: false
-    restrictMaxX: 1280
-    restrictMinX: 1280
-    restrictMaxY: 720
-    restrictMinY: 720
-    isUi: false
-    name: Level1
-    backgroundColor: '#000000'
-    follow: -1
-    backgrounds:
-      - depth: 0
-        texture: BRjG23tGNn5BDH
-        shiftX: 0
-        shiftY: 0
-        parallaxX: 1
-        parallaxY: 1
-        movementX: 0
-        movementY: 0
-        scaleX: 1
-        scaleY: 1
-        repeat: repeat
-    copies:
-      - x: 576
-        'y': 384
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: TPpGgD432gcqQp
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 744
-        'y': 192
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1.8333333299999999
-          'y': 1
-        rotation: 0
-        uid: WM34ndP8KT723D
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 328
-        'y': 512
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1.16666667
-          'y': 1
-        rotation: 0
-        uid: WM34ndP8KT723D
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 64
-        'y': 0
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 192
-        'y': -64
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 320
-        'y': 0
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 448
-        'y': -64
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 576
-        'y': 0
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 704
-        'y': -64
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 832
-        'y': 0
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 960
-        'y': -64
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 1088
-        'y': 0
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 1216
-        'y': -64
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 1280
-        'y': 64
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 1216
-        'y': 192
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 1280
-        'y': 320
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 1216
-        'y': 448
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 1280
-        'y': 576
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 1216
-        'y': 640
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 1152
-        'y': 704
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 1024
-        'y': 768
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 896
-        'y': 704
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 768
-        'y': 768
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 640
-        'y': 704
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 512
-        'y': 768
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 384
-        'y': 704
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 256
-        'y': 768
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 128
-        'y': 704
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 0
-        'y': 768
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: -64
-        'y': 704
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 0
-        'y': 576
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: -64
-        'y': 512
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 0
-        'y': 384
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: -64
-        'y': 256
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 0
-        'y': 128
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: -64
-        'y': 0
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: -64
-        'y': -256
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: -256
-        'y': -64
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: -320
-        'y': 384
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: -320
-        'y': 896
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 256
-        'y': 1088
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 896
-        'y': 960
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 1344
-        'y': 960
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 1536
-        'y': 576
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 1408
-        'y': 256
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 1536
-        'y': -128
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 1088
-        'y': -192
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 384
-        'y': -320
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 832
-        'y': -320
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: -448
-        'y': 704
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: -448
-        'y': 64
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: -384
-        'y': -320
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 640
-        'y': -448
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 1280
-        'y': -384
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 1728
-        'y': 192
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 1664
-        'y': -448
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 1664
-        'y': 832
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 640
-        'y': 1216
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 1280
-        'y': 1152
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: -64
-        'y': 1088
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: -64
-        'y': 384
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: -64
-        'y': 128
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 320
-        'y': -64
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 576
-        'y': -64
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 832
-        'y': -64
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 1088
-        'y': -64
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 1280
-        'y': 192
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 1280
-        'y': 448
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 1152
-        'y': 768
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 896
-        'y': 768
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 640
-        'y': 768
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 384
-        'y': 768
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 128
-        'y': 768
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-      - x: 64
-        'y': -64
-        opacity: 1
-        tint: 16777215
-        scale:
-          x: 1
-          'y': 1
-        rotation: 0
-        uid: t6T4Q8T7T7F3q8
-        exts: {}
-        customProperties: {}
-        bindings: {}
-    tiles: []
-    extends:
-      lightAmbientColor: '#4F4F4F'
-    lastmod: 1737664899012
-    events:
-      - eventKey: OnRoomStart
-        code: >
-          transition.circleIn(425, 'FFC0CB');
-
-
-          #console.log 'room timer ' + timer
-
-
-          # asteroid timer
-
-          @timer1 = 1
-
-          # enemy timer
-
-          #@timer2 = 3
-
-
-          @score = 0
-
-          style = styles.get 'ScoreText'
-
-          @scoreLabel = new PIXI.Text 'Scoe: ' + @score, style
-
-          @addChild @scoreLabel
-
-          @scoreLabel.x = 30
-
-          @scoreLabel.y = 30
-
-          @scoreLabel.depth = 1000
-
-
-          @currentLives = parseInt(storage.get('lives'))
-
-          #@currentLives++
-
-          storage.set('lives', @currentLives)
-
-          style = styles.get 'LivesText'
-
-          @livesLabel = new PIXI.Text 'Lives: ' +
-          JSON.parse(storage.get('lives')), style
-
-          @addChild @livesLabel
-
-          @livesLabel.x = camera.width - 240
-
-          @livesLabel.y = 30
-
-          @livesLabel.depth = 1000
-
-
-          @currentRoomsCleared = parseInt(localStorage.roomsCleared)
-
-          @currentRoomsCleared++
-
-          localStorage.roomsCleared = @currentRoomsCleared
-
-
-          @mainUi = rooms.append 'UI_InGame'
-
-
-          soundSettings = 
-              volume: 0.15
-              loop: true
-
-          if(not sounds.playing('long_chat'))
-              sounds.play 'long_chat', soundSettings
-
-          if JSON.parse(storage.get('hasShieldPower')) == true
-              player = templates.list['Knight_Idle'][0]
-              myShield = templates.copy 'InGameShield', player.x, player.y
-              storage.set('currentlyHasShield', true)
-        arguments: {}
-        lib: core
-      - eventKey: Timer1
-        code: >
-          # asteroid timer
-
-          @timer1 = (random.range 3, 5) / localStorage.roomsCleared + 1
-
-
-          randomEnemy = random.dice 'Slime', 'Goblin'
-
-          #randomY = random camera.height
-
-          randomY = random.range((camera.height - 281), (camera.height + 281))
-          #281 added to the height on each side is proportional to 500 added to
-          the width on each side
-
-          randomX = random.dice((camera.left - 500), (camera.right + 500))
-
-          templates.copy randomEnemy, randomX, randomY
-        arguments:
-          name: Timer1
-          isUi: false
-        lib: core
-      - eventKey: OnDraw
-        code: >-
-          @scoreLabel.text = 'Score: ' + @score
-
-          @livesLabel.text = 'Lives: ' + JSON.parse(storage.get('lives'))
-
-
-          if not @transitioning and @score >
-          (JSON.parse(storage.get('roomsCleared')) * 50.0)
-              @transitioning = true # Needed to add transitioning flag, otherwise room switch happens every frame until transition is done
-              if(rooms.current.name is 'Level1')
-                  transition.circleOut(425, 'FFC0CB')
-                  .then ->
-                      rooms.switch 'Level2'
-                      @transitioning = false
-              else if(rooms.current.name is 'Level2')
-                  transition.circleOut(425, 'FFC0CB')
-                  .then ->
-                      rooms.switch 'Level3'
-                      @transitioning = false
-              else if(rooms.current.name is 'Level3')
-                  transition.circleOut(425, 'FFC0CB')
-                  .then ->
-                      rooms.switch 'Level1'
-                      @transitioning = false
-        arguments: {}
-        lib: core
-    uid: FGhG1GdHrF5bqR
     behaviors: []
     extendTypes: ''
   - type: room
@@ -3882,9 +2891,21 @@ assets:
         exts: {}
         customProperties: {}
         bindings: {}
+      - x: 384
+        'y': 576
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 0.29976581
+          'y': 0.33684211
+        rotation: 0
+        uid: DdjD7r6wcmt7gr
+        exts: {}
+        customProperties: {}
+        bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1737513282013
+    lastmod: 1739404865995
     events:
       - eventKey: OnRoomStart
         code: >-
@@ -4088,32 +3109,39 @@ assets:
         exts: {}
         customProperties: {}
         bindings: {}
+      - x: 1109
+        'y': 533
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1.24418605
+          'y': 1.24418605
+        rotation: 0
+        uid: rfwgmnG4H4Lpc5
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 192
+        'y': 512
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: QKJz8N9w457JKm
+        exts: {}
+        customProperties: {}
+        bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1737594380873
+    lastmod: 1739478301432
     events:
       - eventKey: OnStep
         code: |
-          vkeys.joystick({
-              key: 'Vjoy1',
-              tex: 'TrackPad',
-              trackballTex: 'TrackBall',
-              depth: 100,
-              alpha: 0.7,
-              x: () => camera.left + 170,
-              y: () => camera.bottom - 170,
-              container: rooms.templates.UI_InGame
-          });
 
-          keyAttack = vkeys.button({
-              key: 'Vk1',
-              texNormal: 'Attack',
-              texActive: 'Attack_Pressed',
-              x: () => camera.right - 130,
-              y: () => camera.bottom - 130,
-              alpha: 0.7,
-              depth: 100
-          });
+
+
 
           #for xp_fill in templates.list['xp_fill']
           #    if(parseInt(localStorage.xp) < 10)
@@ -6434,7 +5462,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1737591285492
+    lastmod: 1739405215905
     events:
       - eventKey: OnRoomStart
         code: >-
@@ -8888,14 +7916,10 @@ assets:
     loopAnimation: true
     animationFPS: 30
     visible: true
-    events:
-      - eventKey: OnStep
-        lib: core
-        code: '@move()'
-        arguments: {}
+    events: []
     extends:
       cgroup: ''
-    lastmod: 1737518084814
+    lastmod: 1739405607018
     uid: JjFQM6fmNjL8mw
     behaviors: []
     extendTypes: ''
@@ -9040,7 +8064,7 @@ assets:
         lib: core
     extends:
       cgroup: ''
-    lastmod: 1737576995167
+    lastmod: 1739477846887
     uid: QmCrNnJNRDdF7p
     behaviors: []
     extendTypes: ''
@@ -9069,6 +8093,1091 @@ assets:
       cgroup: ''
     lastmod: 1737576979226
     uid: WjHmgwBfnq3J7M
+    behaviors: []
+    extendTypes: ''
+  - type: template
+    name: Try_Again_Button
+    depth: 0
+    texture: kPz4TCbgP2J43h
+    playAnimationOnStart: false
+    loopAnimation: true
+    animationFPS: 30
+    visible: true
+    events:
+      - eventKey: OnStep
+        lib: core
+        code: this.move()
+        arguments: {}
+      - eventKey: OnPointerClick
+        code: |
+          @kill = true
+          rooms.switch 'MainMenu'
+        arguments: {}
+        lib: core
+    extends:
+      cgroup: ''
+    lastmod: 1739404766977
+    uid: DdjD7r6wcmt7gr
+    behaviors: []
+    baseClass: AnimatedSprite
+    nineSliceSettings:
+      left: 16
+      top: 16
+      right: 16
+      bottom: 16
+    style: -1
+    extendTypes: ''
+  - type: room
+    oncreate: ''
+    onstep: ''
+    ondraw: ''
+    onleave: ''
+    gridX: 64
+    gridY: 64
+    diagonalGrid: false
+    simulate: true
+    width: 1280
+    height: 720
+    restrictCamera: false
+    restrictMaxX: 1280
+    restrictMinX: 1280
+    restrictMaxY: 720
+    restrictMinY: 720
+    isUi: false
+    name: Level1
+    backgroundColor: '#000000'
+    follow: -1
+    backgrounds:
+      - depth: 0
+        texture: BRjG23tGNn5BDH
+        shiftX: 0
+        shiftY: 0
+        parallaxX: 1
+        parallaxY: 1
+        movementX: 0
+        movementY: 0
+        scaleX: 1
+        scaleY: 1
+        repeat: repeat
+    copies:
+      - x: 576
+        'y': 384
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: TPpGgD432gcqQp
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 744
+        'y': 192
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1.8333333299999999
+          'y': 1
+        rotation: 0
+        uid: WM34ndP8KT723D
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 328
+        'y': 512
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1.16666667
+          'y': 1
+        rotation: 0
+        uid: WM34ndP8KT723D
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 64
+        'y': 0
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 192
+        'y': -64
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 320
+        'y': 0
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 448
+        'y': -64
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 576
+        'y': 0
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 704
+        'y': -64
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 832
+        'y': 0
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 960
+        'y': -64
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1088
+        'y': 0
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1216
+        'y': -64
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1280
+        'y': 64
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1216
+        'y': 192
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1280
+        'y': 320
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1216
+        'y': 448
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1280
+        'y': 576
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1216
+        'y': 640
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1152
+        'y': 704
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1024
+        'y': 768
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 896
+        'y': 704
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 768
+        'y': 768
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 640
+        'y': 704
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 512
+        'y': 768
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 384
+        'y': 704
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 256
+        'y': 768
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 128
+        'y': 704
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 0
+        'y': 768
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: -64
+        'y': 704
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 0
+        'y': 576
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: -64
+        'y': 512
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 0
+        'y': 384
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: -64
+        'y': 256
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 0
+        'y': 128
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: -64
+        'y': 0
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: -64
+        'y': -256
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: -256
+        'y': -64
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: -320
+        'y': 384
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: -320
+        'y': 896
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 256
+        'y': 1088
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 896
+        'y': 960
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1344
+        'y': 960
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1536
+        'y': 576
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1408
+        'y': 256
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1536
+        'y': -128
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1088
+        'y': -192
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 384
+        'y': -320
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 832
+        'y': -320
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: -448
+        'y': 704
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: -448
+        'y': 64
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: -384
+        'y': -320
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 640
+        'y': -448
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1280
+        'y': -384
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1728
+        'y': 192
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1664
+        'y': -448
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1664
+        'y': 832
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 640
+        'y': 1216
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1280
+        'y': 1152
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: -64
+        'y': 1088
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: -64
+        'y': 384
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: -64
+        'y': 128
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 320
+        'y': -64
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 576
+        'y': -64
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 832
+        'y': -64
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1088
+        'y': -64
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1280
+        'y': 192
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1280
+        'y': 448
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 1152
+        'y': 768
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 896
+        'y': 768
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 640
+        'y': 768
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 384
+        'y': 768
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 128
+        'y': 768
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+      - x: 64
+        'y': -64
+        opacity: 1
+        tint: 16777215
+        scale:
+          x: 1
+          'y': 1
+        rotation: 0
+        uid: t6T4Q8T7T7F3q8
+        exts: {}
+        customProperties: {}
+        bindings: {}
+    tiles: []
+    extends:
+      lightAmbientColor: '#4F4F4F'
+    lastmod: 1739475920362
+    events:
+      - eventKey: OnRoomStart
+        code: >
+          transition.circleIn(425, 'FFC0CB');
+
+
+          #console.log 'room timer ' + timer
+
+
+          # asteroid timer
+
+          @timer1 = 1
+
+          # enemy timer
+
+          #@timer2 = 3
+
+
+          @score = 0
+
+          style = styles.get 'ScoreText'
+
+          @scoreLabel = new PIXI.Text 'Scoe: ' + @score, style
+
+          @addChild @scoreLabel
+
+          @scoreLabel.x = 30
+
+          @scoreLabel.y = 30
+
+          @scoreLabel.depth = 1000
+
+
+          @currentLives = parseInt(storage.get('lives'))
+
+          #@currentLives++
+
+          storage.set('lives', @currentLives)
+
+          style = styles.get 'LivesText'
+
+          @livesLabel = new PIXI.Text 'Lives: ' +
+          JSON.parse(storage.get('lives')), style
+
+          @addChild @livesLabel
+
+          @livesLabel.x = camera.width - 240
+
+          @livesLabel.y = 30
+
+          @livesLabel.depth = 1000
+
+
+          @currentRoomsCleared = parseInt(localStorage.roomsCleared)
+
+          @currentRoomsCleared++
+
+          localStorage.roomsCleared = @currentRoomsCleared
+
+
+          @mainUi = rooms.append 'UI_InGame'
+
+
+          soundSettings = 
+              volume: 0.15
+              loop: true
+
+          if(not sounds.playing('long_chat'))
+              sounds.play 'long_chat', soundSettings
+
+          if JSON.parse(storage.get('hasShieldPower')) == true
+              player = templates.list['Knight_Idle'][0]
+              myShield = templates.copy 'InGameShield', player.x, player.y
+              storage.set('currentlyHasShield', true)
+        arguments: {}
+        lib: core
+      - eventKey: Timer1
+        code: >
+          # asteroid timer
+
+          @timer1 = (random.range 3, 5) / localStorage.roomsCleared + 1
+
+
+          randomEnemy = random.dice 'Slime', 'Goblin'
+
+          #randomY = random camera.height
+
+          randomY = random.range((camera.height - 281), (camera.height + 281))
+          #281 added to the height on each side is proportional to 500 added to
+          the width on each side
+
+          randomX = random.dice((camera.left - 500), (camera.right + 500))
+
+          templates.copy randomEnemy, randomX, randomY
+        arguments:
+          name: Timer1
+          isUi: false
+        lib: core
+      - eventKey: OnDraw
+        code: >-
+          @scoreLabel.text = 'Score: ' + @score
+
+          @livesLabel.text = 'Lives: ' + JSON.parse(storage.get('lives'))
+
+
+          if not @transitioning and @score >
+          (JSON.parse(storage.get('roomsCleared')) * 50.0)
+              @transitioning = true # Needed to add transitioning flag, otherwise room switch happens every frame until transition is done
+              if(rooms.current.name is 'Level1')
+                  transition.circleOut(425, 'FFC0CB')
+                  .then ->
+                      rooms.switch 'Level2'
+                      @transitioning = false
+              else if(rooms.current.name is 'Level2')
+                  transition.circleOut(425, 'FFC0CB')
+                  .then ->
+                      rooms.switch 'Level3'
+                      @transitioning = false
+              else if(rooms.current.name is 'Level3')
+                  transition.circleOut(425, 'FFC0CB')
+                  .then ->
+                      rooms.switch 'Level1'
+                      @transitioning = false
+        arguments: {}
+        lib: core
+    uid: fnGcg987Pmh8mq
     behaviors: []
     extendTypes: ''
 globalVars: []
