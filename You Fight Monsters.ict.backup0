@@ -328,7 +328,7 @@ assets:
       lightColor: '#FF1717'
       lightOpacity: false
       lightScale: 500
-    lastmod: 1739479003107
+    lastmod: 1739481047122
     uid: TPpGgD432gcqQp
     behaviors: []
     baseClass: AnimatedSprite
@@ -1617,11 +1617,13 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1739480565868
+    lastmod: 1739481855858
     events:
       - eventKey: OnRoomStart
         code: |
           transition.circleIn(425, 'FFC0CB');
+
+          @score = 0
 
           # asteroid timer
           @timer1 = 1
@@ -1655,8 +1657,10 @@ assets:
         lib: core
       - eventKey: OnDraw
         code: >
-          if not @transitioning and @score > (storage.get('roomsCleared') *
-          50.0)
+          @score = rooms.current.score
+
+          if not @transitioning and @score >
+          (JSON.parse(storage.get('roomsCleared')) * 40.0)
               @transitioning = true # Needed to add transitioning flag, otherwise room switch happens every frame until transition is done
               if(rooms.current.name is 'Level1')
                   transition.circleOut(425, 'FFC0CB')
@@ -2565,11 +2569,13 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1739480586869
+    lastmod: 1739481868639
     events:
       - eventKey: OnRoomStart
         code: |-
           transition.circleIn(425, 'FFC0CB');
+
+          @score = 0
 
           # asteroid timer
           @timer1 = 1
@@ -2603,8 +2609,10 @@ assets:
         lib: core
       - eventKey: OnDraw
         code: >-
-          if not @transitioning and @score > (storage.get('roomsCleared') *
-          50.0)
+          @score = rooms.current.score
+
+          if not @transitioning and @score >
+          (JSON.parse(storage.get('roomsCleared')) * 40.0)
               @transitioning = true # Needed to add transitioning flag, otherwise room switch happens every frame until transition is done
               if(rooms.current.name is 'Level1')
                   transition.circleOut(425, 'FFC0CB')
@@ -2794,7 +2802,7 @@ assets:
         customProperties: {}
         bindings: {}
       - x: 384
-        'y': 576
+        'y': 640
         opacity: 1
         tint: 16777215
         scale:
@@ -2807,7 +2815,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1739404865995
+    lastmod: 1739481300086
     events:
       - eventKey: OnRoomStart
         code: >-
@@ -2831,7 +2839,7 @@ assets:
 
           @EndGameText.x = camera.x - 550
 
-          @EndGameText.y = camera.y - 300
+          @EndGameText.y = camera.y - 320
 
           @EndGameText.depth = 1000
 
@@ -2846,9 +2854,20 @@ assets:
 
           @gameOverLabel.x = camera.x - 550
 
-          @gameOverLabel.y = camera.y + 100
+          @gameOverLabel.y = camera.y - 20
 
           @gameOverLabel.depth = 1000
+
+
+          @tryAgainLabel = new PIXI.Text 'Click to play again!', style
+
+          @addChild @tryAgainLabel
+
+          @tryAgainLabel.x = camera.x - 450
+
+          @tryAgainLabel.y = camera.y + 220
+
+          @tryAgainLabel.depth = 1000
 
 
           i = 0
@@ -3037,7 +3056,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1739480529526
+    lastmod: 1739481714113
     events:
       - eventKey: OnStep
         code: |
@@ -3116,6 +3135,7 @@ assets:
         lib: core
       - eventKey: OnDraw
         code: |-
+          @score = rooms.current.score
           @scoreLabel.text = 'Score: ' + @score
           @livesLabel.text = 'Lives: ' + JSON.parse(storage.get('lives'))
         arguments: {}
@@ -8994,11 +9014,13 @@ assets:
     tiles: []
     extends:
       lightAmbientColor: '#4F4F4F'
-    lastmod: 1739480514826
+    lastmod: 1739481845302
     events:
       - eventKey: OnRoomStart
         code: |
           transition.circleIn(425, 'FFC0CB');
+
+          @score = 0
 
           #console.log 'room timer ' + timer
 
@@ -9050,8 +9072,10 @@ assets:
         lib: core
       - eventKey: OnDraw
         code: >-
+          @score = rooms.current.score
+
           if not @transitioning and @score >
-          (JSON.parse(storage.get('roomsCleared')) * 50.0)
+          (JSON.parse(storage.get('roomsCleared')) * 40.0)
               @transitioning = true # Needed to add transitioning flag, otherwise room switch happens every frame until transition is done
               if(rooms.current.name is 'Level1')
                   transition.circleOut(425, 'FFC0CB')
