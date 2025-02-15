@@ -1617,11 +1617,13 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1739480565868
+    lastmod: 1739571133848
     events:
       - eventKey: OnRoomStart
         code: |
           transition.circleIn(425, 'FFC0CB');
+
+          @score = 0
 
           # asteroid timer
           @timer1 = 1
@@ -1645,7 +1647,11 @@ assets:
           # asteroid timer
           @timer1 = (random.range 3, 5) / localStorage.roomsCleared + 1
 
-          randomEnemy = random.dice 'Slime', 'Goblin'
+          if (localStorage.roomsCleared > 1)
+              randomEnemy = random.dice 'Slime', 'Goblin', 'Fly'
+          else
+              randomEnemy = random.dice 'Slime', 'Goblin'
+              
           randomY = random camera.height
           randomX = random.dice camera.left, camera.right
           templates.copy randomEnemy, randomX, randomY, -100
@@ -1655,8 +1661,10 @@ assets:
         lib: core
       - eventKey: OnDraw
         code: >
-          if not @transitioning and @score > (storage.get('roomsCleared') *
-          50.0)
+          @score = rooms.current.score
+
+          if not @transitioning and @score >
+          (JSON.parse(storage.get('roomsCleared')) * 40.0)
               @transitioning = true # Needed to add transitioning flag, otherwise room switch happens every frame until transition is done
               if(rooms.current.name is 'Level1')
                   transition.circleOut(425, 'FFC0CB')
@@ -2565,11 +2573,13 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1739480586869
+    lastmod: 1739571144111
     events:
       - eventKey: OnRoomStart
         code: |-
           transition.circleIn(425, 'FFC0CB');
+
+          @score = 0
 
           # asteroid timer
           @timer1 = 1
@@ -2593,7 +2603,11 @@ assets:
           # asteroid timer
           @timer1 = (random.range 3, 5) / localStorage.roomsCleared + 1
 
-          randomEnemy = random.dice 'Slime', 'Goblin'
+          if (localStorage.roomsCleared > 1)
+              randomEnemy = random.dice 'Slime', 'Goblin', 'Fly'
+          else
+              randomEnemy = random.dice 'Slime', 'Goblin'
+
           randomY = random camera.height
           randomX = random.dice camera.left, camera.right
           templates.copy randomEnemy, randomX, randomY, -100
@@ -2603,8 +2617,10 @@ assets:
         lib: core
       - eventKey: OnDraw
         code: >-
-          if not @transitioning and @score > (storage.get('roomsCleared') *
-          50.0)
+          @score = rooms.current.score
+
+          if not @transitioning and @score >
+          (JSON.parse(storage.get('roomsCleared')) * 40.0)
               @transitioning = true # Needed to add transitioning flag, otherwise room switch happens every frame until transition is done
               if(rooms.current.name is 'Level1')
                   transition.circleOut(425, 'FFC0CB')
@@ -3048,7 +3064,7 @@ assets:
         bindings: {}
     tiles: []
     extends: {}
-    lastmod: 1739480529526
+    lastmod: 1739481714113
     events:
       - eventKey: OnStep
         code: |
@@ -3127,6 +3143,7 @@ assets:
         lib: core
       - eventKey: OnDraw
         code: |-
+          @score = rooms.current.score
           @scoreLabel.text = 'Score: ' + @score
           @livesLabel.text = 'Lives: ' + JSON.parse(storage.get('lives'))
         arguments: {}
@@ -6761,7 +6778,7 @@ assets:
     source: >-
       C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Dungeon Crawler
       16x16\Flag_Red.png
-  - lastmod: 1707800860580
+  - lastmod: 1739571247201
     type: texture
     name: Fly
     untill: 0
@@ -6769,8 +6786,8 @@ assets:
       - 4
       - 1
     axis:
-      - 0
-      - 0
+      - 8
+      - 8
     marginx: 0
     marginy: 0
     imgWidth: 64
@@ -6780,11 +6797,11 @@ assets:
     offx: 0
     offy: 0
     origname: iwMg8NM5HgMbKT2.png
-    shape: rect
-    left: 0
-    right: 16
-    top: 0
-    bottom: 16
+    shape: circle
+    left: 8
+    right: 8
+    top: 8
+    bottom: 8
     uid: wMg8NM5HgMbKT2
     padding: 1
     isBlank: false
@@ -6792,6 +6809,7 @@ assets:
     source: >-
       C:\Users\joshb\AppData\Local\ct.js\bundledAssets\textures\Dungeon Crawler
       16x16\Fly_4x1.png
+    r: 8
   - lastmod: 1707800860580
     type: texture
     name: FullTilemap
@@ -7685,7 +7703,7 @@ assets:
         lib: core
         code: |-
           if JSON.parse(storage.get('roomsCleared')) > 3
-              console.log 'wall Frame counter ' + @frameCounter
+              #console.log 'wall Frame counter ' + @frameCounter
               @frameCounter++
               if @frameCounter < 80
                   @x -= 0.7 * u.delta * @mySpeed
@@ -7716,7 +7734,7 @@ assets:
         lib: core
     extends:
       cgroup: Wall
-    lastmod: 1737434725313
+    lastmod: 1739577694195
     uid: WM34ndP8KT723D
     behaviors: []
     extendTypes: ''
@@ -9005,11 +9023,13 @@ assets:
     tiles: []
     extends:
       lightAmbientColor: '#4F4F4F'
-    lastmod: 1739480514826
+    lastmod: 1739577631725
     events:
       - eventKey: OnRoomStart
         code: |
           transition.circleIn(425, 'FFC0CB');
+
+          @score = 0
 
           #console.log 'room timer ' + timer
 
@@ -9044,7 +9064,14 @@ assets:
           @timer1 = (random.range 3, 5) / localStorage.roomsCleared + 1
 
 
-          randomEnemy = random.dice 'Slime', 'Goblin'
+          if (localStorage.roomsCleared > 2)
+              randomBTS = random.dice 'j_hope', 'jimin', 'jin', 'jungkook', 'RM', 'suga', 'V'
+              randomEnemy = random.dice 'Slime', 'Goblin', 'Fly', randomBTS
+              console.log('bts ', randomBTS, 'randomEnemy ', randomEnemy)
+          else if (localStorage.roomsCleared > 1)
+              randomEnemy = random.dice 'Slime', 'Goblin', 'Fly'
+          else
+              randomEnemy = random.dice 'Slime', 'Goblin'
 
           #randomY = random camera.height
 
@@ -9061,8 +9088,10 @@ assets:
         lib: core
       - eventKey: OnDraw
         code: >-
+          @score = rooms.current.score
+
           if not @transitioning and @score >
-          (JSON.parse(storage.get('roomsCleared')) * 50.0)
+          (JSON.parse(storage.get('roomsCleared')) * 40.0)
               @transitioning = true # Needed to add transitioning flag, otherwise room switch happens every frame until transition is done
               if(rooms.current.name is 'Level1')
                   transition.circleOut(425, 'FFC0CB')
@@ -9083,5 +9112,817 @@ assets:
         lib: core
     uid: fnGcg987Pmh8mq
     behaviors: []
+    extendTypes: ''
+  - type: template
+    name: Fly
+    depth: 0
+    texture: wMg8NM5HgMbKT2
+    playAnimationOnStart: false
+    loopAnimation: true
+    animationFPS: 30
+    visible: true
+    events:
+      - eventKey: OnStep
+        lib: core
+        code: |-
+          if @direction > 90 and @direction < 270
+              @tex = 'Fly'
+              @scale.x = -4
+              @play()
+          else if @direction < 90 or @direction > 270
+              @tex = 'Fly'
+              @scale.x = 4
+              @play()
+        arguments: {}
+      - eventKey: OnCreate
+        code: |-
+          this.animationSpeed = 0.2;
+          this.scale.x = 4;
+          this.scale.y = 4;
+
+          @speed = 120
+          @direction = 90
+          @isBeingHit = false
+        arguments: {}
+        lib: core
+      - eventKey: collisionTemplate
+        code: |-
+          @kill = true
+
+          sounds.play 'Impact_01'
+        arguments:
+          template: TPpGgD432gcqQp
+        lib: place
+      - eventKey: collisionTemplate
+        code: '#console.log ''im hit'''
+        arguments:
+          template: NLBH447HwkR92N
+        lib: place
+    extends:
+      cgroup: Hostile
+      Test: ''
+      SpeedMultiplier: 1.5
+      HP: 2
+    lastmod: 1739570763150
+    uid: K7MJf6n9Mr8WFD
+    group: Qp976PKNFcFJLC
+    behaviors:
+      - 6MjBr7mJtG2gw9
+    baseClass: AnimatedSprite
+    nineSliceSettings:
+      left: 16
+      top: 16
+      right: 16
+      bottom: 16
+    style: -1
+    extendTypes: ''
+  - lastmod: 1739576757513
+    type: texture
+    name: giselle
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 45
+      - 45
+    marginx: 0
+    marginy: 0
+    imgWidth: 90
+    imgHeight: 90
+    width: 90
+    height: 90
+    offx: 0
+    offy: 0
+    origname: iwPBhHHhF48WNc5.png
+    shape: rect
+    left: 45
+    right: 45
+    top: 45
+    bottom: 45
+    uid: wPBhHHhF48WNc5
+    padding: 1
+    isBlank: false
+    source: 'D:\Valentines2025\downloads\giselle.jpg'
+  - lastmod: 1739576768815
+    type: texture
+    name: j_hope
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 45
+      - 45
+    marginx: 0
+    marginy: 0
+    imgWidth: 90
+    imgHeight: 90
+    width: 90
+    height: 90
+    offx: 0
+    offy: 0
+    origname: imh9K6Qf9CtNcJn.png
+    shape: rect
+    left: 45
+    right: 45
+    top: 45
+    bottom: 45
+    uid: mh9K6Qf9CtNcJn
+    padding: 1
+    isBlank: false
+    source: 'D:\Valentines2025\downloads\j_hope.jpg'
+  - lastmod: 1739576777053
+    type: texture
+    name: jimin
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 45
+      - 45
+    marginx: 0
+    marginy: 0
+    imgWidth: 90
+    imgHeight: 90
+    width: 90
+    height: 90
+    offx: 0
+    offy: 0
+    origname: ifKQfDch25Gp5RD.png
+    shape: rect
+    left: 45
+    right: 45
+    top: 45
+    bottom: 45
+    uid: fKQfDch25Gp5RD
+    padding: 1
+    isBlank: false
+    source: 'D:\Valentines2025\downloads\jimin.jpg'
+  - lastmod: 1739576784547
+    type: texture
+    name: jin
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 45
+      - 45
+    marginx: 0
+    marginy: 0
+    imgWidth: 90
+    imgHeight: 90
+    width: 90
+    height: 90
+    offx: 0
+    offy: 0
+    origname: iBq6tL2c8Q2mTQ2.png
+    shape: rect
+    left: 45
+    right: 45
+    top: 45
+    bottom: 45
+    uid: Bq6tL2c8Q2mTQ2
+    padding: 1
+    isBlank: false
+    source: 'D:\Valentines2025\downloads\jin.jpg'
+  - lastmod: 1739576791427
+    type: texture
+    name: jungkook
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 45
+      - 45
+    marginx: 0
+    marginy: 0
+    imgWidth: 90
+    imgHeight: 90
+    width: 90
+    height: 90
+    offx: 0
+    offy: 0
+    origname: iRfF3rTd9MR4zFg.png
+    shape: rect
+    left: 45
+    right: 45
+    top: 45
+    bottom: 45
+    uid: RfF3rTd9MR4zFg
+    padding: 1
+    isBlank: false
+    source: 'D:\Valentines2025\downloads\jungkook.jpg'
+  - lastmod: 1739576798810
+    type: texture
+    name: karina
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 45
+      - 45
+    marginx: 0
+    marginy: 0
+    imgWidth: 90
+    imgHeight: 90
+    width: 90
+    height: 90
+    offx: 0
+    offy: 0
+    origname: i2BG6qgfjN92L39.png
+    shape: rect
+    left: 45
+    right: 45
+    top: 45
+    bottom: 45
+    uid: 2BG6qgfjN92L39
+    padding: 1
+    isBlank: false
+    source: 'D:\Valentines2025\downloads\karina.jpg'
+  - lastmod: 1739576803927
+    type: texture
+    name: ningning
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 45
+      - 45
+    marginx: 0
+    marginy: 0
+    imgWidth: 90
+    imgHeight: 90
+    width: 90
+    height: 90
+    offx: 0
+    offy: 0
+    origname: iKQMHmjd8R828RB.png
+    shape: rect
+    left: 45
+    right: 45
+    top: 45
+    bottom: 45
+    uid: KQMHmjd8R828RB
+    padding: 1
+    isBlank: false
+    source: 'D:\Valentines2025\downloads\ningning.jpg'
+  - lastmod: 1739576810010
+    type: texture
+    name: RM
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 45
+      - 45
+    marginx: 0
+    marginy: 0
+    imgWidth: 90
+    imgHeight: 90
+    width: 90
+    height: 90
+    offx: 0
+    offy: 0
+    origname: iNGWp2NP3BmKppw.png
+    shape: rect
+    left: 45
+    right: 45
+    top: 45
+    bottom: 45
+    uid: NGWp2NP3BmKppw
+    padding: 1
+    isBlank: false
+    source: 'D:\Valentines2025\downloads\RM.jpg'
+  - lastmod: 1739576815508
+    type: texture
+    name: suga
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 45
+      - 45
+    marginx: 0
+    marginy: 0
+    imgWidth: 90
+    imgHeight: 90
+    width: 90
+    height: 90
+    offx: 0
+    offy: 0
+    origname: iwprMwF7zk9c5tW.png
+    shape: rect
+    left: 45
+    right: 45
+    top: 45
+    bottom: 45
+    uid: wprMwF7zk9c5tW
+    padding: 1
+    isBlank: false
+    source: 'D:\Valentines2025\downloads\suga.jpg'
+  - lastmod: 1739576820793
+    type: texture
+    name: V
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 45
+      - 45
+    marginx: 0
+    marginy: 0
+    imgWidth: 90
+    imgHeight: 90
+    width: 90
+    height: 90
+    offx: 0
+    offy: 0
+    origname: ib6JMFFhHnq3tFb.png
+    shape: rect
+    left: 45
+    right: 45
+    top: 45
+    bottom: 45
+    uid: b6JMFFhHnq3tFb
+    padding: 1
+    isBlank: false
+    source: 'D:\Valentines2025\downloads\V.jpg'
+  - lastmod: 1739576826182
+    type: texture
+    name: winter
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 45
+      - 45
+    marginx: 0
+    marginy: 0
+    imgWidth: 90
+    imgHeight: 90
+    width: 90
+    height: 90
+    offx: 0
+    offy: 0
+    origname: ibKKKFHzfTkRjkz.png
+    shape: rect
+    left: 45
+    right: 45
+    top: 45
+    bottom: 45
+    uid: bKKKFHzfTkRjkz
+    padding: 1
+    isBlank: false
+    source: 'D:\Valentines2025\downloads\winter.jpg'
+  - type: template
+    name: j_hope
+    depth: 0
+    texture: mh9K6Qf9CtNcJn
+    playAnimationOnStart: false
+    loopAnimation: true
+    animationFPS: 30
+    visible: true
+    events:
+      - eventKey: OnStep
+        lib: core
+        code: |-
+          if @direction > 90 and @direction < 270
+              @tex = 'j_hope'
+              @scale.x = -0.5
+              @play()
+          else if @direction < 90 or @direction > 270
+              @tex = 'j_hope'
+              @scale.x = 0.5
+              @play()
+        arguments: {}
+      - eventKey: OnCreate
+        code: |-
+          this.animationSpeed = 0.2;
+          this.scale.x = 0.5;
+          this.scale.y = 0.5;
+
+          @speed = 70
+          @direction = 90
+          @isBeingHit = false
+        arguments: {}
+        lib: core
+      - eventKey: collisionTemplate
+        code: |-
+          @kill = true
+
+          sounds.play 'Impact_01'
+        arguments:
+          template: TPpGgD432gcqQp
+        lib: place
+      - eventKey: collisionTemplate
+        code: '#console.log ''im hit'''
+        arguments:
+          template: NLBH447HwkR92N
+        lib: place
+    extends:
+      cgroup: Hostile
+      Test: ''
+      SpeedMultiplier: 1.5
+      HP: 2
+    lastmod: 1739577884953
+    uid: 49KbF3P589Kwfr
+    group: Qp976PKNFcFJLC
+    behaviors:
+      - 6MjBr7mJtG2gw9
+    baseClass: AnimatedSprite
+    nineSliceSettings:
+      left: 16
+      top: 16
+      right: 16
+      bottom: 16
+    style: -1
+    extendTypes: ''
+  - type: template
+    name: jungkook
+    depth: 0
+    texture: RfF3rTd9MR4zFg
+    playAnimationOnStart: false
+    loopAnimation: true
+    animationFPS: 30
+    visible: true
+    events:
+      - eventKey: OnStep
+        lib: core
+        code: |-
+          if @direction > 90 and @direction < 270
+              @tex = 'jungkook'
+              @scale.x = -0.5
+              @play()
+          else if @direction < 90 or @direction > 270
+              @tex = 'jungkook'
+              @scale.x = 0.5
+              @play()
+        arguments: {}
+      - eventKey: OnCreate
+        code: |-
+          this.animationSpeed = 0.2;
+          this.scale.x = 0.5;
+          this.scale.y = 0.5;
+
+          @speed = 70
+          @direction = 90
+          @isBeingHit = false
+        arguments: {}
+        lib: core
+      - eventKey: collisionTemplate
+        code: |-
+          @kill = true
+
+          sounds.play 'Impact_01'
+        arguments:
+          template: TPpGgD432gcqQp
+        lib: place
+      - eventKey: collisionTemplate
+        code: '#console.log ''im hit'''
+        arguments:
+          template: NLBH447HwkR92N
+        lib: place
+    extends:
+      cgroup: Hostile
+      Test: ''
+      SpeedMultiplier: 1.5
+      HP: 2
+    lastmod: 1739577871837
+    uid: bWt4pWPkdHbjfK
+    group: Qp976PKNFcFJLC
+    behaviors:
+      - 6MjBr7mJtG2gw9
+    baseClass: AnimatedSprite
+    nineSliceSettings:
+      left: 16
+      top: 16
+      right: 16
+      bottom: 16
+    style: -1
+    extendTypes: ''
+  - type: template
+    name: jimin
+    depth: 0
+    texture: fKQfDch25Gp5RD
+    playAnimationOnStart: false
+    loopAnimation: true
+    animationFPS: 30
+    visible: true
+    events:
+      - eventKey: OnStep
+        lib: core
+        code: |-
+          if @direction > 90 and @direction < 270
+              @tex = 'jimin'
+              @scale.x = -0.5
+              @play()
+          else if @direction < 90 or @direction > 270
+              @tex = 'jimin'
+              @scale.x = 0.5
+              @play()
+        arguments: {}
+      - eventKey: OnCreate
+        code: |-
+          this.animationSpeed = 0.2;
+          this.scale.x = 0.5;
+          this.scale.y = 0.5;
+
+          @speed = 70
+          @direction = 90
+          @isBeingHit = false
+        arguments: {}
+        lib: core
+      - eventKey: collisionTemplate
+        code: |-
+          @kill = true
+
+          sounds.play 'Impact_01'
+        arguments:
+          template: TPpGgD432gcqQp
+        lib: place
+      - eventKey: collisionTemplate
+        code: '#console.log ''im hit'''
+        arguments:
+          template: NLBH447HwkR92N
+        lib: place
+    extends:
+      cgroup: Hostile
+      Test: ''
+      SpeedMultiplier: 1.5
+      HP: 2
+    lastmod: 1739577832729
+    uid: tHQQqkc9q65MK9
+    group: Qp976PKNFcFJLC
+    behaviors:
+      - 6MjBr7mJtG2gw9
+    baseClass: AnimatedSprite
+    nineSliceSettings:
+      left: 16
+      top: 16
+      right: 16
+      bottom: 16
+    style: -1
+    extendTypes: ''
+  - type: template
+    name: jin
+    depth: 0
+    texture: Bq6tL2c8Q2mTQ2
+    playAnimationOnStart: false
+    loopAnimation: true
+    animationFPS: 30
+    visible: true
+    events:
+      - eventKey: OnStep
+        lib: core
+        code: |-
+          if @direction > 90 and @direction < 270
+              @tex = 'jin'
+              @scale.x = -0.5
+              @play()
+          else if @direction < 90 or @direction > 270
+              @tex = 'jin'
+              @scale.x = 0.5
+              @play()
+        arguments: {}
+      - eventKey: OnCreate
+        code: |-
+          this.animationSpeed = 0.2;
+          this.scale.x = 0.5;
+          this.scale.y = 0.5;
+
+          @speed = 70
+          @direction = 90
+          @isBeingHit = false
+        arguments: {}
+        lib: core
+      - eventKey: collisionTemplate
+        code: |-
+          @kill = true
+
+          sounds.play 'Impact_01'
+        arguments:
+          template: TPpGgD432gcqQp
+        lib: place
+      - eventKey: collisionTemplate
+        code: '#console.log ''im hit'''
+        arguments:
+          template: NLBH447HwkR92N
+        lib: place
+    extends:
+      cgroup: Hostile
+      Test: ''
+      SpeedMultiplier: 1.5
+      HP: 2
+    lastmod: 1739577863549
+    uid: FFpzg259J1nM17
+    group: Qp976PKNFcFJLC
+    behaviors:
+      - 6MjBr7mJtG2gw9
+    baseClass: AnimatedSprite
+    nineSliceSettings:
+      left: 16
+      top: 16
+      right: 16
+      bottom: 16
+    style: -1
+    extendTypes: ''
+  - type: template
+    name: RM
+    depth: 0
+    texture: NGWp2NP3BmKppw
+    playAnimationOnStart: false
+    loopAnimation: true
+    animationFPS: 30
+    visible: true
+    events:
+      - eventKey: OnStep
+        lib: core
+        code: |-
+          if @direction > 90 and @direction < 270
+              @tex = 'RM'
+              @scale.x = -0.5
+              @play()
+          else if @direction < 90 or @direction > 270
+              @tex = 'RM'
+              @scale.x = 0.5
+              @play()
+        arguments: {}
+      - eventKey: OnCreate
+        code: |-
+          this.animationSpeed = 0.2;
+          this.scale.x = 0.5;
+          this.scale.y = 0.5;
+
+          @speed = 70
+          @direction = 90
+          @isBeingHit = false
+        arguments: {}
+        lib: core
+      - eventKey: collisionTemplate
+        code: |-
+          @kill = true
+
+          sounds.play 'Impact_01'
+        arguments:
+          template: TPpGgD432gcqQp
+        lib: place
+      - eventKey: collisionTemplate
+        code: '#console.log ''im hit'''
+        arguments:
+          template: NLBH447HwkR92N
+        lib: place
+    extends:
+      cgroup: Hostile
+      Test: ''
+      SpeedMultiplier: 1.5
+      HP: 2
+    lastmod: 1739577911117
+    uid: njT39GK8w8QPg6
+    group: Qp976PKNFcFJLC
+    behaviors:
+      - 6MjBr7mJtG2gw9
+    baseClass: AnimatedSprite
+    nineSliceSettings:
+      left: 16
+      top: 16
+      right: 16
+      bottom: 16
+    style: -1
+    extendTypes: ''
+  - type: template
+    name: suga
+    depth: 0
+    texture: wprMwF7zk9c5tW
+    playAnimationOnStart: false
+    loopAnimation: true
+    animationFPS: 30
+    visible: true
+    events:
+      - eventKey: OnStep
+        lib: core
+        code: |-
+          if @direction > 90 and @direction < 270
+              @tex = 'suga'
+              @scale.x = -0.5
+              @play()
+          else if @direction < 90 or @direction > 270
+              @tex = 'suga'
+              @scale.x = 0.5
+              @play()
+        arguments: {}
+      - eventKey: OnCreate
+        code: |-
+          this.animationSpeed = 0.2;
+          this.scale.x = 0.5;
+          this.scale.y = 0.5;
+
+          @speed = 70
+          @direction = 90
+          @isBeingHit = false
+        arguments: {}
+        lib: core
+      - eventKey: collisionTemplate
+        code: |-
+          @kill = true
+
+          sounds.play 'Impact_01'
+        arguments:
+          template: TPpGgD432gcqQp
+        lib: place
+      - eventKey: collisionTemplate
+        code: '#console.log ''im hit'''
+        arguments:
+          template: NLBH447HwkR92N
+        lib: place
+    extends:
+      cgroup: Hostile
+      Test: ''
+      SpeedMultiplier: 1.5
+      HP: 2
+    lastmod: 1739577916550
+    uid: hMN4MLMDPFGf5B
+    group: Qp976PKNFcFJLC
+    behaviors:
+      - 6MjBr7mJtG2gw9
+    baseClass: AnimatedSprite
+    nineSliceSettings:
+      left: 16
+      top: 16
+      right: 16
+      bottom: 16
+    style: -1
+    extendTypes: ''
+  - type: template
+    name: V
+    depth: 0
+    texture: b6JMFFhHnq3tFb
+    playAnimationOnStart: false
+    loopAnimation: true
+    animationFPS: 30
+    visible: true
+    events:
+      - eventKey: OnStep
+        lib: core
+        code: |-
+          if @direction > 90 and @direction < 270
+              @tex = 'V'
+              @scale.x = -0.5
+              @play()
+          else if @direction < 90 or @direction > 270
+              @tex = 'V'
+              @scale.x = 0.5
+              @play()
+        arguments: {}
+      - eventKey: OnCreate
+        code: |-
+          this.animationSpeed = 0.2;
+          this.scale.x = 0.5;
+          this.scale.y = 0.5;
+
+          @speed = 70
+          @direction = 90
+          @isBeingHit = false
+        arguments: {}
+        lib: core
+      - eventKey: collisionTemplate
+        code: |-
+          @kill = true
+
+          sounds.play 'Impact_01'
+        arguments:
+          template: TPpGgD432gcqQp
+        lib: place
+      - eventKey: collisionTemplate
+        code: '#console.log ''im hit'''
+        arguments:
+          template: NLBH447HwkR92N
+        lib: place
+    extends:
+      cgroup: Hostile
+      Test: ''
+      SpeedMultiplier: 1.5
+      HP: 2
+    lastmod: 1739577914378
+    uid: CR9CWrjnqtcN19
+    group: Qp976PKNFcFJLC
+    behaviors:
+      - 6MjBr7mJtG2gw9
+    baseClass: AnimatedSprite
+    nineSliceSettings:
+      left: 16
+      top: 16
+      right: 16
+      bottom: 16
+    style: -1
     extendTypes: ''
 globalVars: []
